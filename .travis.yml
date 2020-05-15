@@ -41,6 +41,9 @@ before_script:
 stages:
   - compile
   - test
+  - name: deploy
+    if: branch = master
+  - staging
 
 jobs:
   include:
@@ -49,3 +52,42 @@ jobs:
     - stage: test
       script: ./gradlew test
     - script: ./gradlew ktlint
+    - stage: deploy
+      script:
+        - echo $KEYSTORE_FILE | base64 -d > my.keystore
+        - ./gradlew assembleRelease \
+          -Pandroid.injected.signing.store.file=$(pwd)/my.keystore \
+          -Pandroid.injected.signing.store.password=$KEYSTORE_PASSWORD \
+          -Pandroid.injected.signing.key.alias=$KEY_ALIAS \
+          -Pandroid.injected.signing.key.password=$KEY_PASSWORD
+      deploy:
+        provider: releases
+        token: $GITHUB_OAUTH_TOKEN
+        file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+        name: $TRAVIS_TAG
+        overwrite: true
+        skip_cleanup: true
+          on:
+            tags: true
+      after_deploy:
+        - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
+    - stage: staging
+      script:
+        - echo $KEYSTORE_FILE | base64 -d > my.keystore
+        - ./gradlew assembleRelease \
+          -Pandroid.injected.signing.store.file=$(pwd)/my.keystore \
+          -Pandroid.injected.signing.store.password=$KEYSTORE_PASSWORD \
+          -Pandroid.injected.signing.key.alias=$KEY_ALIAS \
+          -Pandroid.injected.signing.key.password=$KEY_PASSWORD
+        deploy:
+          provider: releases
+          token: $GITHUB_API_KEY
+          file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+          name: dev-build-$TRAVIS_TAG
+          release_notes: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
+          prerelease: true
+          overwrite: true
+          skip_cleanup: true
+          draft: true
+        after_deploy:
+          - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
