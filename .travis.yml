@@ -79,15 +79,15 @@ jobs:
           -Pandroid.injected.signing.store.password=$KEYSTORE_PASSWORD \
           -Pandroid.injected.signing.key.alias=$KEY_ALIAS \
           -Pandroid.injected.signing.key.password=$KEY_PASSWORD
-        deploy:
-          provider: releases
-          token: $GITHUB_API_KEY
-          file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
-          name: dev-build-$TRAVIS_TAG
-          release_notes: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
-          prerelease: true
-          overwrite: true
-          skip_cleanup: true
-          draft: true
-        after_deploy:
-          - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
+      deploy:
+        provider: releases
+        token: $GITHUB_API_KEY
+        file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+        name: dev-build-$TRAVIS_TAG
+        release_notes: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
+        prerelease: true
+        overwrite: true
+        skip_cleanup: true
+        draft: true
+      after_deploy:
+        - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
