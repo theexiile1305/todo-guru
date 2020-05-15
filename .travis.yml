@@ -24,8 +24,6 @@ android:
     - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-$ANDROID_API_LEVEL
-    # for emulated tests
-    - sys-img-armeabi-v7a-android-$ANDROID_API_LEVEL
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -50,6 +48,4 @@ jobs:
       script: ./gradlew assembleDebug
     - stage: test
       script: ./gradlew test
-    - script:
-        - ./gradlew connectedAndroidTest
     - script: ./gradlew ktlint
