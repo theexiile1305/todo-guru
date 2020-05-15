@@ -35,8 +35,23 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 
-before_script:
-  - chmod +x gradlew
+stages:
+  - compile
+  - test
 
-script:
-  - ./gradlew assembleDebug
+jobs:
+  include:
+    - stage: compile
+      name: "Compile"
+      before_script:
+        - chmod +x gradlew
+      script:
+        - ./gradlew assembleDebug
+    - stage: test
+      name: "Tests"
+      before_script:
+        - chmod +x gradlew
+      script:
+        - ./gradlew test
+    - script:
+        - ./gradlew connectedAndroidTest
