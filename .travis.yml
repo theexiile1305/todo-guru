@@ -38,5 +38,52 @@ cache:
 before_script:
   - chmod +x gradlew
 
-script:
-  - ./gradlew assembleDebug
+stages:
+  - compile
+  - test
+  - name: deploy
+    if: branch = master
+  - name: staging
+    if: branch = develop
+
+jobs:
+  include:
+    - stage: compile
+      script: ./gradlew assembleDebug
+    - stage: test
+      script: ./gradlew test
+    - script: ./gradlew ktlint
+    - stage: deploy
+      script:
+        - echo $KEYSTORE_FILE | base64 -d > $TRAVIS_BUILD_DIR/my.keystore
+        - ./gradlew assembleRelease
+      deploy:
+        provider: releases
+        token: $GITHUB_OAUTH_TOKEN
+        file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+        name: $TRAVIS_TAG
+        overwrite: true
+        cleanup: true
+        on:
+          tags: true
+      after_deploy:
+        - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
+        - rm -rf $TRAVIS_BUILD_DIR/my.keystore
+    - stage: staging
+      script:
+        - echo $KEYSTORE_FILE | base64 -d > $TRAVIS_BUILD_DIR/my.keystore
+        - cat $TRAVIS_BUILD_DIR/my.keystore
+        - ./gradlew assembleRelease
+      deploy:
+        provider: releases
+        token: $GITHUB_API_KEY
+        file: $TRAVIS_BUILD_DIR/app/build/outputs/apk/debug/app-debug.apk
+        name: dev-build-$TRAVIS_TAG
+        release_notes: Automatic build of $TRAVIS_BRANCH ($TRAVIS_COMMIT) built by Travis CI on $(date +'%F %T %Z').
+        prerelease: true
+        overwrite: true
+        cleanup: true
+        draft: true
+      after_deploy:
+        - rm -rf $TRAVIS_BUILD_DIR/app/build/outputs
+        - rm -rf $TRAVIS_BUILD_DIR/my.keystore
