@@ -43,7 +43,8 @@ stages:
   - test
   - name: deploy
     if: branch = master
-  - staging
+  - name: staging
+    if: branch = develop
 
 jobs:
   include:
