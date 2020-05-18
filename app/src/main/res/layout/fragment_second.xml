@@ -2,78 +2,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/layout_margin">
 
-
-    <TextView
-        android:id="@+id/title_text"
-        style="@style/AddTaskStyle"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textAlignment="textStart" />
+        android:hint="@string/title"
+        style="@style/textBox"
+        >
 
-    <EditText
-        android:id="@+id/title"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:importantForAutofill="no"
-        style="@style/editText" />
+        android:hint="@string/description"
+        style="@style/textBox"
+        >
 
-    <TextView
-        android:id="@+id/description_text"
-        style="@style/AddTaskStyle"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dueDateTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/description"
-        android:textAlignment="textStart" />
+        android:hint="@string/DueDate"
+        style="@style/textBox"
+        >
 
-    <EditText
-        android:id="@+id/description"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dueDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/estimatedTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:importantForAutofill="no"
-        style="@style/editText" />
+        android:hint="@string/estimated"
+        style="@style/textBox"
+        >
 
-    <TextView
-        android:id="@+id/dueDate_text"
-        style="@style/AddTaskStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/DueDate"
-        android:textAlignment="textStart" />
-
-    <EditText
-        android:id="@+id/dueDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:importantForAutofill="no"
-        style="@style/editText" />
-
-    <TextView
-        android:id="@+id/estimated_text"
-        style="@style/AddTaskStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/estimated"
-        android:textAlignment="textStart" />
-
-    <EditText
-        android:id="@+id/estimated"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:importantForAutofill="no"
-        style="@style/editText" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/estimated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:id="@+id/reminder_text"
             android:layout_width="wrap_content"
@@ -81,8 +80,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/layout_margin"
             android:paddingLeft="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
             android:text="@string/add_reminder"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
@@ -91,16 +91,15 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             android:src="@drawable/ic_add_white_24dp" />
-
     </LinearLayout>
 
     <Button
         android:id="@+id/button_create"
+        style="@style/AddTaskStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        style="@style/AddTaskStyle"
-        android:textSize="14sp"
-        android:text="@string/createButton" />
+        android:text="@string/createButton"
+        android:textSize="14sp" />
 
 </LinearLayout>

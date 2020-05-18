@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -27,11 +27,22 @@
         <item name="android:textSize">@dimen/text_size_20sp</item>
     </style>
 
+    <style name="textBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:layout_marginBottom">@dimen/layout_margin</item>
+        <item name="android:layout_marginStart">@dimen/layout_margin</item>
+        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
+        <item name="android:textSize">@dimen/text_size_20sp</item>
+    </style>
+
     <style name="editText">
+        <item name="android:layout_marginTop">@dimen/layout_margin</item>
+        <item name="android:layout_marginBottom">@dimen/layout_margin</item>
         <item name="android:layout_marginStart">@dimen/layout_margin</item>
         <item name="android:layout_marginEnd">@dimen/layout_margin</item>
         <item name="android:paddingLeft">@dimen/small_padding</item>
         <item name="android:paddingTop">@dimen/small_padding</item>
+        <item name="android:paddingBottom">@dimen/small_padding</item>
         <item name="android:paddingRight">@dimen/small_padding</item>
     </style>
 
