@@ -4,8 +4,6 @@ import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
 import android.content.ContentValues.TAG
 import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,9 +17,12 @@ import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
-import kotlinx.coroutines.*
-import java.util.*
-
+import java.util.Calendar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -36,10 +37,10 @@ class SecondFragment : Fragment() {
     private lateinit var mContext: Context
     private lateinit var mDateSetListener: OnDateSetListener
 
-    private lateinit var title : TextInputEditText
-    private lateinit var description : TextInputEditText
-    private lateinit var dueDate  : TextInputEditText
-    private lateinit var estimated  : TextInputEditText
+    private lateinit var title: TextInputEditText
+    private lateinit var description: TextInputEditText
+    private lateinit var dueDate: TextInputEditText
+    private lateinit var estimated: TextInputEditText
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -47,7 +48,8 @@ class SecondFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         tasksFromDB = TaskDatabase.getInstance(mContext).taskDatabaseDao
@@ -80,7 +82,7 @@ class SecondFragment : Fragment() {
                 mDateSetListener,
                 year, month, day
             )
-            //dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            // dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
         }
 
@@ -93,7 +95,6 @@ class SecondFragment : Fragment() {
                 dueDate.setText(date)
                 }
         }
-
 
     private fun create() {
         var isValid = true
@@ -127,6 +128,4 @@ class SecondFragment : Fragment() {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
-
-
 }
