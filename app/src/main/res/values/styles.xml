@@ -17,16 +17,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AddTaskStyle">
-        <item name="android:layout_marginStart">@dimen/layout_margin</item>
-        <item name="android:layout_marginTop">@dimen/layout_margin</item>
-        <item name="android:layout_marginEnd">@dimen/layout_margin</item>
-        <item name="android:paddingLeft">@dimen/small_padding</item>
-        <item name="android:paddingTop">@dimen/small_padding</item>
-        <item name="android:paddingRight">@dimen/small_padding</item>
-        <item name="android:textSize">@dimen/text_size_20sp</item>
-    </style>
-
     <style name="textBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_marginTop">@dimen/layout_margin</item>
         <item name="android:layout_marginBottom">@dimen/layout_margin</item>
