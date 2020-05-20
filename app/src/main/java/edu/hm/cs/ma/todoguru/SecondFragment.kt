@@ -2,7 +2,6 @@ package edu.hm.cs.ma.todoguru
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
