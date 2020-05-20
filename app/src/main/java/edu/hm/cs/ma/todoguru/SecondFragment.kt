@@ -5,7 +5,6 @@ import android.app.DatePickerDialog.OnDateSetListener
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +16,8 @@ import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +30,6 @@ import kotlinx.coroutines.withContext
  */
 class SecondFragment : Fragment() {
 
-    // Coroutine stuff
     private var databaseJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + databaseJob)
 
@@ -41,6 +41,7 @@ class SecondFragment : Fragment() {
     private lateinit var description: TextInputEditText
     private lateinit var dueDate: TextInputEditText
     private lateinit var estimated: TextInputEditText
+    private lateinit var dat: LocalDate
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -54,7 +55,7 @@ class SecondFragment : Fragment() {
     ): View? {
         tasksFromDB = TaskDatabase.getInstance(mContext).taskDatabaseDao
         (activity as MainActivity).supportActionBar?.title = getString(R.string.addTask)
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_second, container, false)
     }
 
@@ -81,17 +82,29 @@ class SecondFragment : Fragment() {
                 android.R.style.Theme_Material_Light_Dialog_MinWidth,
                 mDateSetListener,
                 year, month, day
+
             )
-            // dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.show()
         }
 
         mDateSetListener =
             OnDateSetListener { datePicker, year, month, day ->
                 var currentMonth = month
+                var dayString = day.toString()
+                var monthString = currentMonth.toString()
+                val yearString = year.toString()
+
                 currentMonth += 1
-                Log.i(TAG, "onDateSet: dd/mm/yyy: $day/$currentMonth/$year")
-                val date = "$day/$currentMonth/$year"
+
+                if (day < 10) {
+                    dayString = "0$day"
+                }
+
+                if (currentMonth < 10) {
+                    monthString = "0$currentMonth"
+                }
+
+                val date = "$dayString/$monthString/$yearString"
                 dueDate.setText(date)
                 }
         }
@@ -117,8 +130,8 @@ class SecondFragment : Fragment() {
                             0L,
                             title.text.toString(),
                             description.text.toString(),
-                            dueDate.text.toString(),
-                            estimated.text.toString(),
+                            date(),
+                            Integer.parseInt(estimated.text.toString()),
                             ""
                         )
                     )
@@ -128,4 +141,11 @@ class SecondFragment : Fragment() {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
+
+    private fun date(): LocalDate {
+        val formatter =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+        return LocalDate.parse(dueDate.text.toString(), formatter)
+        }
 }

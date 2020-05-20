@@ -9,7 +9,7 @@
         android:id="@+id/titleTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/DueDate"
+        android:hint="@string/title"
         style="@style/textBox"
         >
 
@@ -69,7 +69,7 @@
             android:id="@+id/estimated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
             android:importantForAutofill="no"
             />
     </com.google.android.material.textfield.TextInputLayout>

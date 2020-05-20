@@ -64,7 +64,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
     // material
-    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.android.support:design:29.1.1'
     // room and lifecycle
     implementation "androidx.room:room-runtime:2.2.5"
