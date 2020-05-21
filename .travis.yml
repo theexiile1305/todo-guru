@@ -1,6 +1,6 @@
 language: android
 jdk: oraclejdk8
-dist: xenial
+dist: trusty
 os: linux
 env:
   global:
