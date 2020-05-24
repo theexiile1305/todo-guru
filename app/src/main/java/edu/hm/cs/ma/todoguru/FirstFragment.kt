@@ -15,12 +15,12 @@ import edu.hm.cs.ma.todoguru.database.TaskDatabase
  */
 class FirstFragment : Fragment() {
 
-    private lateinit var mContext: Context
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        mContext = context
-    }
+    //Probably need to remove this
+    //private lateinit var mContext: Context
+    //override fun onAttach(context: Context) {
+    //    super.onAttach(context)
+    //    mContext = context
+    //}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,17 +28,13 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
+
+        //probably need to remove this
+        //Get all the tasks from the db
+        //val dataSource = TaskDatabase.getInstance(mContext).taskDatabaseDao
+        //val allTasks = dataSource.getAllTasks();
+
         // Inflate the layout for this fragment
-
-        // Get all the tasks from the db
-        val dataSource = TaskDatabase.getInstance(mContext).taskDatabaseDao
-        val allTasks = dataSource.getAllTasks();
-
-        //List all the tasks from the db using the layout created on task_view_holder
-        for (Tasks in allTasks) {
-            Tasks.add(TimerImplementation(timer.timerId*350, timer.name))
-        }
-
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
