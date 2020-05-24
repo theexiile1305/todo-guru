@@ -30,11 +30,13 @@ class FirstFragment : Fragment() {
         (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
         // Inflate the layout for this fragment
 
+        // Get all the tasks from the db
         val dataSource = TaskDatabase.getInstance(mContext).taskDatabaseDao
         val allTasks = dataSource.getAllTasks();
 
+        //List all the tasks from the db using the layout created on task_view_holder
         for (Tasks in allTasks) {
-            Task.add(TimerImplementation(timer.timerId*350, timer.name))
+            Tasks.add(TimerImplementation(timer.timerId*350, timer.name))
         }
 
         return inflater.inflate(R.layout.fragment_first, container, false)
