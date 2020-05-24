@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            android:paddingStart="5dp"/>
+            android:paddingStart="8dp"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            android:paddingStart="5dp"/>
+            android:paddingStart="8dp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            android:paddingStart="25dp"/>
+            android:paddingStart="30dp"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.018"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintVertical_bias="1.0"
