@@ -11,7 +11,7 @@ class LocalDateConverter {
             null
         } else {
             val formatter =
-                DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                DateTimeFormatter.ofPattern("yyyy-MM-dd")
             LocalDate.parse(dateString, formatter)
         }
     }
