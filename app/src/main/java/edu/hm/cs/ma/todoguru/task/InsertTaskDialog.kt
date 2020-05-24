@@ -53,6 +53,7 @@ class InsertTaskDialog(
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.insert_task_dialog, container, false)
+
     }
 
     override fun onStart() {
@@ -118,6 +119,11 @@ class InsertTaskDialog(
 
         if (description.text.toString().isEmpty()) {
             description.error = "The description required"
+            isValid = false
+        }
+
+        if (estimated.text.toString().isEmpty()) {
+            estimated.error = "The estimation required"
             isValid = false
         }
 
