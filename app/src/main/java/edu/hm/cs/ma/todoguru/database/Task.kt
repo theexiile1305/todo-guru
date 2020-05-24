@@ -19,4 +19,12 @@ data class Task(
     var estimated: Int,
     @ColumnInfo(name = "reminder")
     var reminder: String
-)
+) {
+    constructor(
+        title: String,
+        description: String,
+        dueDate: LocalDate,
+        estimated: Int,
+        reminder: String
+    ) : this(0, title, description, dueDate, estimated, reminder)
+}
