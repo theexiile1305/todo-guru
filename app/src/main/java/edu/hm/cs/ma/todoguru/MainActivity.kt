@@ -53,5 +53,4 @@ class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
         viewModel.insertTask(title, description, dueDate, estimated, reminder)
     }
 
-
 }
