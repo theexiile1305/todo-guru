@@ -20,25 +20,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{task.title}"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"
-            android:paddingStart="8dp"/>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="29dp"
-            android:text="@{task.description}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            android:paddingStart="8dp"/>
+            android:textStyle="bold"
+            android:paddingStart="10dp"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="@{task.description}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            android:paddingStart="10dp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -46,12 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="@{task.dueDate.toString()}"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="MissingConstraints"
-            android:paddingStart="30dp"/>
+            android:paddingStart="32dp"/>
 
         <ImageView
             android:id="@+id/imageView"
