@@ -53,7 +53,6 @@ class InsertTaskDialog(
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(R.layout.insert_task_dialog, container, false)
-
     }
 
     override fun onStart() {
