@@ -49,9 +49,24 @@ class TaskViewModel(
         }
     }
 
+    fun markTasksAsDone(tasks: List<Task>) {
+        uiScope.launch {
+            tasks.forEach {
+                it.done = true
+                update(it)
+            }
+        }
+    }
+
     private suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
-            database.insert(task)
+            database.insert(Task(task))
+        }
+    }
+
+    private suspend fun update(task: Task) {
+        withContext(Dispatchers.IO) {
+            database.update(task)
         }
     }
 }
