@@ -37,9 +37,9 @@ class TaskDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() {
-        val night = Task(0, "Title", "Description", date("20/05/2020"), 5, "")
-        taskDao.insert(night)
+    fun insertTask() {
+        val task = Task(0, "Title", "Description", date("20/05/2020"), 5, "")
+        taskDao.insert(task)
     }
 
     private fun date(date: String): LocalDate {
