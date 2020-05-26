@@ -8,4 +8,6 @@
     <string name="add_reminder">Add Reminder</string>
     <string name="create_button">Create</string>
     <string name="display_task">Display task</string>
+    <string name="mark_as_done_short">Done</string>
+    <string name="mark_as_done_long">Mark selected tasks as Done</string>
 </resources>

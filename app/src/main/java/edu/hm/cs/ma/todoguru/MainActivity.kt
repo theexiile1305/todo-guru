@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.databinding.ActivityMainBinding
 import edu.hm.cs.ma.todoguru.task.InsertTaskDialog
@@ -12,10 +13,13 @@ import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import java.time.LocalDate
+import kotlinx.android.synthetic.main.activity_main.topAppBar
 
 class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
 
     private lateinit var viewModel: TaskViewModel
+
+    private val selectedTasks = ArrayList<Task>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +45,16 @@ class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
                 InsertTaskDialog(this).show(supportFragmentManager, InsertTaskDialog.TAG)
             }
         })
+
+        topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.mark_tasks_as_done -> {
+                    viewModel.markTasksAsDone(selectedTasks)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onInsertTask(
