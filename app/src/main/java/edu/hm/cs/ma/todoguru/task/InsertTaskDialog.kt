@@ -1,6 +1,7 @@
 package edu.hm.cs.ma.todoguru.task
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.R
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
@@ -29,12 +33,11 @@ class InsertTaskDialog(
             description: String,
             dueDate: LocalDate,
             estimated: Int,
-            reminder: String
+            reminder: LocalDateTime
         )
     }
 
     private lateinit var mContext: Context
-    private lateinit var mDateSetListener: DatePickerDialog.OnDateSetListener
 
     private lateinit var title: TextInputEditText
     private lateinit var description: TextInputEditText
@@ -72,43 +75,60 @@ class InsertTaskDialog(
         estimated = view.findViewById(R.id.estimated)
         dueDate.isFocusable = false
 
-        view.findViewById<Button>(R.id.button_create)
-            .setOnClickListener { create() }
-
         dueDate.setOnClickListener {
             val cal = Calendar.getInstance()
             DatePickerDialog(
                 mContext,
                 android.R.style.Theme_Material_Light_Dialog_MinWidth,
-                mDateSetListener,
+                DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                    var currentMonth = month
+                    var dayString = day.toString()
+                    var monthString = currentMonth.toString()
+                    val yearString = year.toString()
+
+                    currentMonth += 1
+
+                    if (day < 10) {
+                        dayString = "0$day"
+                    }
+
+                    if (currentMonth < 10) {
+                        monthString = "0$currentMonth"
+                    }
+
+                    val date = "$dayString/$monthString/$yearString"
+                    dueDate.setText(date)
+                },
                 cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH)
 
             ).show()
         }
 
-        mDateSetListener =
-            DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                var currentMonth = month
-                var dayString = day.toString()
-                var monthString = currentMonth.toString()
-                val yearString = year.toString()
-
-                currentMonth += 1
-
-                if (day < 10) {
-                    dayString = "0$day"
-                }
-
-                if (currentMonth < 10) {
-                    monthString = "0$currentMonth"
-                }
-
-                val date = "$dayString/$monthString/$yearString"
-                dueDate.setText(date)
-            }
+        val reminder = getReminder(view)
+        view.findViewById<Button>(R.id.button_create)
+            .setOnClickListener { create(reminder) }
     }
 
-    private fun create() {
+    private fun getReminder(view: View): LocalDateTime {
+        var localTime: LocalTime = LocalTime.now()
+        view.findViewById<FloatingActionButton>(R.id.reminder_button)
+            .setOnClickListener {
+                val currentTime = LocalTime.now()
+                TimePickerDialog(
+                    mContext,
+                    TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                        localTime = LocalTime.of(hourOfDay, minute)
+                    },
+                    currentTime.hour,
+                    currentTime.minute,
+                    false
+                ).show()
+            }
+        val localDate = if (dueDate.text.toString().isNotEmpty()) date() else LocalDate.now()
+        return LocalDateTime.of(localDate, localTime)
+    }
+
+    private fun create(reminder: LocalDateTime) {
         var isValid = true
 
         if (title.text.toString().isEmpty()) {
@@ -132,7 +152,7 @@ class InsertTaskDialog(
                 description.text.toString(),
                 date(),
                 Integer.parseInt(estimated.text.toString()),
-                ""
+                reminder
             )
             Toast.makeText(mContext, "Task is created", Toast.LENGTH_SHORT).show()
             this.dismiss()

@@ -12,6 +12,7 @@ import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
 
@@ -48,7 +49,7 @@ class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
         description: String,
         dueDate: LocalDate,
         estimated: Int,
-        reminder: String
+        reminder: LocalDateTime
     ) {
         viewModel.insertTask(title, description, dueDate, estimated, reminder)
     }
