@@ -15,7 +15,7 @@ import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import java.time.LocalDate
 import kotlinx.android.synthetic.main.activity_main.topAppBar
 
-class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
+class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatActivity() {
 
     private lateinit var viewModel: TaskViewModel
 
@@ -33,7 +33,7 @@ class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        val adapter = TaskAdapter()
+        val adapter = TaskAdapter(this)
         binding.tasksList.adapter = adapter
 
         viewModel.tasks.observe(this, Observer {
@@ -65,5 +65,12 @@ class MainActivity : InsertTaskDialog.Listener, AppCompatActivity() {
         reminder: String
     ) {
         viewModel.insertTask(title, description, dueDate, estimated, reminder)
+    }
+
+    override fun onCheckBoxClick(task: Task) {
+        if (selectedTasks.contains(task))
+            selectedTasks.remove(task)
+        else
+            selectedTasks.add(task)
     }
 }

@@ -7,6 +7,10 @@
         <variable
             name="task"
             type="edu.hm.cs.ma.todoguru.database.Task" />
+
+        <variable
+            name="listener"
+            type="edu.hm.cs.ma.todoguru.task.TaskAdapter.Listener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +25,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{(view) -> listener.onCheckBoxClick(task)}"/>
 
         <TextView
             android:id="@+id/title"
