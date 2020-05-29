@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="task"
-            type="edu.hm.cs.ma.todoguru.database.Task" />
+            name="wrapper"
+            type="edu.hm.cs.ma.todoguru.task.TaskWrapper" />
 
         <variable
             name="listener"
@@ -26,7 +26,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{(view) -> listener.onCheckBoxClick(task)}"/>
+            android:checked="@{wrapper.selected}"
+            android:onClick="@{(view) -> listener.onCheckBoxClick(wrapper)}"/>
 
         <TextView
             android:id="@+id/title"
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="@{task.title}"
+            android:text="@{wrapper.task.title}"
             app:layout_constraintBottom_toTopOf="@id/description"
             app:layout_constraintEnd_toStartOf="@+id/display_task"
             app:layout_constraintHorizontal_bias="0.0"
@@ -50,7 +51,7 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
-            android:text="@{task.description}"
+            android:text="@{wrapper.task.description}"
             app:layout_constraintBottom_toTopOf="@id/due_date"
             app:layout_constraintEnd_toStartOf="@+id/display_task"
             app:layout_constraintHorizontal_bias="0.0"
@@ -63,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{task.dueDate.toString()}"
+            android:text="@{wrapper.task.dueDate.toString()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/display_task"
             app:layout_constraintHorizontal_bias="0.0"

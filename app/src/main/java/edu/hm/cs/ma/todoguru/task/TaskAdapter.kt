@@ -13,7 +13,7 @@ class TaskAdapter(
 ) : ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallBack()) {
 
     interface Listener {
-        fun onCheckBoxClick(task: Task)
+        fun onCheckBoxClick(wrapper: TaskWrapper)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -34,7 +34,7 @@ class TaskAdapter(
         }
 
         fun bind(task: Task, listener: Listener) {
-            binding.task = task
+            binding.wrapper = TaskWrapper(task)
             binding.listener = listener
             binding.executePendingBindings()
         }

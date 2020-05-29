@@ -12,6 +12,7 @@ import edu.hm.cs.ma.todoguru.task.InsertTaskDialog
 import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
+import edu.hm.cs.ma.todoguru.task.TaskWrapper
 import java.time.LocalDate
 import kotlinx.android.synthetic.main.activity_main.topAppBar
 
@@ -41,9 +42,8 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         })
 
         viewModel.addTaskEvent.observe(this, Observer {
-            if (it) {
+            if (it)
                 InsertTaskDialog(this).show(supportFragmentManager, InsertTaskDialog.TAG)
-            }
         })
 
         topAppBar.setOnMenuItemClickListener {
@@ -55,6 +55,11 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
                 else -> false
             }
         }
+
+        viewModel.markTaskDoneEvent.observe(this, Observer {
+            if (it)
+                selectedTasks.clear()
+        })
     }
 
     override fun onInsertTask(
@@ -67,10 +72,12 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         viewModel.insertTask(title, description, dueDate, estimated, reminder)
     }
 
-    override fun onCheckBoxClick(task: Task) {
+    override fun onCheckBoxClick(wrapper: TaskWrapper) {
+        val task = wrapper.task
         if (selectedTasks.contains(task))
             selectedTasks.remove(task)
         else
             selectedTasks.add(task)
+        wrapper.isSelected = true
     }
 }

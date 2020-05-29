@@ -24,6 +24,10 @@ class TaskViewModel(
     val addTaskEvent: LiveData<Boolean>
         get() = _addTaskEvent
 
+    private var _markTaskDoneEvent = MutableLiveData(false)
+    val markTaskDoneEvent: LiveData<Boolean>
+        get() = _markTaskDoneEvent
+
     private val viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -55,6 +59,8 @@ class TaskViewModel(
                 it.done = true
                 update(it)
             }
+        }.invokeOnCompletion {
+            _markTaskDoneEvent.value = true
         }
     }
 
