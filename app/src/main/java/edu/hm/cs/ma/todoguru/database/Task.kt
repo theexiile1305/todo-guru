@@ -20,12 +20,27 @@ data class Task(
     var estimated: Int,
     @ColumnInfo(name = "reminder")
     var reminder: LocalDateTime
+    var reminder: String,
+    @ColumnInfo(name = "done")
+    var done: Boolean
 ) {
+
+    constructor(
+        task: Task
+    ) : this(
+        task.title,
+        task.description,
+        task.dueDate,
+        task.estimated,
+        task.reminder,
+        false
+    )
+
     constructor(
         title: String,
         description: String,
         dueDate: LocalDate,
         estimated: Int,
         reminder: LocalDateTime
-    ) : this(0, title, description, dueDate, estimated, reminder)
+    ) : this(0, title, description, dueDate, estimated, reminder, false)
 }
