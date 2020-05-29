@@ -20,7 +20,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:navigationIcon="@drawable/ic_close_24px"
-                    app:title="@string/addTask" />
+                    app:title="@string/add_task" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -59,7 +59,7 @@
                 style="@style/textBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/DueDate">
+                android:hint="@string/due_date">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dueDate"
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/createButton"
+                android:text="@string/create_button"
                 android:textSize="14sp" />
 
         </LinearLayout>
