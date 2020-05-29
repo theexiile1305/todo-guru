@@ -19,8 +19,7 @@ data class Task(
     @ColumnInfo(name = "estimated Time")
     var estimated: Int,
     @ColumnInfo(name = "reminder")
-    var reminder: LocalDateTime
-    var reminder: String,
+    var reminder: LocalDateTime,
     @ColumnInfo(name = "done")
     var done: Boolean
 ) {
@@ -32,8 +31,7 @@ data class Task(
         task.description,
         task.dueDate,
         task.estimated,
-        task.reminder,
-        false
+        task.reminder
     )
 
     constructor(
