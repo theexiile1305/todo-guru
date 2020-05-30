@@ -11,15 +11,14 @@ import androidx.core.app.NotificationManagerCompat
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import java.time.LocalDateTime
+import java.util.Timer
+import java.util.TimerTask
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
-import java.util.Timer
-import java.util.TimerTask
-
 
 class ReminderNotification : Service() {
 

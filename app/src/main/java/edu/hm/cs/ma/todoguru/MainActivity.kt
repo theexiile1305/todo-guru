@@ -15,10 +15,9 @@ import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import edu.hm.cs.ma.todoguru.task.TaskWrapper
-import kotlinx.android.synthetic.main.activity_main.topAppBar
 import java.time.LocalDate
 import java.time.LocalDateTime
-
+import kotlinx.android.synthetic.main.activity_main.topAppBar
 
 class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatActivity() {
 
