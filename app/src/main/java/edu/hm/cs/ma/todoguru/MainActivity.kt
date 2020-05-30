@@ -1,5 +1,6 @@
 package edu.hm.cs.ma.todoguru
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -8,14 +9,16 @@ import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.databinding.ActivityMainBinding
+import edu.hm.cs.ma.todoguru.notification.ReminderNotification
 import edu.hm.cs.ma.todoguru.task.InsertTaskDialog
 import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import edu.hm.cs.ma.todoguru.task.TaskWrapper
+import kotlinx.android.synthetic.main.activity_main.topAppBar
 import java.time.LocalDate
 import java.time.LocalDateTime
-import kotlinx.android.synthetic.main.activity_main.topAppBar
+
 
 class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatActivity() {
 
@@ -61,6 +64,8 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
             if (it)
                 selectedTasks.clear()
         })
+
+        startService(Intent(this, ReminderNotification::class.java))
     }
 
     override fun onInsertTask(
