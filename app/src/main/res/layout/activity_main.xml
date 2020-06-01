@@ -10,15 +10,18 @@
             type="edu.hm.cs.ma.todoguru.task.TaskViewModel" />
     </data>
 
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
+        tools:context=".MainActivity"
+        android:id="@+id/mainContainer"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -56,4 +59,5 @@
             app:srcCompat="@drawable/ic_add_white_24dp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

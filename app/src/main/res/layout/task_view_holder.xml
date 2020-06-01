@@ -83,7 +83,7 @@
             android:src="@drawable/ic_keyboard_arrow_right_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> listener.onClick(task)}"
+            android:onClick="@{() -> listener.onTaskClick(wrapper.task)}"
        
             app:layout_constraintTop_toTopOf="parent" />
 

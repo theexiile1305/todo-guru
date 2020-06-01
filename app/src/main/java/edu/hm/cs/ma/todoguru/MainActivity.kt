@@ -1,6 +1,7 @@
 package edu.hm.cs.ma.todoguru
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -21,6 +22,13 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
     private lateinit var viewModel: TaskViewModel
 
     private val selectedTasks = ArrayList<Task>()
+    override fun onTaskClick(task: Task) {
+            Log.i("tag",task.toString() )
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.mainContainer, ViewTaskFragment())
+        fragmentTransaction.addToBackStack(null)
+        fragmentTransaction.commit()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

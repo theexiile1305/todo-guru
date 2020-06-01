@@ -32,7 +32,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tasks_list"
-                android:text="@{taskViewModel.tasks.}"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

@@ -11,4 +11,5 @@
     <string name="display_task">Display task</string>
     <string name="mark_as_done_short">Done</string>
     <string name="mark_as_done_long">Mark selected tasks as Done</string>
+    <string name="DueDate">dueDate</string>
 </resources>

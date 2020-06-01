@@ -17,6 +17,7 @@ import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 class ViewTaskFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
       val binding: ViewTaskFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.view_task_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
