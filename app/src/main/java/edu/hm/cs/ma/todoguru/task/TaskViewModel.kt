@@ -30,6 +30,10 @@ class TaskViewModel(
 
     private var task: Task? = null
 
+    private var _markTaskDoneEvent = MutableLiveData(false)
+    val markTaskDoneEvent: LiveData<Boolean>
+        get() = _markTaskDoneEvent
+
     private val viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -55,13 +59,28 @@ class TaskViewModel(
         }
     }
 
-    fun clickTask(t: Task) {
+
+    fun markTasksAsDone(tasks: List<Task>) {
+        uiScope.launch {
+            tasks.forEach {
+                it.done = true
+                update(it)
+            }
+        }.invokeOnCompletion {
+            _markTaskDoneEvent.value = true
+        }
 
     }
 
     private suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
-            database.insert(task)
+            database.insert(Task(task))
+        }
+    }
+
+    private suspend fun update(task: Task) {
+        withContext(Dispatchers.IO) {
+            database.update(task)
         }
     }
 

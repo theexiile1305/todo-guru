@@ -8,13 +8,19 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.databinding.TaskViewHolderBinding
 
-class TaskAdapter(private val listener: TaskListener) : ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallBack()) {
+class TaskAdapter(
+    private val listener: Listener
+) : ListAdapter<Task, TaskAdapter.ViewHolder>(TaskDiffCallBack()) {
+
+    interface Listener {
+        fun onCheckBoxClick(wrapper: TaskWrapper)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), listener)
 
     class ViewHolder private constructor(private val binding: TaskViewHolderBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,8 +33,8 @@ class TaskAdapter(private val listener: TaskListener) : ListAdapter<Task, TaskAd
             }
         }
 
-        fun bind(task: Task, listener: TaskListener) {
-            binding.task = task
+        fun bind(task: Task, listener: Listener) {
+            binding.wrapper = TaskWrapper(task)
             binding.listener = listener
             binding.executePendingBindings()
         }
