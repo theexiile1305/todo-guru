@@ -17,4 +17,7 @@ interface TaskDatabaseDao {
     // Get all tasks and order them by estimated time
     @Query("SELECT * FROM task_table ORDER BY `estimated Time` ASC")
     fun getAllTasks(): List<Task>
+
+    @Query("SELECT * FROM task_table WHERE id = :id")
+    fun get(id: Long): Task?
 }

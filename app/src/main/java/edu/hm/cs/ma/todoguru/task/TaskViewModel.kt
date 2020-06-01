@@ -24,6 +24,12 @@ class TaskViewModel(
     val addTaskEvent: LiveData<Boolean>
         get() = _addTaskEvent
 
+    private var _showTaskFragment = MutableLiveData<Task?>()
+    val showTaskFragment: LiveData<Task?>
+    get() = _showTaskFragment
+
+    private var task: Task? = null
+
     private val viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -49,9 +55,18 @@ class TaskViewModel(
         }
     }
 
+    fun clickTask(t: Task) {
+
+    }
+
     private suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
             database.insert(task)
         }
+    }
+
+    fun showTaskFragment(t: Task){
+        task = t
+        _showTaskFragment.value = t
     }
 }
