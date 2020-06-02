@@ -10,4 +10,6 @@
     <string name="display_task">Display task</string>
     <string name="mark_as_done_short">Done</string>
     <string name="mark_as_done_long">Mark selected tasks as Done</string>
+    <string name="delete_tasks_short">Delete</string>
+    <string name="delete_tasks_long">Delete selected tasks</string>
 </resources>
