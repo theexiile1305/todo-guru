@@ -86,14 +86,29 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminderTextField"
+                android:id="@+id/reminderDateTextField"
                 style="@style/textBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/reminder">
+                android:hint="@string/reminder_date">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reminder"
+                    android:id="@+id/reminder_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminderTimeTextField"
+                style="@style/textBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/reminder_time">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reminder_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"

@@ -5,7 +5,8 @@
     <string name="description">Description</string>
     <string name="due_date">Due Date</string>
     <string name="estimated">Estimated Time</string>
-    <string name="reminder">Reminder</string>
+    <string name="reminder_date">Reminder Date</string>
+    <string name="reminder_time">Reminder Time</string>
     <string name="create_button">Create</string>
     <string name="display_task">Display task</string>
     <string name="mark_as_done_short">Done</string>
