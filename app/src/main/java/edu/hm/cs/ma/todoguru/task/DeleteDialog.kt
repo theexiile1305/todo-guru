@@ -13,7 +13,7 @@ class DeleteDialog(private val viewModel: TaskViewModel, private val selectedTas
             AlertDialog.Builder(this.requireActivity())
         builder.setTitle("Are you sure that you want to delete the selected tasks?")
             .setPositiveButton(
-                "Yes"
+                "Confirm"
             ) { _, _ -> viewModel.deleteTasks(selectedTasks) }
             .setNegativeButton(
                 "Cancel"

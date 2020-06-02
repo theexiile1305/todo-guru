@@ -9,8 +9,8 @@ import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import junit.framework.Assert.assertEquals
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
