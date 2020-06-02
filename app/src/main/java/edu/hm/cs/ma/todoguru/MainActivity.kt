@@ -52,7 +52,11 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
                     viewModel.markTasksAsDone(selectedTasks)
                     true
                 }
-                else -> false
+                R.id.delete_tasks -> {
+                    viewModel.deleteTasks(selectedTasks)
+                    true
+                }
+                else  -> false
             }
         }
 
@@ -60,16 +64,6 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
             if (it)
                 selectedTasks.clear()
         })
-
-        topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.delete_tasks -> {
-                    viewModel.deleteTasks(selectedTasks)
-                    true
-                }
-                else -> false
-            }
-        }
 
         viewModel.deleteTaskEvent.observe(this, Observer {
             if (it)
