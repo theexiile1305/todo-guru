@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.R
+import kotlinx.android.synthetic.main.insert_task_dialog.topAppBar
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -86,6 +87,8 @@ class InsertTaskDialog(
         view.findViewById<Button>(R.id.button_create).setOnClickListener {
             create()
         }
+
+        topAppBar.setNavigationOnClickListener { this.dismiss() }
     }
 
     private fun determineReminder() {
