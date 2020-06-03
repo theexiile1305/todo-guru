@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import java.time.LocalDate
+import java.time.LocalDateTime
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -46,10 +47,23 @@ class TaskViewModel(
         description: String,
         dueDate: LocalDate,
         estimated: Int,
-        reminder: String
+        reminder: LocalDateTime
     ) {
         uiScope.launch {
             insert(Task(title, description, dueDate, estimated, reminder))
+        }
+    }
+
+    fun updateTask(
+        id: Long,
+        title: String,
+        description: String,
+        dueDate: LocalDate,
+        estimated: Int,
+        reminder: LocalDateTime
+    ) {
+        uiScope.launch {
+            update(Task(id, title, description, dueDate, estimated, reminder))
         }
     }
 

@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.R
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
@@ -29,7 +30,7 @@ class InsertTaskDialog(
             description: String,
             dueDate: LocalDate,
             estimated: Int,
-            reminder: String
+            reminder: LocalDateTime
         )
     }
 
@@ -132,7 +133,7 @@ class InsertTaskDialog(
                 description.text.toString(),
                 date(),
                 Integer.parseInt(estimated.text.toString()),
-                ""
+                LocalDateTime.now()
             )
             Toast.makeText(mContext, "Task is created", Toast.LENGTH_SHORT).show()
             this.dismiss()
