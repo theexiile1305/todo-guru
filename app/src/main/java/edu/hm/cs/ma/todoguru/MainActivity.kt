@@ -75,8 +75,8 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
             if (it)
                 selectedTasks.clear()
         })
-      
-       startService(Intent(this, ReminderNotification::class.java))
+
+        startService(Intent(this, ReminderNotification::class.java))
     }
 
     override fun onInsertTask(
