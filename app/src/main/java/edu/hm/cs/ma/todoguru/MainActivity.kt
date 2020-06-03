@@ -111,9 +111,9 @@ class MainActivity : InsertTaskDialog.Listener, UpdateTaskDialog.Listener, TaskA
         wrapper.isSelected = true
     }
 
-
     override fun onUpdateClick(task: Task) {
         UpdateTaskDialog(task, this).show(supportFragmentManager, UpdateTaskDialog.TAG)
+    }
 
     private fun openDeleteDialog() {
         val dialog = DeleteDialog(viewModel, selectedTasks)
