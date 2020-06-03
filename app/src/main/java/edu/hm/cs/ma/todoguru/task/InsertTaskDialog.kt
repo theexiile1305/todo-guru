@@ -104,7 +104,6 @@ class InsertTaskDialog(
             DatePickerDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    println(month)
                     reminderDate = LocalDate.of(year, month + 1, dayOfMonth)
                     val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
                     reminderDateText.setText(reminderDate.format(formatDate))
@@ -140,7 +139,6 @@ class InsertTaskDialog(
             DatePickerDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    println(month)
                     dueDate = LocalDate.of(year, month + 1, dayOfMonth)
                     val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
                     dueDateText.setText(dueDate.format(formatDate))
