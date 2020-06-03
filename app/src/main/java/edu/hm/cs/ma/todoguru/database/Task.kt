@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDate
+import java.time.LocalDateTime
 
 @Entity(tableName = "task_table")
 data class Task(
@@ -18,7 +19,7 @@ data class Task(
     @ColumnInfo(name = "estimated Time")
     var estimated: Int,
     @ColumnInfo(name = "reminder")
-    var reminder: String,
+    var reminder: LocalDateTime,
     @ColumnInfo(name = "done")
     var done: Boolean
 ) {
@@ -38,6 +39,6 @@ data class Task(
         description: String,
         dueDate: LocalDate,
         estimated: Int,
-        reminder: String
+        reminder: LocalDateTime
     ) : this(0, title, description, dueDate, estimated, reminder, false)
 }
