@@ -80,4 +80,8 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
             selectedTasks.add(task)
         wrapper.isSelected = true
     }
+
+    override fun onUpdateClick(task: Task) {
+        UpdateTaskDialog(task, this).show(supportFragmentManager, UpdateTaskDialog.TAG)
+    }
 }
