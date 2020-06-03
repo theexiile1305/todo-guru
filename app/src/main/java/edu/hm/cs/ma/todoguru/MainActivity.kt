@@ -55,7 +55,7 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
                 }
                 R.id.delete_tasks -> {
                     if (selectedTasks.isNotEmpty()) {
-                        openDialog()
+                        openDeleteDialog()
                     }
                     true
                 }
@@ -93,8 +93,8 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         wrapper.isSelected = true
     }
 
-    private fun openDialog() {
+    private fun openDeleteDialog() {
         val dialog = DeleteDialog(viewModel, selectedTasks)
-        dialog.show(supportFragmentManager, "delete_dialog")
+        dialog.show(supportFragmentManager, DeleteDialog.TAG)
     }
 }

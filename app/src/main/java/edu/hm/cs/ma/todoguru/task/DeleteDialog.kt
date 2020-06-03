@@ -8,6 +8,10 @@ import edu.hm.cs.ma.todoguru.database.Task
 
 class DeleteDialog(private val viewModel: TaskViewModel, private val selectedTasks: ArrayList<Task>) : AppCompatDialogFragment() {
 
+    companion object {
+        const val TAG = "delete_dialog"
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder =
             AlertDialog.Builder(this.requireActivity())
