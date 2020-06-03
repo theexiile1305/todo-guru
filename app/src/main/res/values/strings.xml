@@ -13,4 +13,6 @@
     <string name="mark_as_done_long">Mark selected tasks as Done</string>
     <string name="notification_content_title">ToDo Guru Reminder</string>
     <string name="notification_content_description">Have you finished your tasks yet?</string>
+    <string name="delete_tasks_short">Delete</string>
+    <string name="delete_tasks_long">Delete selected tasks</string>
 </resources>
