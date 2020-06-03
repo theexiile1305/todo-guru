@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.databinding.ActivityMainBinding
+import edu.hm.cs.ma.todoguru.task.DeleteDialog
 import edu.hm.cs.ma.todoguru.task.InsertTaskDialog
 import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
@@ -52,11 +53,22 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
                     viewModel.markTasksAsDone(selectedTasks)
                     true
                 }
+                R.id.delete_tasks -> {
+                    if (selectedTasks.isNotEmpty()) {
+                        openDeleteDialog()
+                    }
+                    true
+                }
                 else -> false
             }
         }
 
         viewModel.markTaskDoneEvent.observe(this, Observer {
+            if (it)
+                selectedTasks.clear()
+        })
+
+        viewModel.deleteTaskEvent.observe(this, Observer {
             if (it)
                 selectedTasks.clear()
         })
@@ -79,5 +91,10 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         else
             selectedTasks.add(task)
         wrapper.isSelected = true
+    }
+
+    private fun openDeleteDialog() {
+        val dialog = DeleteDialog(viewModel, selectedTasks)
+        dialog.show(supportFragmentManager, DeleteDialog.TAG)
     }
 }

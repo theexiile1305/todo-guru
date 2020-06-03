@@ -10,6 +10,7 @@ import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,6 +20,7 @@ class TaskDatabaseTest {
 
     private lateinit var taskDao: TaskDatabaseDao
     private lateinit var database: TaskDatabase
+    private lateinit var task: Task
 
     @Before
     fun createDb() {
@@ -38,14 +40,24 @@ class TaskDatabaseTest {
     @Test
     @Throws(Exception::class)
     fun insertTask() {
-        val task = Task(0, "Title", "Description", date("20/05/2020"), 5, "")
+        task = Task(0, "Title", "Description", date("20/05/2020"), 5, "", false)
         taskDao.insert(task)
+        assertEquals(true, taskDao.getAllTasks().isNotEmpty())
     }
 
+    @Test
+    @Throws(Exception::class)
     private fun date(date: String): LocalDate {
         val formatter =
             DateTimeFormatter.ofPattern("dd/MM/yyyy")
 
         return LocalDate.parse(date, formatter)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun deleteTask() {
+        taskDao.delete(task)
+        assertEquals(true, taskDao.getAllTasks().isEmpty())
     }
 }
