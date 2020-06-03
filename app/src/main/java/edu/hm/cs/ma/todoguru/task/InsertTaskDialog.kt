@@ -98,15 +98,19 @@ class InsertTaskDialog(
 
     private fun determineReminderDate() {
         reminderDateText.setOnClickListener {
+            // DatePickerDialog expects the old Calender class, we are currently using the new
+            // java.time.LocalDate which needs a transformation on the month field:
+            // e. g. months of Calender class are from 0-11 and in LocalDate from 1-12
             DatePickerDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    reminderDate = LocalDate.of(year, month, dayOfMonth)
+                    println(month)
+                    reminderDate = LocalDate.of(year, month + 1, dayOfMonth)
                     val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
                     reminderDateText.setText(reminderDate.format(formatDate))
                 },
                 reminderDate.year,
-                reminderDate.monthValue,
+                reminderDate.monthValue - 1,
                 reminderDate.dayOfMonth
             ).show()
         }
@@ -130,15 +134,19 @@ class InsertTaskDialog(
 
     private fun determineDueDate() {
         dueDateText.setOnClickListener {
+            // DatePickerDialog expects the old Calender class, we are currently using the new
+            // java.time.LocalDate which needs a transformation on the month field:
+            // e. g. months of Calender class are from 0-11 and in LocalDate from 1-12
             DatePickerDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                    dueDate = LocalDate.of(year, month, dayOfMonth)
+                    println(month)
+                    dueDate = LocalDate.of(year, month + 1, dayOfMonth)
                     val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
                     dueDateText.setText(dueDate.format(formatDate))
                 },
                 dueDate.year,
-                dueDate.monthValue,
+                dueDate.monthValue - 1,
                 dueDate.dayOfMonth
             ).show()
         }
