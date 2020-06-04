@@ -79,7 +79,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: emulator_tests_${{ matrix.EMULATOR_API }}
-          path: ./app/build/outputs/code_coverage/debugAndroidTest/connected
+          path: ./app/build/outputs/androidTest-results/connected
   CODE_COVERAGE:
     name: Code Coverage Report
     runs-on: ubuntu-latest
@@ -99,16 +99,14 @@ jobs:
         with:
           # 27 is the EMULATOR_API with less SdkExclude annotations, and should have the best possible coverage.
           name: emulator_tests_27
-          path: ./app/build/outputs/code_coverage/debugAndroidTest/connected
-      - name: Create merged coverage report
-        run: ./gradlew app:mergeCoverageReports
-      - name: Upload merged coverage report (GitHub)
-        uses: actions/upload-artifact@v1
-        with:
-          name: report
-          path: ./app/build/reports/mergedCoverageReport
-      - name: Upload merged coverage report (Codecov)
+          path: ./app/build/outputs/androidTest-results/connected
+      - name: Upload unit coverage report (Codecov)
         uses: codecov/codecov-action@v1
         with:
-          file: ./app/build/reports/mergedCoverageReport/*
+          file:  ./app/build/jacoco/*
+          fail_ci_if_error: true
+      - name: Upload integration test coverage report (Codecov)
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./app/build/outputs/androidTest-results/connected/*
           fail_ci_if_error: true
