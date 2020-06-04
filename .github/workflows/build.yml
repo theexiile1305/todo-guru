@@ -72,7 +72,7 @@ jobs:
           arch: ${{ matrix.EMULATOR_ARCH }}
           disable-animations: true
           profile: Nexus 5X
-          emulator-options: -no-snapshot -no-window -no-boot-anim -camera-back emulated -camera-front emulated -gpu swiftshader_indirect
+          emulator-options: -no-snapshot -no-window -no-audio -no-boot-anim -gpu swiftshader_indirect
           emulator-build: 6110076
           script: ./gradlew app:connectedCheck
       - name: Upload emulator tests artifact
