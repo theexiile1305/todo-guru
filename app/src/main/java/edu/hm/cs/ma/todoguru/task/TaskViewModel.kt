@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import java.time.LocalDate
+import java.time.LocalDateTime
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,6 +29,10 @@ class TaskViewModel(
     val markTaskDoneEvent: LiveData<Boolean>
         get() = _markTaskDoneEvent
 
+    private var _deleteTaskEvent = MutableLiveData(false)
+    val deleteTaskEvent: LiveData<Boolean>
+        get() = _deleteTaskEvent
+
     private val viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -46,7 +51,7 @@ class TaskViewModel(
         description: String,
         dueDate: LocalDate,
         estimated: Int,
-        reminder: String
+        reminder: LocalDateTime
     ) {
         uiScope.launch {
             insert(Task(title, description, dueDate, estimated, reminder))
@@ -64,6 +69,16 @@ class TaskViewModel(
         }
     }
 
+    fun deleteTasks(tasks: List<Task>) {
+        uiScope.launch {
+            tasks.forEach {
+                delete(it)
+            }
+        }.invokeOnCompletion {
+            _deleteTaskEvent.value = true
+        }
+    }
+
     private suspend fun insert(task: Task) {
         withContext(Dispatchers.IO) {
             database.insert(Task(task))
@@ -73,6 +88,12 @@ class TaskViewModel(
     private suspend fun update(task: Task) {
         withContext(Dispatchers.IO) {
             database.update(task)
+        }
+    }
+
+    private suspend fun delete(task: Task) {
+        withContext(Dispatchers.IO) {
+            database.delete(task)
         }
     }
 }

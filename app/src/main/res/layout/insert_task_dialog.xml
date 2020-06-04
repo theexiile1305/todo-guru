@@ -85,31 +85,37 @@
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminderDateTextField"
+                style="@style/textBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:hint="@string/reminder_date">
 
-                <TextView
-                    android:id="@+id/reminder_text"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reminder_date"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="@dimen/layout_margin"
-                    android:paddingLeft="@dimen/small_padding"
-                    android:paddingRight="@dimen/small_padding"
-                    android:text="@string/add_reminder"
-                    android:textSize="19sp" />
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/fab"
-                    android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/reminderTimeTextField"
+                style="@style/textBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/reminder_time">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/reminder_time"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|bottom"
-                    android:layout_margin="16dp"
-                    android:src="@drawable/ic_add_white_24dp"
-                    app:backgroundTint="@color/colorSecondary"/>
-            </LinearLayout>
+
+                    android:importantForAutofill="no"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/button_create"
