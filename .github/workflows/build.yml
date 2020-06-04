@@ -1,4 +1,6 @@
 name: Build
+env:
+  CI: true
 on:
   push:
     branches:
@@ -17,7 +19,7 @@ jobs:
       - name: Perform base checks
         run: ./gradlew assembleDebug
   KTLINT_CHECK:
-    name: Base Checks
+    name: ktlint quality
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -72,7 +74,7 @@ jobs:
           profile: Nexus 5X
           emulator-options: -no-snapshot -no-window -no-boot-anim -camera-back emulated -camera-front emulated -gpu swiftshader_indirect
           emulator-build: 6110076
-          script: ./.github/workflows/emulator_script.sh
+          script: ./gradlew connectedCheck
       - name: Upload emulator tests artifact
         uses: actions/upload-artifact@v1
         with:
