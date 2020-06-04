@@ -17,7 +17,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Perform base checks
-        run: ./gradlew assembleDebug
+        run: ./gradlew app:assembleDebug
   KTLINT_CHECK:
     name: ktlint quality
     runs-on: ubuntu-latest
@@ -27,7 +27,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Perform ktlint
-        run: ./gradlew ktlint
+        run: ./gradlew app:ktlint
   ANDROID_UNIT_TESTS:
     name: Unit Tests
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Execute unit tests
-        run: ./gradlew testDebugUnitTest
+        run: ./gradlew app:testDebugUnitTest
       - name: Upload unit tests artifact
         uses: actions/upload-artifact@v1
         with:
@@ -74,7 +74,7 @@ jobs:
           profile: Nexus 5X
           emulator-options: -no-snapshot -no-window -no-boot-anim -camera-back emulated -camera-front emulated -gpu swiftshader_indirect
           emulator-build: 6110076
-          script: ./gradlew connectedCheck
+          script: ./gradlew app:connectedCheck
       - name: Upload emulator tests artifact
         uses: actions/upload-artifact@v1
         with:
@@ -101,7 +101,7 @@ jobs:
           name: emulator_tests_27
           path: ./app/build/outputs/code_coverage/debugAndroidTest/connected
       - name: Create merged coverage report
-        run: ./gradlew mergeCoverageReports
+        run: ./gradlew app:mergeCoverageReports
       - name: Upload merged coverage report (GitHub)
         uses: actions/upload-artifact@v1
         with:
