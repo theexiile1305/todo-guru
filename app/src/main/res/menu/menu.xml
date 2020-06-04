@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/delete_tasks"
+        android:contentDescription="@string/delete_tasks_long"
+        android:icon="@drawable/ic_delete_all_24dp"
+        android:title="@string/delete_tasks_short"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/mark_tasks_as_done"
+        android:contentDescription="@string/mark_as_done_long"
+        android:icon="@drawable/ic_done_all_24px"
+        android:title="@string/mark_as_done_short"
+        app:showAsAction="ifRoom" />
+
+</menu>
