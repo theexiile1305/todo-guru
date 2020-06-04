@@ -35,6 +35,15 @@ data class Task(
     )
 
     constructor(
+        id: Long,
+        title: String,
+        description: String,
+        dueDate: LocalDate,
+        estimated: Int,
+        reminder: LocalDateTime
+    ) : this(id, title, description, dueDate, estimated, reminder, false)
+
+    constructor(
         title: String,
         description: String,
         dueDate: LocalDate,

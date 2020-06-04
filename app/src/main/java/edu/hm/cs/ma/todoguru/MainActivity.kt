@@ -16,11 +16,13 @@ import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import edu.hm.cs.ma.todoguru.task.TaskWrapper
+import edu.hm.cs.ma.todoguru.task.UpdateTaskDialog
 import java.time.LocalDate
 import java.time.LocalDateTime
 import kotlinx.android.synthetic.main.activity_main.topAppBar
 
-class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatActivity() {
+class MainActivity : InsertTaskDialog.Listener, UpdateTaskDialog.Listener, TaskAdapter.Listener,
+    AppCompatActivity() {
 
     private lateinit var viewModel: TaskViewModel
 
@@ -89,6 +91,17 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         viewModel.insertTask(title, description, dueDate, estimated, reminder)
     }
 
+    override fun onUpdateTask(
+        id: Long,
+        title: String,
+        description: String,
+        dueDate: LocalDate,
+        estimated: Int,
+        reminder: LocalDateTime
+    ) {
+        viewModel.updateTask(id, title, description, dueDate, estimated, reminder)
+    }
+
     override fun onCheckBoxClick(wrapper: TaskWrapper) {
         val task = wrapper.task
         if (selectedTasks.contains(task))
@@ -96,6 +109,10 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         else
             selectedTasks.add(task)
         wrapper.isSelected = true
+    }
+
+    override fun onUpdateClick(task: Task) {
+        UpdateTaskDialog(task, this).show(supportFragmentManager, UpdateTaskDialog.TAG)
     }
 
     private fun openDeleteDialog() {

@@ -58,6 +58,19 @@ class TaskViewModel(
         }
     }
 
+    fun updateTask(
+        id: Long,
+        title: String,
+        description: String,
+        dueDate: LocalDate,
+        estimated: Int,
+        reminder: LocalDateTime
+    ) {
+        uiScope.launch {
+            update(Task(id, title, description, dueDate, estimated, reminder))
+        }
+    }
+
     fun markTasksAsDone(tasks: List<Task>) {
         uiScope.launch {
             tasks.forEach {
