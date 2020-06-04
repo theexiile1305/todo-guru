@@ -18,7 +18,7 @@ class ViewTaskFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-      val binding: ViewTaskFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.view_task_fragment, container, false)
+      val binding = DataBindingUtil.inflate<ViewTaskFragmentBinding>(inflater, R.layout.view_task_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
         val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
