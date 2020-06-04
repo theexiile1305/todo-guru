@@ -115,13 +115,15 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <Button
                 android:id="@+id/button_create"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/create_button"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:backgroundTint="@color/colorSecondary"/>
 
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

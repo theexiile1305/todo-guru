@@ -27,6 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:buttonTint="@color/colorSecondary"
             android:checked="@{wrapper.selected}"
             android:onClick="@{(view) -> listener.onCheckBoxClick(wrapper)}"/>
 
