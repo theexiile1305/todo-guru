@@ -111,7 +111,6 @@
                     android:id="@+id/reminder_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:importantForAutofill="no"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -123,7 +122,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/create_button"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:backgroundTint="@color/colorSecondary"/>
 
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
