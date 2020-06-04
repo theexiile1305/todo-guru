@@ -37,7 +37,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Execute unit tests
-        run: ./gradlew app:testDebugUnitTest
+        run: ./gradlew app:jacocoTestReport
       - name: Upload unit tests artifact
         uses: actions/upload-artifact@v1
         with:
@@ -47,7 +47,7 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           name: unit_tests
-          file: ./app/build/jacoco/*
+          file: ./app/build/jacoco/jacoco.xml
           fail_ci_if_error: true
   ANDROID_EMULATOR_TESTS:
     name: Emulator Tests
@@ -85,10 +85,10 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: emulator_tests_${{ matrix.EMULATOR_API }}
-          path: ./app/build/outputs/androidTest-results/connected
+          path: ./app/build/reports/coverage/debug/
       - name: Upload coverage report (Codecov)
         uses: codecov/codecov-action@v1
         with:
           name: emulator_tests_${{ matrix.EMULATOR_API }}
-          file: ./app/build/outputs/androidTest-results/connected/*
+          file: ./app/build/reports/coverage/debug/report.xml
           fail_ci_if_error: true
