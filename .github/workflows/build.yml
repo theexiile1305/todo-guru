@@ -44,11 +44,11 @@ jobs:
           name: unit_tests
           path: ./app/build/jacoco/
       - name: Upload coverage report (Codecov)
-          uses: codecov/codecov-action@v1
-          with:
-            name: unit_tests
-            file: ./app/build/jacoco/*
-            fail_ci_if_error: true
+        uses: codecov/codecov-action@v1
+        with:
+          name: unit_tests
+          file: ./app/build/jacoco/*
+          fail_ci_if_error: true
   ANDROID_EMULATOR_TESTS:
     name: Emulator Tests
     runs-on: macOS-latest
@@ -87,8 +87,8 @@ jobs:
           name: emulator_tests_${{ matrix.EMULATOR_API }}
           path: ./app/build/outputs/androidTest-results/connected
       - name: Upload coverage report (Codecov)
-          uses: codecov/codecov-action@v1
-          with:
-            name: emulator_tests_${{ matrix.EMULATOR_API }}
-            file: ./app/build/outputs/androidTest-results/connected/*
-            fail_ci_if_error: true
+        uses: codecov/codecov-action@v1
+        with:
+          name: emulator_tests_${{ matrix.EMULATOR_API }}
+          file: ./app/build/outputs/androidTest-results/connected/*
+          fail_ci_if_error: true
