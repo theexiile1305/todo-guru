@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.update_task_dialog.topAppBar
 class UpdateTaskDialog(
     private val task: Task,
     private val listener: Listener
-) : AbstractTaskDialog() {
+) : AbstractTaskDialog(task.dueDate, task.reminder.toLocalDate(), task.reminder.toLocalTime()) {
 
     companion object {
         const val TAG = "update_task_dialog"

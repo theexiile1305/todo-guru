@@ -13,7 +13,11 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
-abstract class AbstractTaskDialog : DialogFragment() {
+abstract class AbstractTaskDialog(
+    protected var dueDate: LocalDate,
+    protected var reminderDate: LocalDate,
+    protected var reminderTime: LocalTime
+) : DialogFragment() {
 
     protected lateinit var mContext: Context
 
@@ -23,10 +27,6 @@ abstract class AbstractTaskDialog : DialogFragment() {
     protected lateinit var estimated: TextInputEditText
     private lateinit var reminderDateText: TextInputEditText
     private lateinit var reminderTimeText: TextInputEditText
-
-    protected var dueDate: LocalDate = LocalDate.now()
-    protected var reminderDate: LocalDate = LocalDate.now()
-    protected var reminderTime: LocalTime = LocalTime.now()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

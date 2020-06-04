@@ -9,11 +9,12 @@ import android.widget.Toast
 import edu.hm.cs.ma.todoguru.R
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
 import kotlinx.android.synthetic.main.insert_task_dialog.topAppBar
 
 class InsertTaskDialog(
     private val listener: Listener
-) : AbstractTaskDialog() {
+) : AbstractTaskDialog(LocalDate.now(), LocalDate.now(), LocalTime.now()) {
 
     companion object {
         const val TAG = "insert_task_dialog"
