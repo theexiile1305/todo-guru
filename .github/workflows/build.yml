@@ -95,18 +95,13 @@ jobs:
           name: unit_tests
           path: ./app/build/jacoco/
       - name: Download emulator tests artifact
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2
         with:
           # 27 is the EMULATOR_API with less SdkExclude annotations, and should have the best possible coverage.
-          name: emulator_tests_27
-          path: ./app/build/outputs/androidTest-results/connected
-      - name: Upload unit coverage report (Codecov)
+          name:
+           - emulator_tests_27
+           - unit_tests
+      - name: Upload coverage report (Codecov)
         uses: codecov/codecov-action@v1
         with:
-          file:  ./app/build/jacoco/*
-          fail_ci_if_error: true
-      - name: Upload integration test coverage report (Codecov)
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./app/build/outputs/androidTest-results/connected/*
           fail_ci_if_error: true
