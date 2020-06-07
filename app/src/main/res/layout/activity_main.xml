@@ -65,7 +65,8 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:onClick="@{() -> viewModel.triggerTaskEvent()}"
-            app:srcCompat="@drawable/ic_add_white_24dp" />
+            app:srcCompat="@drawable/ic_add_white_24dp"
+            app:backgroundTint="@color/colorSecondary"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

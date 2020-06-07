@@ -1,5 +1,6 @@
 package edu.hm.cs.ma.todoguru
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -9,23 +10,29 @@ import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.databinding.ActivityMainBinding
+import edu.hm.cs.ma.todoguru.notification.ReminderNotification
+import edu.hm.cs.ma.todoguru.task.DeleteDialog
 import edu.hm.cs.ma.todoguru.task.InsertTaskDialog
 import edu.hm.cs.ma.todoguru.task.TaskAdapter
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import edu.hm.cs.ma.todoguru.task.TaskWrapper
+import edu.hm.cs.ma.todoguru.task.UpdateTaskDialog
 import java.time.LocalDate
+import java.time.LocalDateTime
 import kotlinx.android.synthetic.main.activity_main.topAppBar
 
-class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatActivity() {
+class MainActivity : InsertTaskDialog.Listener, UpdateTaskDialog.Listener, TaskAdapter.Listener,
+    AppCompatActivity() {
 
     private lateinit var viewModel: TaskViewModel
 
     private val selectedTasks = ArrayList<Task>()
+
     override fun onTaskClick(task: Task) {
             Log.i("tag",task.toString() )
         val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.mainContainer, ViewTaskFragment())
+       // fragmentTransaction.replace(R.id.mainContainer, ViewTaskFragment())
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
@@ -60,6 +67,12 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
                     viewModel.markTasksAsDone(selectedTasks)
                     true
                 }
+                R.id.delete_tasks -> {
+                    if (selectedTasks.isNotEmpty()) {
+                        openDeleteDialog()
+                    }
+                    true
+                }
                 else -> false
             }
         }
@@ -68,6 +81,13 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
             if (it)
                 selectedTasks.clear()
         })
+
+        viewModel.deleteTaskEvent.observe(this, Observer {
+            if (it)
+                selectedTasks.clear()
+        })
+
+        startService(Intent(this, ReminderNotification::class.java))
     }
 
     override fun onInsertTask(
@@ -75,9 +95,20 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         description: String,
         dueDate: LocalDate,
         estimated: Int,
-        reminder: String
+        reminder: LocalDateTime
     ) {
         viewModel.insertTask(title, description, dueDate, estimated, reminder)
+    }
+
+    override fun onUpdateTask(
+        id: Long,
+        title: String,
+        description: String,
+        dueDate: LocalDate,
+        estimated: Int,
+        reminder: LocalDateTime
+    ) {
+        viewModel.updateTask(id, title, description, dueDate, estimated, reminder)
     }
 
     override fun onCheckBoxClick(wrapper: TaskWrapper) {
@@ -87,5 +118,14 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
         else
             selectedTasks.add(task)
         wrapper.isSelected = true
+    }
+
+    override fun onUpdateClick(task: Task) {
+        UpdateTaskDialog(task, this).show(supportFragmentManager, UpdateTaskDialog.TAG)
+    }
+
+    private fun openDeleteDialog() {
+        val dialog = DeleteDialog(viewModel, selectedTasks)
+        dialog.show(supportFragmentManager, DeleteDialog.TAG)
     }
 }

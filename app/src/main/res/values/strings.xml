@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">ToDo Guru</string>
     <string name="add_task">Add new Task</string>
+    <string name="update_task">Update Task</string>
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="due_date">Due Date</string>
     <string name="estimated">Estimated Time</string>
+    <string name="reminder_date">Reminder Date</string>
+    <string name="reminder_time">Reminder Time</string>
     <string name="add_reminder">Add Reminder</string>
     <string name="viewTask">View Task</string>
     <string name="create_button">Create</string>
@@ -12,4 +15,9 @@
     <string name="mark_as_done_short">Done</string>
     <string name="mark_as_done_long">Mark selected tasks as Done</string>
     <string name="DueDate">dueDate</string>
+    <string name="update_button">Update</string>
+    <string name="notification_content_title">ToDo Guru Reminder</string>
+    <string name="notification_content_description">Have you finished your tasks yet?</string>
+    <string name="delete_tasks_short">Delete</string>
+    <string name="delete_tasks_long">Delete selected tasks</string>
 </resources>

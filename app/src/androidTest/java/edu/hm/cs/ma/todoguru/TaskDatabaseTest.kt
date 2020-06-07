@@ -8,8 +8,10 @@ import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import java.io.IOException
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,28 +26,36 @@ class TaskDatabaseTest {
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         database = Room.inMemoryDatabaseBuilder(context, TaskDatabase::class.java)
-                .allowMainThreadQueries()
-                .build()
+            .allowMainThreadQueries()
+            .build()
         taskDao = database.taskDatabaseDao
     }
 
     @After
     @Throws(IOException::class)
     fun closeDb() {
+        database.clearAllTables()
         database.close()
     }
 
     @Test
     @Throws(Exception::class)
     fun insertTask() {
-        val task = Task(0, "Title", "Description", date("20/05/2020"), 5, "")
+        val task =
+            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), false)
         taskDao.insert(task)
+        assertEquals(true, taskDao.getAllTasks().isNotEmpty())
     }
 
-    private fun date(date: String): LocalDate {
-        val formatter =
-            DateTimeFormatter.ofPattern("dd/MM/yyyy")
-
-        return LocalDate.parse(date, formatter)
+    @Test
+    @Throws(Exception::class)
+    fun deleteTask() {
+        val task =
+            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), false)
+        taskDao.delete(task)
+        assertEquals(true, taskDao.getAllTasks().isEmpty())
     }
+
+    private fun date(date: String) =
+        LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 }

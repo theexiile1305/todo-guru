@@ -14,7 +14,11 @@ class TaskAdapter(
 
     interface Listener {
         fun onCheckBoxClick(wrapper: TaskWrapper)
+
         fun onTaskClick(task: Task)
+
+        fun onUpdateClick(task: Task)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
