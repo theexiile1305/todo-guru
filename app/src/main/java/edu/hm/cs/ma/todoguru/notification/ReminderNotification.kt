@@ -11,14 +11,14 @@ import androidx.core.app.NotificationManagerCompat
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
-import java.time.LocalDateTime
-import java.util.Timer
-import java.util.TimerTask
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.util.Timer
+import java.util.TimerTask
 
 class ReminderNotification : Service() {
 
@@ -46,32 +46,35 @@ class ReminderNotification : Service() {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
 
-        timer.scheduleAtFixedRate(object : TimerTask() {
-            private val viewModelJob = Job()
-            private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+        timer.scheduleAtFixedRate(
+            object : TimerTask() {
+                private val viewModelJob = Job()
+                private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-            override fun run() {
-                handler.post {
-                    uiScope.launch {
-                        if (hasNotifications())
-                            sendNotification()
+                override fun run() {
+                    handler.post {
+                        uiScope.launch {
+                            if (hasNotifications())
+                                sendNotification()
+                        }
                     }
                 }
-            }
 
-            private suspend fun hasNotifications(): Boolean {
-                return getAllTasks()
-                    .filter { it.reminder.isAfter(LocalDateTime.now()) }
-                    .count() != 0
-            }
-
-            private suspend fun getAllTasks(): List<Task> {
-                val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
-                return withContext(Dispatchers.IO) {
-                    return@withContext dataSource.getAllTasks()
+                private suspend fun hasNotifications(): Boolean {
+                    return getAllTasks()
+                        .filter { it.reminder.isAfter(LocalDateTime.now()) }
+                        .count() != 0
                 }
-            }
-        }, 0, notificationInterval.toLong())
+
+                private suspend fun getAllTasks(): List<Task> {
+                    val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
+                    return withContext(Dispatchers.IO) {
+                        return@withContext dataSource.getAllTasks()
+                    }
+                }
+            },
+            0, notificationInterval.toLong()
+        )
     }
 
     fun sendNotification() {

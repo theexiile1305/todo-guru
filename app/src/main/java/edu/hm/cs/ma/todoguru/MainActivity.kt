@@ -17,9 +17,9 @@ import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
 import edu.hm.cs.ma.todoguru.task.TaskWrapper
 import edu.hm.cs.ma.todoguru.task.UpdateTaskDialog
+import kotlinx.android.synthetic.main.activity_main.topAppBar
 import java.time.LocalDate
 import java.time.LocalDateTime
-import kotlinx.android.synthetic.main.activity_main.topAppBar
 
 class MainActivity : InsertTaskDialog.Listener, UpdateTaskDialog.Listener, TaskAdapter.Listener,
     AppCompatActivity() {
@@ -43,14 +43,20 @@ class MainActivity : InsertTaskDialog.Listener, UpdateTaskDialog.Listener, TaskA
         val adapter = TaskAdapter(this)
         binding.tasksList.adapter = adapter
 
-        viewModel.tasks.observe(this, Observer {
-            it.let { adapter.submitList(it) }
-        })
+        viewModel.tasks.observe(
+            this,
+            Observer {
+                it.let { adapter.submitList(it) }
+            }
+        )
 
-        viewModel.addTaskEvent.observe(this, Observer {
-            if (it)
-                InsertTaskDialog(this).show(supportFragmentManager, InsertTaskDialog.TAG)
-        })
+        viewModel.addTaskEvent.observe(
+            this,
+            Observer {
+                if (it)
+                    InsertTaskDialog(this).show(supportFragmentManager, InsertTaskDialog.TAG)
+            }
+        )
 
         topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -68,15 +74,21 @@ class MainActivity : InsertTaskDialog.Listener, UpdateTaskDialog.Listener, TaskA
             }
         }
 
-        viewModel.markTaskDoneEvent.observe(this, Observer {
-            if (it)
-                selectedTasks.clear()
-        })
+        viewModel.markTaskDoneEvent.observe(
+            this,
+            Observer {
+                if (it)
+                    selectedTasks.clear()
+            }
+        )
 
-        viewModel.deleteTaskEvent.observe(this, Observer {
-            if (it)
-                selectedTasks.clear()
-        })
+        viewModel.deleteTaskEvent.observe(
+            this,
+            Observer {
+                if (it)
+                    selectedTasks.clear()
+            }
+        )
 
         startService(Intent(this, ReminderNotification::class.java))
     }
