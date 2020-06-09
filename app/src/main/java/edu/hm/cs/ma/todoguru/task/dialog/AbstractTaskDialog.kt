@@ -1,31 +1,35 @@
-package edu.hm.cs.ma.todoguru.task
+package edu.hm.cs.ma.todoguru.task.dialog
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.R
+import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
-abstract class AbstractTaskDialog(
-    protected var dueDate: LocalDate,
-    protected var reminderDate: LocalDate,
-    protected var reminderTime: LocalTime
-) : DialogFragment() {
+abstract class AbstractTaskDialog : DialogFragment() {
 
     protected lateinit var mContext: Context
-
     protected lateinit var title: TextInputEditText
     protected lateinit var description: TextInputEditText
-    private lateinit var dueDateText: TextInputEditText
     protected lateinit var estimated: TextInputEditText
+    protected lateinit var viewModel: TaskViewModel
+    protected lateinit var dueDate: LocalDate
+    protected lateinit var reminderDate: LocalDate
+    protected lateinit var reminderTime: LocalTime
+
+    private lateinit var dueDateText: TextInputEditText
     private lateinit var reminderDateText: TextInputEditText
     private lateinit var reminderTimeText: TextInputEditText
 
@@ -40,6 +44,20 @@ abstract class AbstractTaskDialog(
             val width = ViewGroup.LayoutParams.MATCH_PARENT
             val height = ViewGroup.LayoutParams.MATCH_PARENT
             dialog!!.window?.setLayout(width, height)
+        }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = requireActivity().run {
+            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val viewModelFactory =
+                TaskViewModel.Factory(
+                    dataSource,
+                    application
+                )
+            ViewModelProvider(this, viewModelFactory)
+                .get(TaskViewModel::class.java)
         }
     }
 
@@ -64,7 +82,7 @@ abstract class AbstractTaskDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     reminderDate = LocalDate.of(year, month + 1, dayOfMonth)
-                    setReminderDateText()
+                    setReminderDateText(reminderDate)
                 },
                 reminderDate.year,
                 reminderDate.monthValue - 1,
@@ -79,7 +97,7 @@ abstract class AbstractTaskDialog(
                 mContext,
                 TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                     reminderTime = LocalTime.of(hourOfDay, minute)
-                    setReminderTimeText()
+                    setReminderTimeText(reminderTime)
                 },
                 reminderTime.hour,
                 reminderTime.minute,
@@ -97,7 +115,7 @@ abstract class AbstractTaskDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     dueDate = LocalDate.of(year, month + 1, dayOfMonth)
-                    setDueDateText()
+                    setDueDateText(dueDate)
                 },
                 dueDate.year,
                 dueDate.monthValue - 1,
@@ -106,17 +124,17 @@ abstract class AbstractTaskDialog(
         }
     }
 
-    protected fun setReminderDateText() {
+    protected fun setReminderDateText(reminderDate: LocalDate) {
         val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
         reminderDateText.setText(reminderDate.format(formatDate))
     }
 
-    protected fun setReminderTimeText() {
+    protected fun setReminderTimeText(reminderTime: LocalTime) {
         val formatTime = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)
         reminderTimeText.setText(reminderTime.format(formatTime))
     }
 
-    protected fun setDueDateText() {
+    protected fun setDueDateText(dueDate: LocalDate) {
         val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
         dueDateText.setText(dueDate.format(formatDate))
     }

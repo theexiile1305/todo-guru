@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.task
+package edu.hm.cs.ma.todoguru.task.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,31 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import kotlinx.android.synthetic.main.update_task_dialog.topAppBar
-import java.time.LocalDate
 import java.time.LocalDateTime
 
-class UpdateTaskDialog(
-    private val task: Task,
-    private val listener: Listener
-) : AbstractTaskDialog(task.dueDate, task.reminder.toLocalDate(), task.reminder.toLocalTime()) {
+class UpdateTaskDialog : AbstractTaskDialog() {
 
-    companion object {
-        const val TAG = "update_task_dialog"
-    }
-
-    interface Listener {
-        fun onUpdateTask(
-            id: Long,
-            title: String,
-            description: String,
-            dueDate: LocalDate,
-            estimated: Int,
-            reminder: LocalDateTime
-        )
-    }
+    private val args: UpdateTaskDialogArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,31 +29,35 @@ class UpdateTaskDialog(
         super.onViewCreated(view, savedInstanceState)
         setupView(view)
 
-        setDefaultValues()
+        val task = args.task
+        setDefaultValues(task)
 
         determineDueDate()
         determineReminderDate()
         determineReminderTime()
 
         view.findViewById<Button>(R.id.button_create).setOnClickListener {
-            update()
+            update(task)
         }
 
-        topAppBar.setNavigationOnClickListener { this.dismiss() }
+        topAppBar.setNavigationOnClickListener { dismiss() }
     }
 
-    private fun setDefaultValues() {
+    private fun setDefaultValues(task: Task) {
         title.setText(task.title)
         description.setText(task.description)
         estimated.setText(task.estimated.toString())
-        setReminderDateText()
-        setReminderTimeText()
-        setDueDateText()
+        setDueDateText(task.dueDate)
+        dueDate = task.dueDate
+        setReminderDateText(task.reminder.toLocalDate())
+        reminderDate = task.reminder.toLocalDate()
+        setReminderTimeText(task.reminder.toLocalTime())
+        reminderTime = task.reminder.toLocalTime()
     }
 
-    private fun update() {
+    private fun update(task: Task) {
         if (validateUserInput()) {
-            listener.onUpdateTask(
+            viewModel.updateTask(
                 task.id,
                 title.text.toString(),
                 description.text.toString(),
@@ -78,7 +66,7 @@ class UpdateTaskDialog(
                 LocalDateTime.of(reminderDate, reminderTime)
             )
             Toast.makeText(mContext, "Task is updated", Toast.LENGTH_SHORT).show()
-            this.dismiss()
+            dismiss()
         }
     }
 }
