@@ -31,7 +31,7 @@ class DeleteDialog : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val selectedTasks: List<Task> = args.taskList.toList() as List<Task>
+        val selectedTasks: List<Task> = args.taskList.toList()
         return AlertDialog
             .Builder(requireActivity())
             .setTitle("Are you sure that you want to delete the selected tasks?")
