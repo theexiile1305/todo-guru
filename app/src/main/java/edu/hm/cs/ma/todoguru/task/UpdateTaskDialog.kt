@@ -8,9 +8,9 @@ import android.widget.Button
 import android.widget.Toast
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
+import kotlinx.android.synthetic.main.update_task_dialog.topAppBar
 import java.time.LocalDate
 import java.time.LocalDateTime
-import kotlinx.android.synthetic.main.update_task_dialog.topAppBar
 
 class UpdateTaskDialog(
     private val task: Task,

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import edu.hm.cs.ma.todoguru.R
+import kotlinx.android.synthetic.main.insert_task_dialog.topAppBar
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
-import kotlinx.android.synthetic.main.insert_task_dialog.topAppBar
 
 class InsertTaskDialog(
     private val listener: Listener
