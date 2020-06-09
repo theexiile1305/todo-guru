@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.R
@@ -129,8 +130,15 @@ abstract class AbstractTaskDialog(
         validation.add(validate(dueDateText, "The due date is required"))
         validation.add(validate(reminderDateText, "The reminder date is required"))
         validation.add(validate(reminderTimeText, "The reminder time is required"))
+        return validation.remove(true) && validation.isEmpty() && checkDueDateAfterReminder()
+    }
 
-        return validation.remove(true) && validation.isEmpty()
+    private fun checkDueDateAfterReminder(): Boolean {
+        val isValid = dueDate.isAfter(reminderDate)
+        if (!isValid)
+            Toast.makeText(mContext, "Due date has to be after reminder", Toast.LENGTH_SHORT)
+                .show()
+        return isValid
     }
 
     private fun validate(field: TextInputEditText, error: String): Boolean {

@@ -26,6 +26,7 @@ class MainActivity :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         startService(Intent(this, ReminderNotification::class.java))
 
         setContentView(R.layout.activity_main)

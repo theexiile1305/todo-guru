@@ -20,12 +20,12 @@ abstract class TaskDatabase : RoomDatabase() {
             var instance = INSTANCE
             if (instance == null) {
                 instance = Room.databaseBuilder(
-                        context.applicationContext,
-                        TaskDatabase::class.java,
-                        "task_table"
+                    context.applicationContext,
+                    TaskDatabase::class.java,
+                    "task_table"
                 )
-                        .fallbackToDestructiveMigration()
-                        .build()
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
             }
             return instance
