@@ -1,12 +1,16 @@
 package edu.hm.cs.ma.todoguru.database
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity(tableName = "task_table")
+@Parcelize
 data class Task(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
@@ -22,7 +26,7 @@ data class Task(
     var reminder: LocalDateTime,
     @ColumnInfo(name = "done")
     var done: Boolean
-) {
+) : Serializable, Parcelable {
 
     constructor(
         task: Task

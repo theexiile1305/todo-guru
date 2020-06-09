@@ -6,11 +6,11 @@
 
         <variable
             name="wrapper"
-            type="edu.hm.cs.ma.todoguru.task.TaskWrapper" />
+            type="edu.hm.cs.ma.todoguru.task.list.TaskWrapper" />
 
         <variable
             name="listener"
-            type="edu.hm.cs.ma.todoguru.task.TaskAdapter.Listener" />
+            type="edu.hm.cs.ma.todoguru.task.list.TaskAdapter.Listener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
