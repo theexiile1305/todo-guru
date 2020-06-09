@@ -30,6 +30,39 @@ class MainActivityTest {
 
     @Test
     fun mainActivityTest() {
+        val viewGroup = onView(
+            allOf(
+                withId(R.id.tasks_list_container),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.nav_host_fragment_container),
+                        childAtPosition(
+                            withId(R.id.nav_host_fragment_container),
+                            0
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        viewGroup.check(matches(isDisplayed()))
+
+        val viewGroup2 = onView(
+            allOf(
+                withId(R.id.topAppBar),
+                childAtPosition(
+                    childAtPosition(
+                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        viewGroup2.check(matches(isDisplayed()))
+
         val textView = onView(
             allOf(
                 withText("ToDo Guru"),
@@ -47,6 +80,23 @@ class MainActivityTest {
             )
         )
         textView.check(matches(withText("ToDo Guru")))
+
+        val linearLayoutCompat = onView(
+            allOf(
+                childAtPosition(
+                    allOf(
+                        withId(R.id.topAppBar),
+                        childAtPosition(
+                            IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
+                            0
+                        )
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        linearLayoutCompat.check(matches(isDisplayed()))
 
         val textView2 = onView(
             allOf(
@@ -78,13 +128,31 @@ class MainActivityTest {
         )
         textView3.check(matches(isDisplayed()))
 
+        val recyclerView = onView(
+            allOf(
+                withId(R.id.tasks_list),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.tasks_list_container),
+                        0
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        recyclerView.check(matches(isDisplayed()))
+
         val imageButton = onView(
             allOf(
                 withId(R.id.fab),
                 childAtPosition(
-                    childAtPosition(
-                        withId(android.R.id.content),
-                        0
+                    allOf(
+                        withId(R.id.tasks_list_container),
+                        childAtPosition(
+                            withId(R.id.nav_host_fragment_container),
+                            0
+                        )
                     ),
                     1
                 ),
