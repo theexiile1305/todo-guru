@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru
+package edu.hm.cs.ma.todoguru.task
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -10,7 +10,7 @@ import org.junit.Test
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
+    fun additionIsCorrect() {
         assertEquals(4, 2 + 2)
     }
 }

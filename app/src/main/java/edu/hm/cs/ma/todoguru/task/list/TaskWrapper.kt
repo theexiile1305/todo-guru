@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.task
+package edu.hm.cs.ma.todoguru.task.list
 
 import edu.hm.cs.ma.todoguru.database.Task
 

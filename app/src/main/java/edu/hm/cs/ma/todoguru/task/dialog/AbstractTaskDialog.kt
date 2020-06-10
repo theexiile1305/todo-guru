@@ -1,67 +1,41 @@
-package edu.hm.cs.ma.todoguru.task
+package edu.hm.cs.ma.todoguru.task.dialog
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.R
+import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.task.TaskViewModel
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
-import kotlinx.android.synthetic.main.insert_task_dialog.topAppBar
 
-class InsertTaskDialog(
-    private val listener: Listener
-) : DialogFragment() {
+abstract class AbstractTaskDialog : DialogFragment() {
 
-    companion object {
-        const val TAG = "insert_task_dialog"
-    }
+    protected lateinit var mContext: Context
+    protected lateinit var title: TextInputEditText
+    protected lateinit var description: TextInputEditText
+    protected lateinit var estimated: TextInputEditText
+    protected lateinit var viewModel: TaskViewModel
+    protected lateinit var dueDate: LocalDate
+    protected lateinit var reminderDate: LocalDate
+    protected lateinit var reminderTime: LocalTime
 
-    interface Listener {
-        fun onInsertTask(
-            title: String,
-            description: String,
-            dueDate: LocalDate,
-            estimated: Int,
-            reminder: LocalDateTime
-        )
-    }
-
-    private lateinit var mContext: Context
-
-    private lateinit var title: TextInputEditText
-    private lateinit var description: TextInputEditText
     private lateinit var dueDateText: TextInputEditText
-    private lateinit var estimated: TextInputEditText
     private lateinit var reminderDateText: TextInputEditText
     private lateinit var reminderTimeText: TextInputEditText
-
-    private var dueDate = LocalDate.now()
-    private var reminderDate = LocalDate.now()
-    private var reminderTime = LocalTime.now()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.insert_task_dialog, container, false)
     }
 
     override fun onStart() {
@@ -73,8 +47,21 @@ class InsertTaskDialog(
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = requireActivity().run {
+            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val viewModelFactory =
+                TaskViewModel.Factory(
+                    dataSource,
+                    application
+                )
+            ViewModelProvider(this, viewModelFactory)
+                .get(TaskViewModel::class.java)
+        }
+    }
+
+    protected fun setupView(view: View) {
         title = view.findViewById(R.id.title)
         description = view.findViewById(R.id.description)
         dueDateText = view.findViewById(R.id.dueDate)
@@ -84,19 +71,9 @@ class InsertTaskDialog(
         reminderDateText.isFocusable = false
         reminderTimeText = view.findViewById(R.id.reminder_time)
         reminderTimeText.isFocusable = false
-
-        determineDueDate()
-        determineReminderDate()
-        determineReminderTime()
-
-        view.findViewById<Button>(R.id.button_create).setOnClickListener {
-            create()
-        }
-
-        topAppBar.setNavigationOnClickListener { this.dismiss() }
     }
 
-    private fun determineReminderDate() {
+    protected fun determineReminderDate() {
         reminderDateText.setOnClickListener {
             // DatePickerDialog expects the old Calender class, we are currently using the new
             // java.time.LocalDate which needs a transformation on the month field:
@@ -105,8 +82,7 @@ class InsertTaskDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     reminderDate = LocalDate.of(year, month + 1, dayOfMonth)
-                    val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                    reminderDateText.setText(reminderDate.format(formatDate))
+                    setReminderDateText(reminderDate)
                 },
                 reminderDate.year,
                 reminderDate.monthValue - 1,
@@ -115,14 +91,13 @@ class InsertTaskDialog(
         }
     }
 
-    private fun determineReminderTime() {
+    protected fun determineReminderTime() {
         reminderTimeText.setOnClickListener {
             TimePickerDialog(
                 mContext,
                 TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
                     reminderTime = LocalTime.of(hourOfDay, minute)
-                    val formatTime = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)
-                    reminderTimeText.setText(reminderTime.format(formatTime))
+                    setReminderTimeText(reminderTime)
                 },
                 reminderTime.hour,
                 reminderTime.minute,
@@ -131,7 +106,7 @@ class InsertTaskDialog(
         }
     }
 
-    private fun determineDueDate() {
+    protected fun determineDueDate() {
         dueDateText.setOnClickListener {
             // DatePickerDialog expects the old Calender class, we are currently using the new
             // java.time.LocalDate which needs a transformation on the month field:
@@ -140,8 +115,7 @@ class InsertTaskDialog(
                 mContext,
                 DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
                     dueDate = LocalDate.of(year, month + 1, dayOfMonth)
-                    val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
-                    dueDateText.setText(dueDate.format(formatDate))
+                    setDueDateText(dueDate)
                 },
                 dueDate.year,
                 dueDate.monthValue - 1,
@@ -150,7 +124,22 @@ class InsertTaskDialog(
         }
     }
 
-    private fun create() {
+    protected fun setReminderDateText(reminderDate: LocalDate) {
+        val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+        reminderDateText.setText(reminderDate.format(formatDate))
+    }
+
+    protected fun setReminderTimeText(reminderTime: LocalTime) {
+        val formatTime = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)
+        reminderTimeText.setText(reminderTime.format(formatTime))
+    }
+
+    protected fun setDueDateText(dueDate: LocalDate) {
+        val formatDate = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+        dueDateText.setText(dueDate.format(formatDate))
+    }
+
+    protected fun validateUserInput(): Boolean {
         val validation = HashSet<Boolean>()
 
         validation.add(validate(title, "The title is required"))
@@ -159,18 +148,15 @@ class InsertTaskDialog(
         validation.add(validate(dueDateText, "The due date is required"))
         validation.add(validate(reminderDateText, "The reminder date is required"))
         validation.add(validate(reminderTimeText, "The reminder time is required"))
+        return validation.remove(true) && validation.isEmpty() && checkDueDateAfterReminder()
+    }
 
-        if (validation.remove(true) && validation.isEmpty()) {
-            listener.onInsertTask(
-                title.text.toString(),
-                description.text.toString(),
-                dueDate,
-                Integer.parseInt(estimated.text.toString()),
-                LocalDateTime.of(reminderDate, reminderTime)
-            )
-            Toast.makeText(mContext, "Task is created", Toast.LENGTH_SHORT).show()
-            this.dismiss()
-        }
+    private fun checkDueDateAfterReminder(): Boolean {
+        val isValid = dueDate.isAfter(reminderDate)
+        if (!isValid)
+            Toast.makeText(mContext, "Due date has to be after reminder", Toast.LENGTH_SHORT)
+                .show()
+        return isValid
     }
 
     private fun validate(field: TextInputEditText, error: String): Boolean {

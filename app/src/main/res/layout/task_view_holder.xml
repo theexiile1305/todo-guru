@@ -6,18 +6,19 @@
 
         <variable
             name="wrapper"
-            type="edu.hm.cs.ma.todoguru.task.TaskWrapper" />
+            type="edu.hm.cs.ma.todoguru.task.list.TaskWrapper" />
 
         <variable
             name="listener"
-            type="edu.hm.cs.ma.todoguru.task.TaskAdapter.Listener" />
+            type="edu.hm.cs.ma.todoguru.task.list.TaskAdapter.Listener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:onClick="@{(view) -> listener.onUpdateClick(wrapper.task)}">
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/selected_checkbox"
@@ -26,6 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:buttonTint="@color/colorSecondary"
             android:checked="@{wrapper.selected}"
             android:onClick="@{(view) -> listener.onCheckBoxClick(wrapper)}"/>
 
