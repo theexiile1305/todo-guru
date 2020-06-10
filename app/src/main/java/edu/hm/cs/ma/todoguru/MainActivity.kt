@@ -26,6 +26,12 @@ class MainActivity : InsertTaskDialog.Listener, TaskAdapter.Listener, AppCompatA
 
     private val selectedTasks = ArrayList<Task>()
 
+    //Eget
+    //override fun onCreate(savedInstanceState: Bundle?) {
+    //    R.layout.explanation_pages
+    //}
+    //ner hit
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

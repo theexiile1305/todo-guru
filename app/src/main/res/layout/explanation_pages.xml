@@ -14,13 +14,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:text="@string/description_1"
+                    android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.11" />
+                    app:layout_constraintVertical_bias="0.121" />
 
                 <Button
                     android:id="@+id/button_create3"
@@ -76,7 +77,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.136">
+                    app:layout_constraintVertical_bias="0.08">
 
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,7 +97,7 @@
             app:layout_anchor="@+id/appBarLayout"
             app:layout_anchorGravity="bottom|center"
             app:navigationIcon="@drawable/ic_close_24px"
-            app:title="@string/add_description" />
+            app:title="@string/top_description_1" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
