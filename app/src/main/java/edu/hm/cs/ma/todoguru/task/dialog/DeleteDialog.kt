@@ -1,5 +1,4 @@
 package edu.hm.cs.ma.todoguru.task.dialog
-
 import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog

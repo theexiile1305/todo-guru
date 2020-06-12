@@ -18,17 +18,12 @@
     <string name="notification_content_description">Have you finished your tasks yet?</string>
     <string name="delete_tasks_short">Delete</string>
     <string name="delete_tasks_long">Delete selected tasks</string>
-    <string name="top_description_1">ToDo Guru description (1/4)</string>
-    <string name="top_description_2">ToDo Guru description (2/4)</string>
-    <string name="top_description_3">ToDo Guru description (3/4)</string>
-    <string name="top_description_4">ToDo Guru description (4/4)</string>
-    <string name="description_1">Welcome to ToDo Guru, together we will make your life more efficiant.</string>
-    <string name="description_2">The home screen shows all the tasks that you have added. If you want to mark a task as complete,
-                                choose the tasks(s) you would like to mark as complete then press check in the top right corner.
-
-                                If you want to delete a task, choose the task(s) you would like to delete and press the garbage
-                                bin in the top right corner. </string>
-    <string name="description_3">Press the plus to add a task</string>
+    <string name="top_description_1">ToDo Guru description (1/3)</string>
+    <string name="top_description_2">ToDo Guru description (2/3)</string>
+    <string name="top_description_3">ToDo Guru description (3/3)</string>
+    <string name="description_1">Welcome to ToDo Guru, together we will make your life more efficient.</string>
+    <string name="description_2">The home screen shows all the tasks that you have added. You can mark a task as complete or delete it. If you want to add a task, click the plus sign. </string>
+    <string name="description_3">The app will keep track on your progress and display which day of the week you are the most productive. Press Next to see all the features and get started.</string>
     <string name="next_button">Next</string>
     <string name="prev_button">Prev.</string>
     <string name="skip_button">Skip</string>

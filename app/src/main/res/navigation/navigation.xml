@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
-    app:startDestination="@id/taskListFragment">
+    app:startDestination="@id/explanationDialog">
     <fragment
         android:id="@+id/taskListFragment"
         android:name="edu.hm.cs.ma.todoguru.task.list.TaskListFragment"
@@ -37,4 +37,43 @@
             android:name="taskList"
             app:argType="edu.hm.cs.ma.todoguru.database.Task[]" />
     </dialog>
+    <fragment
+        android:id="@+id/explanationDialog"
+        android:name="edu.hm.cs.ma.todoguru.ExplanationDialog"
+        android:label="ExplanationDialog" >
+        <action
+            android:id="@+id/action_explanationDialog_to_explanationDialogTwo"
+            app:destination="@id/explanationDialogTwo" />
+        <action
+            android:id="@+id/action_explanationDialog_to_taskListFragment2"
+            app:destination="@id/taskListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationDialogTwo"
+        android:name="edu.hm.cs.ma.todoguru.ExplanationDialogTwo"
+        android:label="ExplanationDialogTwo" >
+        <action
+            android:id="@+id/action_explanationDialogTwo_to_explanationDialogThree"
+            app:destination="@id/explanationDialogThree" />
+        <action
+            android:id="@+id/action_explanationDialogTwo_to_explanationDialog"
+            app:destination="@id/explanationDialog" />
+        <action
+            android:id="@+id/action_explanationDialogTwo_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationDialogThree"
+        android:name="edu.hm.cs.ma.todoguru.ExplanationDialogThree"
+        android:label="ExplanationDialogThree" >
+        <action
+            android:id="@+id/action_explanationDialogThree_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+        <action
+            android:id="@+id/action_explanationDialogThree_to_explanationDialogTwo"
+            app:destination="@id/explanationDialogTwo" />
+        <action
+            android:id="@+id/action_explanationDialogThree_to_explanationDialogTwo2"
+            app:destination="@id/explanationDialogTwo" />
+    </fragment>
 </navigation>
