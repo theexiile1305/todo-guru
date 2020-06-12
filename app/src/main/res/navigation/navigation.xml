@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
-    app:startDestination="@id/explanationDialog">
+    app:startDestination="@id/explanationFragment">
     <fragment
         android:id="@+id/taskListFragment"
         android:name="edu.hm.cs.ma.todoguru.task.list.TaskListFragment"
@@ -38,42 +38,42 @@
             app:argType="edu.hm.cs.ma.todoguru.database.Task[]" />
     </dialog>
     <fragment
-        android:id="@+id/explanationDialog"
+        android:id="@+id/explanationFragment"
         android:name="edu.hm.cs.ma.todoguru.ExplanationFragment"
-        android:label="ExplanationDialog" >
+        android:label="ExplanationFragment" >
         <action
-            android:id="@+id/action_explanationDialog_to_explanationDialogTwo"
-            app:destination="@id/explanationDialogTwo" />
+            android:id="@+id/action_explanationFragment_to_explanationFragmentTwo"
+            app:destination="@id/explanationFragmentTwo" />
         <action
-            android:id="@+id/action_explanationDialog_to_taskListFragment2"
+            android:id="@+id/action_explanationFragment_to_taskListFragment2"
             app:destination="@id/taskListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/explanationDialogTwo"
+        android:id="@+id/explanationFragmentTwo"
         android:name="edu.hm.cs.ma.todoguru.ExplanationFragmentTwo"
-        android:label="ExplanationDialogTwo" >
+        android:label="ExplanationFragmentTwo" >
         <action
-            android:id="@+id/action_explanationDialogTwo_to_explanationDialogThree"
-            app:destination="@id/explanationDialogThree" />
+            android:id="@+id/action_explanationFragmentTwo_to_explanationFragmentThree"
+            app:destination="@id/explanationFragmentThree" />
         <action
-            android:id="@+id/action_explanationDialogTwo_to_explanationDialog"
-            app:destination="@id/explanationDialog" />
+            android:id="@+id/action_explanationFragmentTwo_to_explanationFragment"
+            app:destination="@id/explanationFragment" />
         <action
-            android:id="@+id/action_explanationDialogTwo_to_taskListFragment"
+            android:id="@+id/action_explanationFragmentTwo_to_taskListFragment"
             app:destination="@id/taskListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/explanationDialogThree"
+        android:id="@+id/explanationFragmentThree"
         android:name="edu.hm.cs.ma.todoguru.ExplanationFragmentThree"
-        android:label="ExplanationDialogThree" >
+        android:label="ExplanationFragmentThree" >
         <action
-            android:id="@+id/action_explanationDialogThree_to_taskListFragment"
+            android:id="@+id/action_explanationFragmentThree_to_taskListFragment"
             app:destination="@id/taskListFragment" />
         <action
-            android:id="@+id/action_explanationDialogThree_to_explanationDialogTwo"
-            app:destination="@id/explanationDialogTwo" />
+            android:id="@+id/action_explanationFragmentThree_to_explanationFragmentTwo"
+            app:destination="@id/explanationFragmentTwo" />
         <action
-            android:id="@+id/action_explanationDialogThree_to_explanationDialogTwo2"
-            app:destination="@id/explanationDialogTwo" />
+            android:id="@+id/action_explanationFragmentThree_to_explanationFragmentTwo2"
+            app:destination="@id/explanationFragmentTwo" />
     </fragment>
 </navigation>
