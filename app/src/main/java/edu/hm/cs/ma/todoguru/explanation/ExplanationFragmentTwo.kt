@@ -16,7 +16,7 @@ import edu.hm.cs.ma.todoguru.notification.ReminderNotification
 import kotlinx.android.synthetic.main.explanation_pages.*
 import kotlinx.android.synthetic.main.task_view_holder.view.*
 
-class ExplanationDialogTwo : Fragment() {
+class ExplanationFragmentTwo : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,13 +30,13 @@ class ExplanationDialogTwo : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.button_next).setOnClickListener {
-            findNavController().navigate(ExplanationDialogTwoDirections.actionExplanationDialogTwoToExplanationDialogThree())
+            findNavController().navigate(ExplanationFragmentTwoDirections.actionExplanationDialogTwoToExplanationDialogThree())
         }
         view.findViewById<Button>(R.id.button_prev).setOnClickListener {
-            findNavController().navigate(ExplanationDialogTwoDirections.actionExplanationDialogTwoToExplanationDialog())
+            findNavController().navigate(ExplanationFragmentTwoDirections.actionExplanationDialogTwoToExplanationDialog())
         }
         view.findViewById<Button>(R.id.button_skip).setOnClickListener {
-            findNavController().navigate(ExplanationDialogTwoDirections.actionExplanationDialogTwoToTaskListFragment())
+            findNavController().navigate(ExplanationFragmentTwoDirections.actionExplanationDialogTwoToTaskListFragment())
         }
     }
 }
