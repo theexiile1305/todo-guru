@@ -1,22 +1,13 @@
-package edu.hm.cs.ma.todoguru
+package edu.hm.cs.ma.todoguru.explanation
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.annotation.ContentView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.notification.ReminderNotification
-import kotlinx.android.synthetic.main.explanation_pages.*
-import kotlinx.android.synthetic.main.explanation_pages.topAppBar
-import kotlinx.android.synthetic.main.insert_task_dialog.*
-import kotlinx.android.synthetic.main.task_view_holder.view.*
+import edu.hm.cs.ma.todoguru.R
 
 class ExplanationFragment : Fragment() {
 

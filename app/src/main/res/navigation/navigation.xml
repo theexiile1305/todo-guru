@@ -39,7 +39,7 @@
     </dialog>
     <fragment
         android:id="@+id/explanationFragment"
-        android:name="edu.hm.cs.ma.todoguru.ExplanationFragment"
+        android:name="edu.hm.cs.ma.todoguru.explanation.ExplanationFragment"
         android:label="ExplanationFragment" >
         <action
             android:id="@+id/action_explanationFragment_to_explanationFragmentTwo"
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/explanationFragmentTwo"
-        android:name="edu.hm.cs.ma.todoguru.ExplanationFragmentTwo"
+        android:name="edu.hm.cs.ma.todoguru.explanation.ExplanationFragmentTwo"
         android:label="ExplanationFragmentTwo" >
         <action
             android:id="@+id/action_explanationFragmentTwo_to_explanationFragmentThree"
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/explanationFragmentThree"
-        android:name="edu.hm.cs.ma.todoguru.ExplanationFragmentThree"
+        android:name="edu.hm.cs.ma.todoguru.explanation.ExplanationFragmentThree"
         android:label="ExplanationFragmentThree" >
         <action
             android:id="@+id/action_explanationFragmentThree_to_taskListFragment"
