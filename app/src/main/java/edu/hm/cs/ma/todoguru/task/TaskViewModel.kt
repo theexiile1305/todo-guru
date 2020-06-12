@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import kotlinx.coroutines.CoroutineScope
@@ -19,6 +21,20 @@ class TaskViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
+    class Factory(
+        private val dataBase: TaskDatabaseDao,
+        private val application: Application
+    ) : ViewModelProvider.Factory {
+
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
+                return TaskViewModel(dataBase, application) as T
+            }
+            throw IllegalAccessException("unknown viewModel class")
+        }
+    }
+
     val tasks = database.getAllTask()
 
     private var _addTaskEvent = MutableLiveData(false)
@@ -27,7 +43,7 @@ class TaskViewModel(
 
     private var _showTaskFragment = MutableLiveData<Task?>()
     val showTaskFragment: LiveData<Task?>
-    get() = _showTaskFragment
+        get() = _showTaskFragment
 
     private var task: Task? = null
 
@@ -86,7 +102,6 @@ class TaskViewModel(
         }.invokeOnCompletion {
             _markTaskDoneEvent.value = true
         }
-
     }
 
     fun deleteTasks(tasks: List<Task>) {
@@ -110,7 +125,6 @@ class TaskViewModel(
             database.update(task)
         }
     }
-
 
     fun showTaskFragment(t: Task) {
         task = t

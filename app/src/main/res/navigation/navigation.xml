@@ -2,17 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation"
     app:startDestination="@id/taskListFragment">
-
     <fragment
         android:id="@+id/taskListFragment"
-        android:name="edu.hm.cs.ma.todoguru.TaskListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.list.TaskListFragment"
         android:label="TaskListFragment" >
         <action
-            android:id="@+id/action_taskListFragment_to_viewTaskFragment"
-            app:destination="@id/viewTaskFragment" />
+            android:id="@+id/action_taskListFragment_to_insertTaskDialog"
+            app:destination="@id/insertTaskDialog" />
+        <action
+            android:id="@+id/action_taskListFragment_to_updateTaskDialog"
+            app:destination="@id/updateTaskDialog" />
+        <action
+            android:id="@+id/action_taskListFragment_to_deleteDialog"
+            app:destination="@id/deleteDialog" />
     </fragment>
-    <fragment
-        android:id="@+id/viewTaskFragment"
-        android:name="edu.hm.cs.ma.todoguru.ViewTaskFragment"
-        android:label="ViewTaskFragment" />
+    <dialog
+        android:id="@+id/insertTaskDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.dialog.InsertTaskDialog"
+        android:label="InsertTaskDialog" >
+    </dialog>
+    <dialog
+        android:id="@+id/updateTaskDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.dialog.UpdateTaskDialog"
+        android:label="UpdateTaskDialog" >
+        <argument
+            android:name="task"
+            app:argType="edu.hm.cs.ma.todoguru.database.Task" />
+    </dialog>
+    <dialog
+        android:id="@+id/deleteDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.dialog.DeleteDialog"
+        android:label="DeleteDialog" >
+        <argument
+            android:name="taskList"
+            app:argType="edu.hm.cs.ma.todoguru.database.Task[]" />
+    </dialog>
 </navigation>

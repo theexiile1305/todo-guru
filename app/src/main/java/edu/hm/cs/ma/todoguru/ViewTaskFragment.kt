@@ -1,7 +1,5 @@
 package edu.hm.cs.ma.todoguru
 
-import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +16,7 @@ class ViewTaskFragment() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-      val binding = DataBindingUtil.inflate<ViewTaskFragmentBinding>(inflater, R.layout.view_task_fragment, container, false)
+        val binding = DataBindingUtil.inflate<ViewTaskFragmentBinding>(inflater, R.layout.view_task_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
         val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
