@@ -48,8 +48,11 @@ class UpdateTaskDialog : AbstractTaskDialog() {
         description.setText(task.description)
         estimated.setText(task.estimated.toString())
         setDueDateText(task.dueDate)
+        dueDate = task.dueDate
         setReminderDateText(task.reminder.toLocalDate())
+        reminderDate = task.reminder.toLocalDate()
         setReminderTimeText(task.reminder.toLocalTime())
+        reminderTime = task.reminder.toLocalTime()
     }
 
     private fun update(task: Task) {

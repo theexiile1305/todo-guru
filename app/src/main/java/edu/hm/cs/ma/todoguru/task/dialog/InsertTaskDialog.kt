@@ -41,8 +41,11 @@ class InsertTaskDialog : AbstractTaskDialog() {
     private fun setDefaultValues() {
         val dateTime = LocalDateTime.now()
         setDueDateText(dateTime.toLocalDate())
+        dueDate = dateTime.toLocalDate()
         setReminderDateText(dateTime.toLocalDate())
+        reminderDate = dateTime.toLocalDate()
         setReminderTimeText(dateTime.toLocalTime())
+        reminderTime = dateTime.toLocalTime()
     }
 
     private fun create() {

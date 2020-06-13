@@ -5,14 +5,12 @@
     <data>
 
         <variable
-
             name="wrapper"
             type="edu.hm.cs.ma.todoguru.task.list.TaskWrapper" />
 
         <variable
             name="listener"
             type="edu.hm.cs.ma.todoguru.task.list.TaskAdapter.Listener" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:onClick="@{(view) -> listener.onUpdateClick(wrapper.task)}">
-
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/selected_checkbox"
@@ -85,9 +82,6 @@
             android:src="@drawable/ic_keyboard_arrow_right_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{() -> listener.onTaskClick(wrapper.task)}"
-       
             app:layout_constraintTop_toTopOf="parent" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
