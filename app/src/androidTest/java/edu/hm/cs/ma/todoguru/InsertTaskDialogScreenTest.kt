@@ -28,11 +28,13 @@ class InsertTaskDialogScreenTest {
     @Test
     fun insertTaskDialogScreenTest() {
         val materialButton = onView(
-            allOf(withId(R.id.button_skip1),
+            allOf(withId(
+                R.id.button_skip1),
                 withText("Skip"),
                 childAtPosition(
                     childAtPosition
-                    (withId(R.id.nav_host_fragment_container),
+                    (withId(
+                        R.id.nav_host_fragment_container),
                         0
                     ),
                     3
@@ -43,7 +45,8 @@ class InsertTaskDialogScreenTest {
         materialButton.perform(click())
 
         val floatingActionButton = onView(
-            allOf(withId(R.id.fab),
+            allOf(withId(
+                R.id.fab),
                 childAtPosition(
                     allOf(
                         withId(R.id.tasks_list_container),
@@ -180,8 +183,7 @@ class InsertTaskDialogScreenTest {
     }
 
     private fun childAtPosition(
-        parentMatcher: Matcher<View>, position: Int
-    ): Matcher<View> {
+        parentMatcher: Matcher<View>, position: Int): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {
