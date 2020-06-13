@@ -20,6 +20,7 @@
     <string name="notification_content_description">Have you finished your tasks yet?</string>
     <string name="delete_tasks_short">Delete</string>
     <string name="delete_tasks_long">Delete selected tasks</string>
+    <string name="view_task">View Task</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

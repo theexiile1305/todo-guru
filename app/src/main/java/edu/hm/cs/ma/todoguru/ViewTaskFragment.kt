@@ -4,27 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
-import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBinding
-import edu.hm.cs.ma.todoguru.task.TaskViewModel
-import edu.hm.cs.ma.todoguru.task.TaskViewModelFactory
+import androidx.navigation.fragment.navArgs
+import edu.hm.cs.ma.todoguru.database.Task
+import edu.hm.cs.ma.todoguru.task.dialog.AbstractTaskDialog
+import kotlinx.android.synthetic.main.view_task_fragment.*
 
-class ViewTaskFragment() : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+class ViewTaskFragment : Fragment() {
 
-        val binding = DataBindingUtil.inflate<ViewTaskFragmentBinding>(inflater, R.layout.view_task_fragment, container, false)
+    private val args: ViewTaskFragmentArgs by navArgs()
 
-        val application = requireNotNull(this.activity).application
-        val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
-        val viewModelFactory = TaskViewModelFactory(dataSource, application)
-        val taskViewModel = ViewModelProviders.of(this, viewModelFactory).get(TaskViewModel::class.java)
-        binding.taskViewModel = taskViewModel
-        binding.setLifecycleOwner(this)
-
-        return binding.root
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
+        return inflater.inflate(R.layout.view_task_fragment, container, false)
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val task = args.task
+
+        title_task.setText(task.title)
+        description_task.setText(task.description)
+        dueDate_task.setText(task.dueDate.toString())
+
+    }
+
+
 }

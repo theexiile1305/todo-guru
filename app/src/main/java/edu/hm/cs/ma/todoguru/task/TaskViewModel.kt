@@ -126,11 +126,6 @@ class TaskViewModel(
         }
     }
 
-    fun showTaskFragment(t: Task) {
-        task = t
-        _showTaskFragment.value = t
-    }
-
     private suspend fun delete(task: Task) {
         withContext(Dispatchers.IO) {
             database.delete(task)

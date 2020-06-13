@@ -15,6 +15,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_deleteDialog"
             app:destination="@id/deleteDialog" />
+        <action
+            android:id="@+id/action_taskListFragment_to_viewTaskFragment"
+            app:destination="@id/viewTaskFragment" />
     </fragment>
     <dialog
         android:id="@+id/insertTaskDialog"
@@ -37,4 +40,12 @@
             android:name="taskList"
             app:argType="edu.hm.cs.ma.todoguru.database.Task[]" />
     </dialog>
+    <fragment
+        android:id="@+id/viewTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.ViewTaskFragment"
+        android:label="ViewTaskFragment" >
+        <argument
+            android:name="task"
+            app:argType="edu.hm.cs.ma.todoguru.database.Task" />
+    </fragment>
 </navigation>
