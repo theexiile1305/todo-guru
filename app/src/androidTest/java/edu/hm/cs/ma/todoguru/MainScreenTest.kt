@@ -1,6 +1,5 @@
 package edu.hm.cs.ma.todoguru
 
-
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
@@ -28,64 +27,21 @@ class MainScreenTest {
         val materialButton = onView(
             allOf(
                 withId(R.id.button_skip1), withText("Skip"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.nav_host_fragment_container),
-                        0
-                    ),
-                    3
-                ),
-                isDisplayed()
-            )
-        )
+                childAtPosition(childAtPosition(withId(R.id.nav_host_fragment_container), 0), 3), isDisplayed()))
         materialButton.perform(click())
 
         val actionMenuItemView = onView(
-            allOf(
-                withId(R.id.mark_tasks_as_done), withContentDescription("Done"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.topAppBar),
-                        1
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
+            allOf(withId(R.id.mark_tasks_as_done), withContentDescription("Done"), childAtPosition(childAtPosition(withId(R.id.topAppBar), 1), 1), isDisplayed()))
         actionMenuItemView.perform(click())
 
         val actionMenuItemView2 = onView(
-            allOf(
-                withId(R.id.delete_tasks), withContentDescription("Delete"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.topAppBar),
-                        1
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
+            allOf(withId(R.id.delete_tasks), withContentDescription("Delete"), childAtPosition(childAtPosition(withId(R.id.topAppBar), 1), 0), isDisplayed()))
         actionMenuItemView2.perform(click())
 
         val floatingActionButton = onView(
             allOf(
                 withId(R.id.fab),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.tasks_list_container),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment_container),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
+                childAtPosition(allOf(withId(R.id.tasks_list_container), childAtPosition(withId(R.id.nav_host_fragment_container), 0)), 1), isDisplayed()))
         floatingActionButton.perform(click())
     }
 
