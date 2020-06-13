@@ -6,13 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.task.dialog.AbstractTaskDialog
 import kotlinx.android.synthetic.main.view_task_fragment.*
 
-
 class ViewTaskFragment : Fragment() {
-
     private val args: ViewTaskFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -32,8 +28,5 @@ class ViewTaskFragment : Fragment() {
         title_task.setText(task.title)
         description_task.setText(task.description)
         dueDate_task.setText(task.dueDate.toString())
-
     }
-
-
 }
