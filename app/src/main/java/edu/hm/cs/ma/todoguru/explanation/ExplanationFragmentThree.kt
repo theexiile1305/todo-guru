@@ -22,13 +22,13 @@ class ExplanationFragmentThree : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<Button>(R.id.button_next).setOnClickListener {
+        view.findViewById<Button>(R.id.button_next3).setOnClickListener {
             findNavController().navigate(ExplanationFragmentThreeDirections.actionExplanationFragmentThreeToTaskListFragment())
         }
-        view.findViewById<Button>(R.id.button_prev).setOnClickListener {
+        view.findViewById<Button>(R.id.button_prev3).setOnClickListener {
             findNavController().navigate(ExplanationFragmentThreeDirections.actionExplanationFragmentThreeToExplanationFragmentTwo())
         }
-        view.findViewById<Button>(R.id.button_skip).setOnClickListener {
+        view.findViewById<Button>(R.id.button_skip3).setOnClickListener {
             findNavController().navigate(ExplanationFragmentThreeDirections.actionExplanationFragmentThreeToTaskListFragment())
         }
     }

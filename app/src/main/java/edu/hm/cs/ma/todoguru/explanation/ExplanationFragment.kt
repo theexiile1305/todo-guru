@@ -22,11 +22,11 @@ class ExplanationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<Button>(R.id.button_next).setOnClickListener {
+        view.findViewById<Button>(R.id.button_next1).setOnClickListener {
             findNavController().navigate(ExplanationFragmentDirections.actionExplanationFragmentToExplanationFragmentTwo())
         }
-        view.findViewById<Button>(R.id.button_skip).setOnClickListener {
-            findNavController().navigate(ExplanationFragmentDirections.actionExplanationFragmentToTaskListFragment2())
+        view.findViewById<Button>(R.id.button_skip1).setOnClickListener {
+            findNavController().navigate(ExplanationFragmentDirections.actionExplanationFragmentToTaskListFragment())
         }
     }
 }

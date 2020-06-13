@@ -45,7 +45,7 @@
             android:id="@+id/action_explanationFragment_to_explanationFragmentTwo"
             app:destination="@id/explanationFragmentTwo" />
         <action
-            android:id="@+id/action_explanationFragment_to_taskListFragment2"
+            android:id="@+id/action_explanationFragment_to_taskListFragment"
             app:destination="@id/taskListFragment" />
     </fragment>
     <fragment
@@ -71,9 +71,6 @@
             app:destination="@id/taskListFragment" />
         <action
             android:id="@+id/action_explanationFragmentThree_to_explanationFragmentTwo"
-            app:destination="@id/explanationFragmentTwo" />
-        <action
-            android:id="@+id/action_explanationFragmentThree_to_explanationFragmentTwo2"
-            app:destination="@id/explanationFragmentTwo" />
+            app:destination="@id/explanationFragmentTwo"/>
     </fragment>
 </navigation>
