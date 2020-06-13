@@ -91,7 +91,9 @@ class MainScreenTest {
     }
 
     private fun childAtPosition(
-        parentMatcher: Matcher<View>, position: Int): Matcher<View> {
+        parentMatcher: Matcher<View>,
+        position: Int
+    ): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {
