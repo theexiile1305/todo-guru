@@ -100,7 +100,7 @@ class InsertTaskDialogScreenTest {
 
         val textInputEditText3 = onView(
             allOf(
-                withId(R.id.dueDate), withText("Jun 13, 2020"),
+                withId(R.id.dueDate), withText("Jun 14, 2020"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.dueDateTextField),
