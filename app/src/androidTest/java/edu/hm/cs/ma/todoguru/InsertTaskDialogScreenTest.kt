@@ -18,6 +18,9 @@ import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -93,9 +96,13 @@ class InsertTaskDialogScreenTest {
         )
         textInputEditText2.perform(replaceText("B"), closeSoftKeyboard())
 
+        val currentDate = LocalDate.now()
+        val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
+        val text = currentDate.format(formatter)
+
         val textInputEditText3 = onView(
             allOf(
-                withId(R.id.dueDate), withText("Jun 14, 2020"),
+                withId(R.id.dueDate), withText(text),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.dueDateTextField),
