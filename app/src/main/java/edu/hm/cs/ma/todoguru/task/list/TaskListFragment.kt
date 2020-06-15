@@ -127,4 +127,8 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             )
         )
     }
+
+    override fun onViewTaskClick(task: Task) {
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(task))
+    }
 }

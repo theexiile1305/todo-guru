@@ -9,10 +9,12 @@
     <string name="reminder_date">Reminder Date</string>
     <string name="reminder_time">Reminder Time</string>
     <string name="add_reminder">Add Reminder</string>
+    <string name="viewTask">View Task</string>
     <string name="create_button">Create</string>
     <string name="display_task">Display task</string>
     <string name="mark_as_done_short">Done</string>
     <string name="mark_as_done_long">Mark selected tasks as Done</string>
+    <string name="DueDate">dueDate</string>
     <string name="update_button">Update</string>
     <string name="notification_content_title">ToDo Guru Reminder</string>
     <string name="notification_content_description">Have you finished your tasks yet?</string>
@@ -27,4 +29,7 @@
     <string name="next_button">Next</string>
     <string name="prev_button">Prev.</string>
     <string name="skip_button">Skip</string>
+    <string name="view_task">View Task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
