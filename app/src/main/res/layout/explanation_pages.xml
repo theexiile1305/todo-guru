@@ -13,6 +13,7 @@
                 android:text="@string/description_1"
                 android:textAlignment="center"
                 android:textSize="20sp"
+                android:padding="20sp"
                 android:textColor="@color/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
@@ -27,12 +28,13 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/next_button"
                 android:textSize="14sp"
+                android:layout_margin="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.976" />
+                app:layout_constraintVertical_bias="0.975" />
 
             <Button
                 android:id="@+id/button_prev1"
@@ -41,12 +43,13 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/prev_button"
                 android:textSize="14sp"
+                android:layout_margin="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.647"
+                app:layout_constraintHorizontal_bias="0.620"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.976" />
+                app:layout_constraintVertical_bias="0.975" />
 
             <Button
                 android:id="@+id/button_skip1"
@@ -55,12 +58,13 @@
                 android:layout_gravity="center_horizontal"
                 android:text="@string/skip_button"
                 android:textSize="14sp"
+                android:layout_margin="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.049"
+                app:layout_constraintHorizontal_bias="0.05"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.976" />
+                app:layout_constraintVertical_bias="0.975" />
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
