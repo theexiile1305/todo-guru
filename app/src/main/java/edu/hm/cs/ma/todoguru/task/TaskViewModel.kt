@@ -41,6 +41,12 @@ class TaskViewModel(
     val addTaskEvent: LiveData<Boolean>
         get() = _addTaskEvent
 
+    private var _showTaskFragment = MutableLiveData<Task?>()
+    val showTaskFragment: LiveData<Task?>
+        get() = _showTaskFragment
+
+    private var task: Task? = null
+
     private var _markTaskDoneEvent = MutableLiveData(false)
     val markTaskDoneEvent: LiveData<Boolean>
         get() = _markTaskDoneEvent

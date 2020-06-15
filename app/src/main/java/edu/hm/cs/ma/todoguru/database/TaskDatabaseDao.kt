@@ -19,6 +19,9 @@ interface TaskDatabaseDao {
     @Insert
     fun insert(task: Task)
 
+    @Query("SELECT * FROM task_table WHERE id = :id")
+    fun get(id: Long): Task?
+
     @Update
     fun update(task: Task)
 
