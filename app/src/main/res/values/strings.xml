@@ -5,7 +5,7 @@
     <string name="title">Title</string>
     <string name="description">Description</string>
     <string name="due_date">Due Date</string>
-    <string name="estimated">Estimated Time</string>
+    <string name="estimated">Estimated Time (written in full hours)</string>
     <string name="reminder_date">Reminder Date</string>
     <string name="reminder_time">Reminder Time</string>
     <string name="add_reminder">Add Reminder</string>
