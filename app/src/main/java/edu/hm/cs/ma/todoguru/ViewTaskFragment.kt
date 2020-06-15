@@ -28,5 +28,6 @@ class ViewTaskFragment : Fragment() {
         title_task.setText(task.title)
         description_task.setText(task.description)
         dueDate_task.setText(task.dueDate.toString())
+        reminder_date.setText(task.reminder.toString())
     }
 }
