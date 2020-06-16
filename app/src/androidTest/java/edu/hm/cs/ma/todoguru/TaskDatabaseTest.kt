@@ -12,9 +12,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 @RunWith(AndroidJUnit4::class)
 class TaskDatabaseTest {
@@ -55,7 +53,4 @@ class TaskDatabaseTest {
         taskDao.delete(task)
         assertEquals(true, taskDao.getAllTasks().isEmpty())
     }
-
-    private fun date(date: String) =
-        LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 }
