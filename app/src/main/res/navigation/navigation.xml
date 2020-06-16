@@ -8,7 +8,7 @@
         android:label="TaskListFragment" >
         <action
             android:id="@+id/action_taskListFragment_to_insertTaskDialog"
-            app:destination="@id/insertTaskDialog" />
+            app:destination="@id/insertTaskGraph" />
         <action
             android:id="@+id/action_taskListFragment_to_updateTaskDialog"
             app:destination="@id/updateTaskDialog" />
@@ -19,11 +19,6 @@
             android:id="@+id/action_taskListFragment_to_viewTaskFragment"
             app:destination="@id/viewTaskFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/insertTaskDialog"
-        android:name="edu.hm.cs.ma.todoguru.task.dialog.InsertTaskDialog"
-        android:label="InsertTaskDialog" >
-    </dialog>
     <dialog
         android:id="@+id/updateTaskDialog"
         android:name="edu.hm.cs.ma.todoguru.task.dialog.UpdateTaskDialog"
@@ -42,10 +37,25 @@
     </dialog>
     <fragment
         android:id="@+id/viewTaskFragment"
-        android:name="edu.hm.cs.ma.todoguru.ViewTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.ViewTaskFragment"
         android:label="ViewTaskFragment" >
         <argument
             android:name="task"
             app:argType="edu.hm.cs.ma.todoguru.database.Task" />
     </fragment>
+    <navigation android:id="@+id/insertTaskGraph"
+        app:startDestination="@id/insertTaskDialog">
+        <fragment
+            android:id="@+id/insertTaskDialog"
+            android:name="edu.hm.cs.ma.todoguru.task.dialog.InsertTaskDialog"
+            android:label="InsertTaskDialog">
+            <action
+                android:id="@+id/action_insertTaskDialog_to_setReminderDialog"
+                app:destination="@id/setReminderDialog" />
+        </fragment>
+        <fragment
+            android:id="@+id/setReminderDialog"
+            android:name="edu.hm.cs.ma.todoguru.task.dialog.SetReminderDialog"
+            android:label="SetReminderDialog" />
+    </navigation>
 </navigation>

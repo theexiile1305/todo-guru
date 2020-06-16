@@ -21,9 +21,7 @@ class TaskAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder.from(
-            parent
-        )
+        ViewHolder.from(parent)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position), listener)

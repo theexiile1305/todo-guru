@@ -1,31 +1,31 @@
 package edu.hm.cs.ma.todoguru.task.dialog
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
-import edu.hm.cs.ma.todoguru.databinding.UpdateTaskDialogBinding
+import edu.hm.cs.ma.todoguru.databinding.SetReminderDialogBinding
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
-import kotlinx.android.synthetic.main.update_task_dialog.topAppBar
+import kotlinx.android.synthetic.main.set_reminder_dialog.topAppBar
 import java.time.LocalDate
-import java.time.LocalDateTime
+import java.time.LocalTime
 
-class UpdateTaskDialog : Fragment() {
+class SetReminderDialog : Fragment() {
 
     private lateinit var mContext: Context
-    private lateinit var binding: UpdateTaskDialogBinding
+    private lateinit var binding: SetReminderDialogBinding
     private lateinit var viewModel: TaskViewModel
-    private val args: UpdateTaskDialogArgs by navArgs()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -37,7 +37,7 @@ class UpdateTaskDialog : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.insert_task_dialog, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.set_reminder_dialog, container, false)
         return binding.root
     }
 
@@ -49,65 +49,71 @@ class UpdateTaskDialog : Fragment() {
         }
 
         binding.apply {
-            viewModel = this@UpdateTaskDialog.viewModel
-            lifecycleOwner = this@UpdateTaskDialog
+            viewModel = this@SetReminderDialog.viewModel
+            lifecycleOwner = this@SetReminderDialog
         }
 
         viewModel.apply {
-            setDefaultUpdateValue(args.task)
-            createTaskEvent.observe(
+            addReminderDateEvent.observe(
                 viewLifecycleOwner,
                 Observer {
-                    if (it) updateTask()
+                    if (it) openSetReminderDateDialog(reminderDate.value!!)
                 }
             )
-            addReminderEvent.observe(
+            addReminderTimeEvent.observe(
                 viewLifecycleOwner,
                 Observer {
-                    if (it) openSetReminderDialog()
+                    if (it) openSetReminderTimeDialog(reminderTime.value!!)
                 }
             )
-            addDueDateEvent.observe(
+            insertReminderEvent.observe(
                 viewLifecycleOwner,
                 Observer {
-                    if (it) openSetDueDateDialog(dueDate.value!!)
+                    if (it && checkDueDateAfterReminder()) findNavController().popBackStack()
                 }
             )
         }
 
-        topAppBar.setNavigationOnClickListener { findNavController().popBackStack() }
+        topAppBar.setNavigationOnClickListener {
+            if (checkDueDateAfterReminder()) findNavController().popBackStack()
+        }
     }
 
     /** DatePickerDialog expects the old Calender class, we are currently using the new
      * @see LocalDate which needs a transformation on the month field:
      * e. g. months of Calender class are from 0-11 and in LocalDate from 1-12
      **/
-    private fun openSetDueDateDialog(dueDate: LocalDate) {
+    private fun openSetReminderDateDialog(reminderDate: LocalDate) {
         DatePickerDialog(
             mContext,
             DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-                viewModel.dueDate.value = LocalDate.of(year, month + 1, dayOfMonth)
+                viewModel.reminderDate.value = LocalDate.of(year, month + 1, dayOfMonth)
             },
-            dueDate.year,
-            dueDate.monthValue - 1,
-            dueDate.dayOfMonth
+            reminderDate.year,
+            reminderDate.monthValue - 1,
+            reminderDate.dayOfMonth
         ).show()
     }
 
-    private fun updateTask() {
-        viewModel.apply {
-            updateTask(
-                title.value!!,
-                description.value!!,
-                dueDate.value!!,
-                estimated.value!!,
-                LocalDateTime.of(reminderDate.value, reminderTime.value)
-            )
-        }
-        findNavController().popBackStack()
+    private fun openSetReminderTimeDialog(reminderTime: LocalTime) {
+        TimePickerDialog(
+            mContext,
+            TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+                viewModel.reminderTime.value = LocalTime.of(hourOfDay, minute)
+            },
+            reminderTime.hour,
+            reminderTime.minute,
+            false
+        ).show()
     }
 
-    private fun openSetReminderDialog() {
-        findNavController().navigate(InsertTaskDialogDirections.actionInsertTaskDialogToSetReminderDialog())
+    private fun checkDueDateAfterReminder(): Boolean {
+        val isValid = viewModel.let {
+            it.dueDate.value!!.isAfter((it.reminderDate.value))
+        }
+        if (!isValid)
+            Toast.makeText(mContext, "Due date has to be after reminder", Toast.LENGTH_SHORT)
+                .show()
+        return isValid
     }
 }

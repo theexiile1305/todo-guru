@@ -8,11 +8,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
-import edu.hm.cs.ma.todoguru.task.TaskViewModel
+import edu.hm.cs.ma.todoguru.task.list.TaskListViewModel
 
 class DeleteDialog : DialogFragment() {
 
-    private lateinit var viewModel: TaskViewModel
+    private lateinit var viewModel: TaskListViewModel
 
     private val args: DeleteDialogArgs by navArgs()
 
@@ -20,13 +20,8 @@ class DeleteDialog : DialogFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = requireActivity().run {
             val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
-            val viewModelFactory =
-                TaskViewModel.Factory(
-                    dataSource,
-                    application
-                )
-            ViewModelProvider(this, viewModelFactory)
-                .get(TaskViewModel::class.java)
+            val viewModelFactory = TaskListViewModel.Factory(dataSource, application)
+            ViewModelProvider(this, viewModelFactory).get(TaskListViewModel::class.java)
         }
     }
 

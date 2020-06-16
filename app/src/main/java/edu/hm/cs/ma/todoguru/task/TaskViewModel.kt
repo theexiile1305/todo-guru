@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
+import kotlin.properties.Delegates
 
 class TaskViewModel(
     private val database: TaskDatabaseDao,
@@ -25,7 +27,6 @@ class TaskViewModel(
         private val dataBase: TaskDatabaseDao,
         private val application: Application
     ) : ViewModelProvider.Factory {
-
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(TaskViewModel::class.java)) {
@@ -35,25 +36,46 @@ class TaskViewModel(
         }
     }
 
-    val tasks = database.getAllTask()
+    var dueDate = MutableLiveData(LocalDate.now())
+    var reminderDate = MutableLiveData(LocalDate.now())
+    var reminderTime = MutableLiveData(LocalTime.now())
+    private var id by Delegates.notNull<Long>()
 
-    private var _addTaskEvent = MutableLiveData(false)
-    val addTaskEvent: LiveData<Boolean>
-        get() = _addTaskEvent
+    private var _title = MutableLiveData<String>()
+    val title: LiveData<String>
+        get() = _title
 
-    private var _showTaskFragment = MutableLiveData<Task?>()
-    val showTaskFragment: LiveData<Task?>
-        get() = _showTaskFragment
+    private var _description = MutableLiveData<String>()
+    val description: LiveData<String>
+        get() = _description
 
-    private var task: Task? = null
+    private var _estimated = MutableLiveData<Int>()
+    val estimated: LiveData<Int>
+        get() = _estimated
 
-    private var _markTaskDoneEvent = MutableLiveData(false)
-    val markTaskDoneEvent: LiveData<Boolean>
-        get() = _markTaskDoneEvent
+    private var _createTaskEvent = MutableLiveData<Boolean>()
+    val createTaskEvent: LiveData<Boolean>
+        get() = _createTaskEvent
 
-    private var _deleteTaskEvent = MutableLiveData(false)
-    val deleteTaskEvent: LiveData<Boolean>
-        get() = _deleteTaskEvent
+    private var _addDueDateEvent = MutableLiveData<Boolean>()
+    val addDueDateEvent: LiveData<Boolean>
+        get() = _addDueDateEvent
+
+    private var _addReminderEvent = MutableLiveData<Boolean>()
+    val addReminderEvent: LiveData<Boolean>
+        get() = _addReminderEvent
+
+    private var _addReminderTimeEvent = MutableLiveData<Boolean>()
+    val addReminderTimeEvent: LiveData<Boolean>
+        get() = _addReminderTimeEvent
+
+    private var _addReminderDateEvent = MutableLiveData<Boolean>()
+    val addReminderDateEvent: LiveData<Boolean>
+        get() = _addReminderDateEvent
+
+    private var _insertReminderEvent = MutableLiveData<Boolean>()
+    val insertReminderEvent: LiveData<Boolean>
+        get() = _insertReminderEvent
 
     private val viewModelJob = Job()
 
@@ -64,8 +86,40 @@ class TaskViewModel(
         viewModelJob.cancel()
     }
 
-    fun triggerTaskEvent() {
-        _addTaskEvent.value = true
+    fun triggerCreateTaskEvent() {
+        _createTaskEvent.value = true
+    }
+
+    fun triggerAddDueDateEvent() {
+        _addDueDateEvent.value = true
+    }
+
+    fun triggerAddReminderEvent() {
+        _addReminderEvent.value = true
+    }
+
+    fun triggerAddReminderDateEvent() {
+        _addReminderDateEvent.value = true
+    }
+
+    fun triggerAddReminderTimeEvent() {
+        _addReminderTimeEvent.value = true
+    }
+
+    fun triggerInsertReminderEvent() {
+        _insertReminderEvent.value = true
+    }
+
+    fun setDefaultUpdateValue(task: Task) {
+        task.apply {
+            _title.value = title
+            _description.value = description
+            _estimated.value = estimated
+            this@TaskViewModel.id = id
+            this@TaskViewModel.dueDate.value = dueDate
+            this@TaskViewModel.reminderDate.value = reminder.toLocalDate()
+            this@TaskViewModel.reminderTime.value = reminder.toLocalTime()
+        }
     }
 
     fun insertTask(
@@ -81,7 +135,6 @@ class TaskViewModel(
     }
 
     fun updateTask(
-        id: Long,
         title: String,
         description: String,
         dueDate: LocalDate,
@@ -90,27 +143,6 @@ class TaskViewModel(
     ) {
         uiScope.launch {
             update(Task(id, title, description, dueDate, estimated, reminder))
-        }
-    }
-
-    fun markTasksAsDone(tasks: List<Task>) {
-        uiScope.launch {
-            tasks.forEach {
-                it.done = true
-                update(it)
-            }
-        }.invokeOnCompletion {
-            _markTaskDoneEvent.value = true
-        }
-    }
-
-    fun deleteTasks(tasks: List<Task>) {
-        uiScope.launch {
-            tasks.forEach {
-                delete(it)
-            }
-        }.invokeOnCompletion {
-            _deleteTaskEvent.value = true
         }
     }
 
@@ -123,12 +155,6 @@ class TaskViewModel(
     private suspend fun update(task: Task) {
         withContext(Dispatchers.IO) {
             database.update(task)
-        }
-    }
-
-    private suspend fun delete(task: Task) {
-        withContext(Dispatchers.IO) {
-            database.delete(task)
         }
     }
 }
