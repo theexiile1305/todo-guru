@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru
+package edu.hm.cs.ma.todoguru.task
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import kotlinx.android.synthetic.main.view_task_fragment.*
+import edu.hm.cs.ma.todoguru.R
+import kotlinx.android.synthetic.main.view_task_fragment.description_task
+import kotlinx.android.synthetic.main.view_task_fragment.dueDate_task
+import kotlinx.android.synthetic.main.view_task_fragment.title_task
 
 class ViewTaskFragment : Fragment() {
     private val args: ViewTaskFragmentArgs by navArgs()
@@ -25,8 +28,8 @@ class ViewTaskFragment : Fragment() {
 
         val task = args.task
 
-        title_task.setText(task.title)
-        description_task.setText(task.description)
-        dueDate_task.setText(task.dueDate.toString())
+        title_task.text = task.title
+        description_task.text = task.description
+        dueDate_task.text = task.dueDate.toString()
     }
 }
