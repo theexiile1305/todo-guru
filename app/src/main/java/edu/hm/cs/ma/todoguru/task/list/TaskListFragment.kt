@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.databinding.TaskListFragmentBinding
+import edu.hm.cs.ma.todoguru.task.dialog.SetAlarmDialog
 import kotlinx.android.synthetic.main.task_list_fragment.topAppBar
 
 class TaskListFragment : TaskAdapter.Listener, Fragment() {
@@ -77,10 +79,18 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         }
     }
 
-    override fun onViewTaskClick(task: Task) {
-        findNavController().navigate(
-            TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(task)
-        )
+    override fun onViewTaskClick(view: View, task: Task) {
+        PopupMenu(requireContext(), view).apply {
+            menuInflater.inflate(R.menu.item_menu, menu)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.view_task -> openViewTaskFragment(task)
+                    R.id.set_alarm -> openSetAlarmFragment()
+                    else -> false
+                }
+            }
+            show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -127,5 +137,16 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
                 selectedTasks.toTypedArray()
             )
         )
+    }
+
+    private fun openViewTaskFragment(task: Task): Boolean {
+        findNavController()
+            .navigate(TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(task))
+        return true
+    }
+
+    private fun openSetAlarmFragment(): Boolean {
+        SetAlarmDialog(requireContext()).show()
+        return true
     }
 }

@@ -1,6 +1,7 @@
 package edu.hm.cs.ma.todoguru.task.list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -17,7 +18,7 @@ class TaskAdapter(
     interface Listener {
         fun onCheckBoxClick(wrapper: TaskWrapper)
         fun onUpdateClick(task: Task)
-        fun onViewTaskClick(task: Task)
+        fun onViewTaskClick(view: View, task: Task)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =

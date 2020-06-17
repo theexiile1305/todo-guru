@@ -79,8 +79,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/display_task"
-            android:onClick="@{(view) -> listener.onViewTaskClick(wrapper.task)}"
-            android:src="@drawable/ic_keyboard_arrow_right_24px"
+            android:onClick="@{(view) -> listener.onViewTaskClick(view, wrapper.task)}"
+            android:src="@drawable/ic_more_vert_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
