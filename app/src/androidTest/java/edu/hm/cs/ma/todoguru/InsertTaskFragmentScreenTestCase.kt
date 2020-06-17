@@ -29,6 +29,8 @@ class InsertTaskFragmentScreenTestCase {
     @JvmField
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
+    private val coordinatorLayoutClass = "androidx.coordinatorlayout.widget.CoordinatorLayout"
+
     @Test
     fun insertTaskFragmentScreenTestCase() {
         val floatingActionButton = onView(
@@ -172,7 +174,7 @@ class InsertTaskFragmentScreenTestCase {
                 withId(R.id.setReminderButton), withText("Create"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                        withClassName(`is`(coordinatorLayoutClass)),
                         0
                     ),
                     3
@@ -184,7 +186,7 @@ class InsertTaskFragmentScreenTestCase {
 
         val currentDate = LocalDate.now().plusDays(1)
         val currentDateText = currentDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
-        val textInputEditText6 = onView(
+        onView(
             allOf(
                 withId(R.id.dueDate), withText(currentDateText),
                 childAtPosition(
@@ -205,7 +207,7 @@ class InsertTaskFragmentScreenTestCase {
                 withId(R.id.insertTaskButton), withText("Create"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                        withClassName(`is`(coordinatorLayoutClass)),
                         0
                     ),
                     6
@@ -220,7 +222,7 @@ class InsertTaskFragmentScreenTestCase {
                 withId(R.id.insertTaskButton), withText("Create"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                        withClassName(`is`(coordinatorLayoutClass)),
                         0
                     ),
                     6
