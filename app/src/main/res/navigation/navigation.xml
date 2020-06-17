@@ -42,7 +42,7 @@
     </dialog>
     <fragment
         android:id="@+id/viewTaskFragment"
-        android:name="edu.hm.cs.ma.todoguru.ViewTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.ViewTaskFragment"
         android:label="ViewTaskFragment" >
         <argument
             android:name="task"
