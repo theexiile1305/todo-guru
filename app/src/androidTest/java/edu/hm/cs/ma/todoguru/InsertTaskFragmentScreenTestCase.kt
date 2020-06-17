@@ -1,19 +1,26 @@
 package edu.hm.cs.ma.todoguru
 
-import android.view.ViewGroup
+
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -24,7 +31,7 @@ class InsertTaskFragmentScreenTestCase {
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun insertTaskDialogScreenTestCase() {
+    fun insertTaskFragmentScreenTestCase() {
         val floatingActionButton = onView(
             allOf(
                 withId(R.id.createTaskButton),
@@ -43,42 +50,130 @@ class InsertTaskFragmentScreenTestCase {
         )
         floatingActionButton.perform(click())
 
-        val linearLayout = onView(
+        val textInputEditText = onView(
             allOf(
-                withId(R.id.titleTextField),
+                withId(R.id.title),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
+                        withId(R.id.titleTextField),
                         0
                     ),
-                    1
+                    0
                 ),
                 isDisplayed()
             )
         )
-        linearLayout.check(matches(isDisplayed()))
+        textInputEditText.perform(replaceText("Title"), closeSoftKeyboard())
 
-        val linearLayout2 = onView(
+        val textInputEditText2 = onView(
             allOf(
-                withId(R.id.descriptionTextField),
+                withId(R.id.description),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
+                        withId(R.id.descriptionTextField),
                         0
                     ),
-                    2
+                    0
                 ),
                 isDisplayed()
             )
         )
-        linearLayout2.check(matches(isDisplayed()))
+        textInputEditText2.perform(replaceText("Descriptionn"), closeSoftKeyboard())
 
-        val linearLayout3 = onView(
+        val textInputEditText3 = onView(
             allOf(
-                withId(R.id.dueDateTextField),
+                withId(R.id.estimated),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
+                        withId(R.id.estimatedTextField),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText3.perform(replaceText("42"), closeSoftKeyboard())
+
+        val chip = onView(
+            allOf(
+                withId(R.id.chipSetReminder), withText("Set Reminder"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.LinearLayout")),
+                        5
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        chip.perform(click())
+
+        val textInputEditText4 = onView(
+            allOf(
+                withId(R.id.reminderDate),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.reminderDateTextField),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText4.perform(click())
+
+        val materialButton = onView(
+            allOf(
+                withId(android.R.id.button1), withText("OK"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    3
+                )
+            )
+        )
+        materialButton.perform(scrollTo(), click())
+
+        val textInputEditText5 = onView(
+            allOf(
+                withId(R.id.reminderTime),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.reminderTimeTextField),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText5.perform(click())
+
+        val materialButton2 = onView(
+            allOf(
+                withId(android.R.id.button1), withText("OK"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.ScrollView")),
+                        0
+                    ),
+                    3
+                )
+            )
+        )
+        materialButton2.perform(scrollTo(), click())
+
+        val materialButton3 = onView(
+            allOf(
+                withId(R.id.setReminderButton), withText("Create"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
                         0
                     ),
                     3
@@ -86,29 +181,32 @@ class InsertTaskFragmentScreenTestCase {
                 isDisplayed()
             )
         )
-        linearLayout3.check(matches(isDisplayed()))
+        materialButton3.perform(click())
 
-        val linearLayout4 = onView(
+        val currentDate = LocalDate.now().plusDays(1)
+        val currentDateText = currentDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+        val textInputEditText6 = onView(
             allOf(
-                withId(R.id.estimatedTextField),
+                withId(R.id.dueDate), withText(currentDateText),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
+                        withId(R.id.dueDateTextField),
                         0
                     ),
-                    4
+                    0
                 ),
                 isDisplayed()
             )
         )
-        linearLayout4.check(matches(isDisplayed()))
+        val dayAfterCurrentDateText = currentDate.plusDays(1).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
+        onView(withId(R.id.dueDate)).perform(replaceText(dayAfterCurrentDateText))
 
-        val linearLayout5 = onView(
+        val materialButton5 = onView(
             allOf(
-                withId(R.id.reminderTimeTextField),
+                withId(R.id.insertTaskButton), withText("Create"),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
+                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
                         0
                     ),
                     6
@@ -116,36 +214,21 @@ class InsertTaskFragmentScreenTestCase {
                 isDisplayed()
             )
         )
-        linearLayout5.check(matches(isDisplayed()))
+        materialButton5.perform(click())
 
-        val linearLayout6 = onView(
+        val materialButton6 = onView(
             allOf(
-                withId(R.id.reminderDateTextField),
+                withId(R.id.insertTaskButton), withText("Create"),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
+                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
                         0
                     ),
-                    5
+                    6
                 ),
                 isDisplayed()
             )
         )
-        linearLayout6.check(matches(isDisplayed()))
-
-        val button = onView(
-            allOf(
-                withId(R.id.createTaskButton),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
-                        0
-                    ),
-                    7
-                ),
-                isDisplayed()
-            )
-        )
-        button.check(matches(isDisplayed()))
+        materialButton6.perform(click())
     }
 }

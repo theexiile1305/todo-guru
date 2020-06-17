@@ -49,7 +49,7 @@ abstract class TaskFragment : Fragment() {
     protected fun updateValues() {
         viewModel.title.value = getTitle().text.toString()
         viewModel.description.value = getDescription().text.toString()
-        viewModel.estimated.value = getEstimated().toString().toInt()
+        viewModel.estimated.value = getEstimated().text.toString().toInt()
     }
 
     protected fun validateUserInput(): Boolean {
