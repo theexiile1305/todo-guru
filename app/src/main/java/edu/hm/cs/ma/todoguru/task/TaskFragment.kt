@@ -73,8 +73,7 @@ abstract class TaskFragment : Fragment() {
         val isValid = viewModel.let {
             val dueDate = it.dueDate.value
             val reminderDate = it.reminderDate.value
-            if (dueDate == null || reminderDate == null) false
-            else dueDate.isAfter(reminderDate)
+            dueDate != null && reminderDate != null && dueDate.isAfter(reminderDate)
         }
         if (!isValid)
             Toast.makeText(mContext, "Due date has to be after reminder", Toast.LENGTH_SHORT)
