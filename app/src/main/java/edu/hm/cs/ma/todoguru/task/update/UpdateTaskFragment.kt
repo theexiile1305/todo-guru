@@ -48,23 +48,13 @@ class UpdateTaskFragment : TaskFragment() {
         viewModel.setDefaultUpdateValue(args.task)
     }
 
-    override fun updateValues() {
-        viewModel.title.value = binding.title.text.toString()
-        viewModel.description.value = binding.description.text.toString()
-        viewModel.estimated.value = binding.estimated.text.toString().toInt()
-    }
-
-    override fun getExtraValidation(): HashSet<Boolean> {
-        val validation = HashSet<Boolean>()
-        binding.apply {
-            validation.add(validate(title, "The title is required"))
-            validation.add(validate(estimated, "The estimation is required"))
-            validation.add(validate(description, "The description is required"))
-        }
-        return validation
-    }
-
     override fun openSetReminderDialog() {
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetReminderFragment())
     }
+
+    override fun getTitle() = binding.title
+
+    override fun getDescription() = binding.description
+
+    override fun getEstimated() = binding.estimated
 }

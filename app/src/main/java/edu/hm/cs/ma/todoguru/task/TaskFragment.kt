@@ -29,9 +29,10 @@ abstract class TaskFragment : Fragment() {
         }
     }
 
-    protected abstract fun updateValues()
-    protected abstract fun getExtraValidation(): HashSet<Boolean>
     protected abstract fun openSetReminderDialog()
+    protected abstract fun getTitle(): TextInputEditText
+    protected abstract fun getDescription(): TextInputEditText
+    protected abstract fun getEstimated(): TextInputEditText
 
     protected fun openSetDueDateDialog(dueDate: LocalDate) {
         DatePickerDialog(
@@ -45,17 +46,27 @@ abstract class TaskFragment : Fragment() {
         ).show()
     }
 
-    protected fun validate(field: TextInputEditText, error: String): Boolean {
+    protected fun updateValues() {
+        viewModel.title.value = getTitle().text.toString()
+        viewModel.description.value = getDescription().text.toString()
+        viewModel.estimated.value = getEstimated().toString().toInt()
+    }
+
+    protected fun validateUserInput(): Boolean {
+        val validation = HashSet<Boolean>().apply {
+            add(validate(getTitle(), "The title is required"))
+            add(validate(getDescription(), "The description is required"))
+            add(validate(getEstimated(), "The estimation is required"))
+        }.also { it.remove(true) }
+        return validation.isEmpty() && checkDueDateAfterReminder()
+    }
+
+    private fun validate(field: TextInputEditText, error: String): Boolean {
         if (field.text.toString().isEmpty()) {
             field.error = error
             return false
         }
         return true
-    }
-
-    protected fun validateUserInput(): Boolean {
-        val extraValidation = getExtraValidation().apply { remove(true) }
-        return extraValidation.isEmpty() && checkDueDateAfterReminder()
     }
 
     private fun checkDueDateAfterReminder(): Boolean {
