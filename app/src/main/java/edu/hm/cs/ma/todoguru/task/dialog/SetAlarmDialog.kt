@@ -7,23 +7,26 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.provider.AlarmClock
 import edu.hm.cs.ma.todoguru.R
-import java.time.Duration
+import java.time.LocalDate
 import java.time.LocalTime
+import java.time.ZoneId
 
 class SetAlarmDialog(
     context: Context,
-    private val intent: Intent = Intent(AlarmClock.ACTION_SET_TIMER).apply {
+    private val intent: Intent = Intent(AlarmClock.ACTION_SET_ALARM).apply {
         putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.set_alarm))
         putExtra(AlarmClock.EXTRA_SKIP_UI, true)
     }
 ) : TimePickerDialog(
     context,
     OnTimeSetListener { _, hourOfDay, minute ->
-        val duration = Duration.ofSeconds(LocalTime.of(hourOfDay, minute).toSecondOfDay().toLong())
-        intent.putExtra(AlarmClock.EXTRA_LENGTH, duration.seconds.toInt())
+        val currentDay = LocalDate.now().dayOfWeek.value
+        intent.putExtra(AlarmClock.EXTRA_DAYS, currentDay)
+        intent.putExtra(AlarmClock.EXTRA_HOUR, hourOfDay)
+        intent.putExtra(AlarmClock.EXTRA_MINUTES, minute)
     },
-    LocalTime.now().hour - 1,
-    LocalTime.now().minute,
+    LocalTime.now(ZoneId.of("Europe/Berlin")).hour,
+    LocalTime.now(ZoneId.of("Europe/Berlin")).minute,
     true
 ) {
     override fun onClick(dialog: DialogInterface?, which: Int) {
