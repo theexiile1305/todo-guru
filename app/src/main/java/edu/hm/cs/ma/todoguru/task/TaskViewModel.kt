@@ -2,8 +2,8 @@ package edu.hm.cs.ma.todoguru.task
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Task
@@ -36,49 +36,21 @@ class TaskViewModel(
         }
     }
 
-    var dueDate = MutableLiveData(LocalDate.now())
-    var reminderDate = MutableLiveData(LocalDate.now())
-    var reminderTime = MutableLiveData(LocalTime.now())
     private var id by Delegates.notNull<Long>()
-
-    private var _title = MutableLiveData<String>()
-    val title: LiveData<String>
-        get() = _title
-
-    private var _description = MutableLiveData<String>()
-    val description: LiveData<String>
-        get() = _description
-
-    private var _estimated = MutableLiveData<Int>()
-    val estimated: LiveData<Int>
-        get() = _estimated
-
-    private var _createTaskEvent = MutableLiveData<Boolean>()
-    val createTaskEvent: LiveData<Boolean>
-        get() = _createTaskEvent
-
-    private var _addDueDateEvent = MutableLiveData<Boolean>()
-    val addDueDateEvent: LiveData<Boolean>
-        get() = _addDueDateEvent
-
-    private var _addReminderEvent = MutableLiveData<Boolean>()
-    val addReminderEvent: LiveData<Boolean>
-        get() = _addReminderEvent
-
-    private var _addReminderTimeEvent = MutableLiveData<Boolean>()
-    val addReminderTimeEvent: LiveData<Boolean>
-        get() = _addReminderTimeEvent
-
-    private var _addReminderDateEvent = MutableLiveData<Boolean>()
-    val addReminderDateEvent: LiveData<Boolean>
-        get() = _addReminderDateEvent
-
-    private var _insertReminderEvent = MutableLiveData<Boolean>()
-    val insertReminderEvent: LiveData<Boolean>
-        get() = _insertReminderEvent
+    var title = MutableLiveData<String>()
+    var description = MutableLiveData<String>()
+    var estimated = MutableLiveData<Int>()
+    var dueDate = MutableLiveData(LocalDate.now())
+    var reminderDate = MutableLiveData<LocalDate>()
+    var reminderTime = MutableLiveData<LocalTime>()
+    var reminder = Transformations.switchMap(reminderDate) {
+        if (it != null && reminderTime.value != null)
+            MutableLiveData(LocalDateTime.of(reminderDate.value, reminderTime.value))
+        else
+            MutableLiveData()
+    }
 
     private val viewModelJob = Job()
-
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     override fun onCleared() {
@@ -86,63 +58,44 @@ class TaskViewModel(
         viewModelJob.cancel()
     }
 
-    fun triggerCreateTaskEvent() {
-        _createTaskEvent.value = true
-    }
-
-    fun triggerAddDueDateEvent() {
-        _addDueDateEvent.value = true
-    }
-
-    fun triggerAddReminderEvent() {
-        _addReminderEvent.value = true
-    }
-
-    fun triggerAddReminderDateEvent() {
-        _addReminderDateEvent.value = true
-    }
-
-    fun triggerAddReminderTimeEvent() {
-        _addReminderTimeEvent.value = true
-    }
-
-    fun triggerInsertReminderEvent() {
-        _insertReminderEvent.value = true
-    }
-
     fun setDefaultUpdateValue(task: Task) {
         task.apply {
-            _title.value = title
-            _description.value = description
-            _estimated.value = estimated
             this@TaskViewModel.id = id
+            this@TaskViewModel.title.value = title
+            this@TaskViewModel.description.value = description
             this@TaskViewModel.dueDate.value = dueDate
+            this@TaskViewModel.estimated.value = estimated
             this@TaskViewModel.reminderDate.value = reminder.toLocalDate()
             this@TaskViewModel.reminderTime.value = reminder.toLocalTime()
         }
     }
 
-    fun insertTask(
-        title: String,
-        description: String,
-        dueDate: LocalDate,
-        estimated: Int,
-        reminder: LocalDateTime
-    ) {
+    fun insertTask() {
         uiScope.launch {
-            insert(Task(title, description, dueDate, estimated, reminder))
+            insert(
+                Task(
+                    title.value!!,
+                    description.value!!,
+                    dueDate.value!!,
+                    estimated.value!!,
+                    reminder.value!!
+                )
+            )
         }
     }
 
-    fun updateTask(
-        title: String,
-        description: String,
-        dueDate: LocalDate,
-        estimated: Int,
-        reminder: LocalDateTime
-    ) {
+    fun updateTask() {
         uiScope.launch {
-            update(Task(id, title, description, dueDate, estimated, reminder))
+            update(
+                Task(
+                    id,
+                    title.value!!,
+                    description.value!!,
+                    dueDate.value!!,
+                    estimated.value!!,
+                    reminder.value!!
+                )
+            )
         }
     }
 

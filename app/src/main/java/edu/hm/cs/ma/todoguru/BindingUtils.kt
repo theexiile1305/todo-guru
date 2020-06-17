@@ -4,6 +4,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -21,5 +22,13 @@ fun TextView.setLocalTime(localTime: LiveData<LocalTime>) {
     localTime.let {
         val formatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM)
         text = localTime.value?.format(formatter)
+    }
+}
+
+@BindingAdapter("localDateTime")
+fun TextView.setLocalDateTime(localDateTime: LiveData<LocalDateTime>) {
+    localDateTime.let {
+        val formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
+        text = localDateTime.value?.format(formatter) ?: "Set Reminder"
     }
 }

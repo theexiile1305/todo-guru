@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.task.dialog
+package edu.hm.cs.ma.todoguru.task.read
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
-import edu.hm.cs.ma.todoguru.task.ViewTaskFragmentArgs
 import kotlinx.android.synthetic.main.view_task_fragment.description_task
 import kotlinx.android.synthetic.main.view_task_fragment.dueDate_task
 import kotlinx.android.synthetic.main.view_task_fragment.title_task

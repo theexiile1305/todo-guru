@@ -35,10 +35,6 @@ class TaskListViewModel(
 
     val tasks = database.getAllTask()
 
-    private var _addTaskEvent = MutableLiveData(false)
-    val addTaskEvent: LiveData<Boolean>
-        get() = _addTaskEvent
-
     private var _markTaskDoneEvent = MutableLiveData(false)
     val markTaskDoneEvent: LiveData<Boolean>
         get() = _markTaskDoneEvent
@@ -54,10 +50,6 @@ class TaskListViewModel(
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
-    }
-
-    fun triggerTaskEvent() {
-        _addTaskEvent.value = true
     }
 
     fun markTasksAsDone(tasks: List<Task>) {

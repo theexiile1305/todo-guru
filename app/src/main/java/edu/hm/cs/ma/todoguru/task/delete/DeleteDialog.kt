@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.task.dialog
+package edu.hm.cs.ma.todoguru.task.delete
 
 import android.app.Dialog
 import android.os.Bundle

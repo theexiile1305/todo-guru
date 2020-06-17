@@ -51,6 +51,8 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             viewModel = this@TaskListFragment.viewModel
             lifecycleOwner = this@TaskListFragment
             tasksList.adapter = adapter
+
+            createTaskButton.setOnClickListener { openInsertDialog() }
         }
 
         viewModel.apply {
@@ -58,12 +60,6 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
                 viewLifecycleOwner,
                 Observer {
                     adapter.submitList(it)
-                }
-            )
-            addTaskEvent.observe(
-                viewLifecycleOwner,
-                Observer {
-                    if (it) openInsertDialog()
                 }
             )
             markTaskDoneEvent.observe(
@@ -79,6 +75,12 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
                 }
             )
         }
+    }
+
+    override fun onViewTaskClick(task: Task) {
+        findNavController().navigate(
+            TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(task)
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -110,14 +112,12 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     private fun openInsertDialog() {
-        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToInsertTaskDialog())
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToInsertTaskFragment())
     }
 
     override fun onUpdateClick(task: Task) {
         findNavController().navigate(
-            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskDialog(
-                task
-            )
+            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskFragment(task)
         )
     }
 
@@ -125,14 +125,6 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         findNavController().navigate(
             TaskListFragmentDirections.actionTaskListFragmentToDeleteDialog(
                 selectedTasks.toTypedArray()
-            )
-        )
-    }
-
-    override fun onViewTaskClick(task: Task) {
-        findNavController().navigate(
-            TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(
-                task
             )
         )
     }

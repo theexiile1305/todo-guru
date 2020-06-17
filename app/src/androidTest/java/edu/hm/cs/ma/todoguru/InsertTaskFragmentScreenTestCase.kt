@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class InsertTaskDialogScreenTestCase {
+class InsertTaskFragmentScreenTestCase {
 
     @Rule
     @JvmField
@@ -31,7 +31,7 @@ class InsertTaskDialogScreenTestCase {
     fun insertTaskDialogScreenTestCase() {
         val floatingActionButton = onView(
             allOf(
-                withId(R.id.fab),
+                withId(R.id.createTaskButton),
                 childAtPosition(
                     allOf(
                         withId(R.id.tasks_list_container),
@@ -139,7 +139,7 @@ class InsertTaskDialogScreenTestCase {
 
         val button = onView(
             allOf(
-                withId(R.id.button_create),
+                withId(R.id.createTaskButton),
                 childAtPosition(
                     childAtPosition(
                         IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
