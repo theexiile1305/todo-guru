@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_insertTaskFragment"
             app:destination="@id/insertTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_categoryListFragment"
+            app:destination="@id/categoryListFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateTaskFragment"
@@ -32,7 +35,7 @@
     </fragment>
     <dialog
         android:id="@+id/deleteDialog"
-        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteTaskDialog"
         android:label="DeleteDialog" >
         <argument
             android:name="taskList"
@@ -58,4 +61,27 @@
             android:id="@+id/action_insertTaskFragment_to_setReminderFragment"
             app:destination="@id/setReminderFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.categories.CategoryListFragment"
+        android:label="CategoryListFragment" >
+        <action
+            android:id="@+id/action_categoryListFragment_to_deleteCategoryDialog"
+            app:destination="@id/deleteCategoryDialog" />
+        <action
+            android:id="@+id/action_categoryListFragment_to_insertCategoryDialog"
+            app:destination="@id/insertCategoryDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteCategoryDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteCategoryDialog"
+        android:label="DeleteCategoryDialog" >
+        <argument
+            android:name="category"
+            app:argType="edu.hm.cs.ma.todoguru.database.Category" />
+    </dialog>
+    <dialog
+        android:id="@+id/insertCategoryDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.insert.InsertCategoryDialog"
+        android:label="InsertCategoryDialog" />
 </navigation>

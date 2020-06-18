@@ -114,6 +114,12 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         wrapper.isSelected = true
     }
 
+    override fun onUpdateClick(task: Task) {
+        findNavController().navigate(
+            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskFragment(task)
+        )
+    }
+
     private fun markTaskAsDone() = viewModel.markTasksAsDone(selectedTasks)
 
     private fun deleteTasks() {
@@ -126,12 +132,6 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToInsertTaskFragment())
     }
 
-    override fun onUpdateClick(task: Task) {
-        findNavController().navigate(
-            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskFragment(task)
-        )
-    }
-
     private fun openDeleteDialog() {
         findNavController().navigate(
             TaskListFragmentDirections.actionTaskListFragmentToDeleteDialog(
@@ -141,7 +141,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     private fun navigateToManageCategories() {
-        TODO("Not yet implemented")
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToCategoryListFragment())
     }
 
     private fun openViewTaskFragment(task: Task): Boolean {
