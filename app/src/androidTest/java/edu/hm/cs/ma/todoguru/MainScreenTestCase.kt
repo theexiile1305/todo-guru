@@ -140,7 +140,7 @@ class MainScreenTestCase {
 
         val imageButton = onView(
             allOf(
-                withId(R.id.createTaskButton),
+                withId(R.id.fab),
                 childAtPosition(
                     allOf(
                         withId(R.id.tasks_list_container),
