@@ -5,7 +5,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
@@ -24,26 +23,8 @@ class MainScreenTestCase {
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun mainActivityTest() {
+    fun mainScreenTestCase() {
         val viewGroup = onView(
-            allOf(
-                withId(R.id.tasks_list_container),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.nav_host_fragment_container),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment_container),
-                            0
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        viewGroup.check(matches(isDisplayed()))
-
-        val viewGroup2 = onView(
             allOf(
                 withId(R.id.topAppBar),
                 childAtPosition(
@@ -56,25 +37,7 @@ class MainScreenTestCase {
                 isDisplayed()
             )
         )
-        viewGroup2.check(matches(isDisplayed()))
-
-        val textView = onView(
-            allOf(
-                withText("ToDo Guru"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.topAppBar),
-                        childAtPosition(
-                            IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                            0
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("ToDo Guru")))
+        viewGroup.check(matches(isDisplayed()))
 
         val linearLayoutCompat = onView(
             allOf(
@@ -93,6 +56,21 @@ class MainScreenTestCase {
         )
         linearLayoutCompat.check(matches(isDisplayed()))
 
+        val textView = onView(
+            allOf(
+                withId(R.id.manage_categories), withContentDescription("Manage Categories"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.topAppBar),
+                        1
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(isDisplayed()))
+
         val textView2 = onView(
             allOf(
                 withId(R.id.delete_tasks), withContentDescription("Delete"),
@@ -101,7 +79,7 @@ class MainScreenTestCase {
                         withId(R.id.topAppBar),
                         1
                     ),
-                    0
+                    1
                 ),
                 isDisplayed()
             )
@@ -116,7 +94,7 @@ class MainScreenTestCase {
                         withId(R.id.topAppBar),
                         1
                     ),
-                    1
+                    2
                 ),
                 isDisplayed()
             )

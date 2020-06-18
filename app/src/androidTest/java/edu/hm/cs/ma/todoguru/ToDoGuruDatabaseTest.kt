@@ -4,8 +4,8 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -15,25 +15,25 @@ import java.io.IOException
 import java.time.LocalDateTime
 
 @RunWith(AndroidJUnit4::class)
-class TaskDatabaseTest {
+class ToDoGuruDatabaseTest {
 
     private lateinit var taskDao: TaskDatabaseDao
-    private lateinit var database: TaskDatabase
+    private lateinit var toDoGuruDatabase: ToDoGuruDatabase
 
     @Before
     fun createDb() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        database = Room.inMemoryDatabaseBuilder(context, TaskDatabase::class.java)
+        toDoGuruDatabase = Room.inMemoryDatabaseBuilder(context, ToDoGuruDatabase::class.java)
             .allowMainThreadQueries()
             .build()
-        taskDao = database.taskDatabaseDao
+        taskDao = toDoGuruDatabase.taskDatabaseDao
     }
 
     @After
     @Throws(IOException::class)
     fun closeDb() {
-        database.clearAllTables()
-        database.close()
+        toDoGuruDatabase.clearAllTables()
+        toDoGuruDatabase.close()
     }
 
     @Test
