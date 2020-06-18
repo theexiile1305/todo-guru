@@ -14,7 +14,6 @@ import org.junit.runner.RunWith
 import java.io.IOException
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 @RunWith(AndroidJUnit4::class)
 class TaskDatabaseTest {
@@ -42,7 +41,7 @@ class TaskDatabaseTest {
     @Throws(Exception::class)
     fun insertTask() {
         val task =
-            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), false)
+            Task(0, "Title", "Description", LocalDate.now(), 5, LocalDateTime.now(), false)
         taskDao.insert(task)
         assertEquals(true, taskDao.getAllTasks().isNotEmpty())
     }
@@ -51,11 +50,8 @@ class TaskDatabaseTest {
     @Throws(Exception::class)
     fun deleteTask() {
         val task =
-            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), false)
+            Task(0, "Title", "Description", LocalDate.now(), 5, LocalDateTime.now(), false)
         taskDao.delete(task)
         assertEquals(true, taskDao.getAllTasks().isEmpty())
     }
-
-    private fun date(date: String) =
-        LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 }

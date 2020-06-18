@@ -1,5 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="edu.hm.cs.ma.todoguru.task.TaskViewModel" />
+    </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -20,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:navigationIcon="@drawable/ic_close_24px"
-                    app:title="@string/add_task" />
+                    app:title="@string/update_task" />
 
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,7 +44,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@{viewModel.title}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -51,7 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@{viewModel.description}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -65,8 +75,10 @@
                     android:id="@+id/dueDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="false"
                     android:importantForAutofill="no"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    app:localDate="@{viewModel.dueDate}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,48 +94,41 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:importantForAutofill="no"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="@{viewModel.estimated.toString()}" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminderDateTextField"
-                style="@style/textBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/reminder_date">
+            <com.google.android.material.chip.ChipGroup
+                style="@style/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reminder_date"
-                    android:layout_width="match_parent"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSetReminder"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="no"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:text="@string/set_reminder"
+                    app:chipIcon="@drawable/ic_alarm_24px"
+                    app:localDateTime="@{viewModel.reminder}" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/reminderTimeTextField"
-                style="@style/textBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/reminder_time">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/reminder_time"
-                    android:layout_width="match_parent"
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_set_category"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="no"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                    android:text="@string/set_category"
+                    app:chipIcon="@drawable/ic_topic_24px" />
+            </com.google.android.material.chip.ChipGroup>
 
             <Button
-                android:id="@+id/button_create"
+                android:id="@+id/updateTaskButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/create_button"
+                android:text="@string/update_button"
                 android:textSize="14sp"
-                app:backgroundTint="@color/colorSecondary"/>
+                app:backgroundTint="@color/colorSecondary" />
 
         </LinearLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

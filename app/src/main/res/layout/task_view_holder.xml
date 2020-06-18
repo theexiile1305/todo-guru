@@ -24,12 +24,12 @@
             android:id="@+id/selected_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:buttonTint="@color/colorSecondary"
             android:checked="@{wrapper.selected}"
-            android:onClick="@{(view) -> listener.onCheckBoxClick(wrapper)}"/>
+            android:onClick="@{(view) -> listener.onCheckBoxClick(wrapper)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
@@ -79,10 +79,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/display_task"
-            android:src="@drawable/ic_keyboard_arrow_right_24px"
+            android:onClick="@{(view) -> listener.onViewTaskClick(view, wrapper.task)}"
+            android:src="@drawable/ic_more_vert_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{(view) -> listener.onViewTaskClick(wrapper.task)}"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

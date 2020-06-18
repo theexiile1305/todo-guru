@@ -7,6 +7,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,13 +18,13 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabase
 import edu.hm.cs.ma.todoguru.databinding.TaskListFragmentBinding
-import edu.hm.cs.ma.todoguru.task.TaskViewModel
+import edu.hm.cs.ma.todoguru.task.dialog.SetAlarmDialog
 import kotlinx.android.synthetic.main.task_list_fragment.topAppBar
 
 class TaskListFragment : TaskAdapter.Listener, Fragment() {
 
     private lateinit var binding: TaskListFragmentBinding
-    private lateinit var viewModel: TaskViewModel
+    private lateinit var viewModel: TaskListViewModel
 
     private val selectedTasks = ArrayList<Task>()
 
@@ -43,41 +44,53 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
 
         viewModel = requireActivity().run {
             val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
-            val viewModelFactory = TaskViewModel.Factory(dataSource, application)
-            ViewModelProvider(this@TaskListFragment, viewModelFactory)
-                .get(TaskViewModel::class.java)
+            val viewModelFactory = TaskListViewModel.Factory(dataSource, application)
+            ViewModelProvider(this, viewModelFactory).get(TaskListViewModel::class.java)
         }
 
-        binding.viewModel = viewModel
-        binding.lifecycleOwner = this
-
         val adapter = TaskAdapter(this)
-        binding.tasksList.adapter = adapter
+        binding.apply {
+            viewModel = this@TaskListFragment.viewModel
+            lifecycleOwner = this@TaskListFragment
+            tasksList.adapter = adapter
 
-        viewModel.tasks.observe(
-            viewLifecycleOwner,
-            Observer {
-                adapter.submitList(it)
+            createTaskButton.setOnClickListener { openInsertDialog() }
+        }
+
+        viewModel.apply {
+            tasks.observe(
+                viewLifecycleOwner,
+                Observer {
+                    adapter.submitList(it)
+                }
+            )
+            markTaskDoneEvent.observe(
+                viewLifecycleOwner,
+                Observer {
+                    if (it) selectedTasks.clear()
+                }
+            )
+            deleteTaskEvent.observe(
+                viewLifecycleOwner,
+                Observer {
+                    if (it) selectedTasks.clear()
+                }
+            )
+        }
+    }
+
+    override fun onViewTaskClick(view: View, task: Task) {
+        PopupMenu(requireContext(), view).apply {
+            menuInflater.inflate(R.menu.item_menu, menu)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.view_task -> openViewTaskFragment(task)
+                    R.id.set_alarm -> openSetAlarmFragment()
+                    else -> false
+                }
             }
-        )
-        viewModel.addTaskEvent.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it) openInsertDialog()
-            }
-        )
-        viewModel.markTaskDoneEvent.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it) selectedTasks.clear()
-            }
-        )
-        viewModel.deleteTaskEvent.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it) selectedTasks.clear()
-            }
-        )
+            show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -109,14 +122,12 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     private fun openInsertDialog() {
-        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToInsertTaskDialog())
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToInsertTaskFragment())
     }
 
     override fun onUpdateClick(task: Task) {
         findNavController().navigate(
-            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskDialog(
-                task
-            )
+            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskFragment(task)
         )
     }
 
@@ -128,7 +139,14 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         )
     }
 
-    override fun onViewTaskClick(task: Task) {
-        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(task))
+    private fun openViewTaskFragment(task: Task): Boolean {
+        findNavController()
+            .navigate(TaskListFragmentDirections.actionTaskListFragmentToViewTaskFragment(task))
+        return true
+    }
+
+    private fun openSetAlarmFragment(): Boolean {
+        SetAlarmDialog(requireContext()).show()
+        return true
     }
 }
