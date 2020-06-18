@@ -27,7 +27,6 @@
                     style="@style/Widget.MaterialComponents.Toolbar.Primary"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:navigationIcon="@drawable/ic_close_24px"
                     app:title="@string/update_task" />
 
             </com.google.android.material.appbar.AppBarLayout>
