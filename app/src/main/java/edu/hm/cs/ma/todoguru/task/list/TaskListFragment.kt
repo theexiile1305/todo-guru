@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.TaskListFragmentBinding
 import edu.hm.cs.ma.todoguru.task.dialog.SetAlarmDialog
 import kotlinx.android.synthetic.main.task_list_fragment.topAppBar
@@ -43,7 +43,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         (requireActivity() as AppCompatActivity).setSupportActionBar(topAppBar)
 
         viewModel = requireActivity().run {
-            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val dataSource = ToDoGuruDatabase.getInstance(this).taskDatabaseDao
             val viewModelFactory = TaskListViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(TaskListViewModel::class.java)
         }

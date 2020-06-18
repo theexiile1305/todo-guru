@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import edu.hm.cs.ma.todoguru.R
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.SetReminderFragmentBinding
 import java.time.LocalDate
 import java.time.LocalTime
@@ -39,7 +39,7 @@ class SetReminderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = requireActivity().run {
-            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val dataSource = ToDoGuruDatabase.getInstance(this).taskDatabaseDao
             val viewModelFactory = TaskViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
         }

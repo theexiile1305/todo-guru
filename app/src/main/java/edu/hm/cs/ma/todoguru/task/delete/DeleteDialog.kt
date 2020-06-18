@@ -7,7 +7,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.list.TaskListViewModel
 
 class DeleteDialog : DialogFragment() {
@@ -19,7 +19,7 @@ class DeleteDialog : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = requireActivity().run {
-            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val dataSource = ToDoGuruDatabase.getInstance(this).taskDatabaseDao
             val viewModelFactory = TaskListViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(TaskListViewModel::class.java)
         }

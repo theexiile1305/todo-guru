@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import java.time.LocalDate
 
 abstract class TaskFragment : Fragment() {
@@ -23,7 +23,7 @@ abstract class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = requireActivity().run {
-            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val dataSource = ToDoGuruDatabase.getInstance(this).taskDatabaseDao
             val viewModelFactory = TaskViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
         }
