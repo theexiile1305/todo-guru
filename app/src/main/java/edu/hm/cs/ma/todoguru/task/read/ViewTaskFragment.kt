@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.task
+package edu.hm.cs.ma.todoguru.task.read
 
 import android.os.Bundle
 import android.view.LayoutInflater

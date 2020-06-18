@@ -7,34 +7,32 @@
         android:name="edu.hm.cs.ma.todoguru.task.list.TaskListFragment"
         android:label="TaskListFragment" >
         <action
-            android:id="@+id/action_taskListFragment_to_insertTaskDialog"
-            app:destination="@id/insertTaskDialog" />
-        <action
-            android:id="@+id/action_taskListFragment_to_updateTaskDialog"
-            app:destination="@id/updateTaskDialog" />
+            android:id="@+id/action_taskListFragment_to_updateTaskFragment"
+            app:destination="@id/updateTaskFragment" />
         <action
             android:id="@+id/action_taskListFragment_to_deleteDialog"
             app:destination="@id/deleteDialog" />
         <action
             android:id="@+id/action_taskListFragment_to_viewTaskFragment"
             app:destination="@id/viewTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_insertTaskFragment"
+            app:destination="@id/insertTaskFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/insertTaskDialog"
-        android:name="edu.hm.cs.ma.todoguru.task.dialog.InsertTaskDialog"
-        android:label="InsertTaskDialog" >
-    </dialog>
-    <dialog
-        android:id="@+id/updateTaskDialog"
-        android:name="edu.hm.cs.ma.todoguru.task.dialog.UpdateTaskDialog"
-        android:label="UpdateTaskDialog" >
+    <fragment
+        android:id="@+id/updateTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.update.UpdateTaskFragment"
+        android:label="updateTaskFragment" >
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setReminderFragment"
+            app:destination="@id/setReminderFragment" />
         <argument
             android:name="task"
             app:argType="edu.hm.cs.ma.todoguru.database.Task" />
-    </dialog>
+    </fragment>
     <dialog
         android:id="@+id/deleteDialog"
-        android:name="edu.hm.cs.ma.todoguru.task.dialog.DeleteDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteDialog"
         android:label="DeleteDialog" >
         <argument
             android:name="taskList"
@@ -42,10 +40,22 @@
     </dialog>
     <fragment
         android:id="@+id/viewTaskFragment"
-        android:name="edu.hm.cs.ma.todoguru.task.ViewTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.read.ViewTaskFragment"
         android:label="ViewTaskFragment" >
         <argument
             android:name="task"
             app:argType="edu.hm.cs.ma.todoguru.database.Task" />
+    </fragment>
+    <fragment
+        android:id="@+id/setReminderFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.SetReminderFragment"
+        android:label="SetReminderFragment" />
+    <fragment
+        android:id="@+id/insertTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.insert.InsertTaskFragment"
+        android:label="InsertTaskFragment" >
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setReminderFragment"
+            app:destination="@id/setReminderFragment" />
     </fragment>
 </navigation>
