@@ -40,7 +40,7 @@ class ToDoGuruDatabaseTest {
     @Throws(Exception::class)
     fun insertTask() {
         val task =
-            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), false)
+            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), "")
         taskDao.insert(task)
         assertEquals(true, taskDao.getAllTasks().isNotEmpty())
     }
@@ -49,7 +49,7 @@ class ToDoGuruDatabaseTest {
     @Throws(Exception::class)
     fun deleteTask() {
         val task =
-            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), false)
+            Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), "")
         taskDao.delete(task)
         assertEquals(true, taskDao.getAllTasks().isEmpty())
     }
