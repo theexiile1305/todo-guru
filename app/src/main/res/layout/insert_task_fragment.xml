@@ -115,7 +115,7 @@
                     style="@style/Widget.MaterialComponents.Chip.Action"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/set_category"
+                    app:category="@{viewModel.category}"
                     app:chipIcon="@drawable/ic_topic_24px" />
             </com.google.android.material.chip.ChipGroup>
 

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.databinding.UpdateTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.task.TaskFragment
+import edu.hm.cs.ma.todoguru.task.insert.InsertTaskFragmentDirections
 
 class UpdateTaskFragment : TaskFragment() {
 
@@ -37,6 +38,10 @@ class UpdateTaskFragment : TaskFragment() {
                 updateValues()
                 openSetReminderDialog()
             }
+            chipSetCategory.setOnClickListener {
+                updateValues()
+                openSetCategoryDialog()
+            }
             updateTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -50,6 +55,10 @@ class UpdateTaskFragment : TaskFragment() {
 
     override fun openSetReminderDialog() {
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetReminderFragment())
+    }
+
+    private fun openSetCategoryDialog() {
+        findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSetCategoryDialog())
     }
 
     override fun getTitle() = binding.title

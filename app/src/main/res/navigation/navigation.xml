@@ -32,6 +32,9 @@
         <argument
             android:name="task"
             app:argType="edu.hm.cs.ma.todoguru.database.Task" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setCategoryDialog"
+            app:destination="@id/setCategoryDialog" />
     </fragment>
     <dialog
         android:id="@+id/deleteDialog"
@@ -60,6 +63,9 @@
         <action
             android:id="@+id/action_insertTaskFragment_to_setReminderFragment"
             app:destination="@id/setReminderFragment" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setCategoryDialog"
+            app:destination="@id/setCategoryDialog" />
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
@@ -84,4 +90,8 @@
         android:id="@+id/insertCategoryDialog"
         android:name="edu.hm.cs.ma.todoguru.task.insert.InsertCategoryDialog"
         android:label="InsertCategoryDialog" />
+    <dialog
+        android:id="@+id/setCategoryDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.SetCategoryDialog"
+        android:label="SetCategoryDialog" />
 </navigation>

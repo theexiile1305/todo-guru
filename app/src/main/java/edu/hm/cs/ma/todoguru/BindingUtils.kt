@@ -32,3 +32,10 @@ fun TextView.setLocalDateTime(localDateTime: LiveData<LocalDateTime>) {
         text = localDateTime.value?.format(formatter) ?: "Set Reminder"
     }
 }
+
+@BindingAdapter("category")
+fun TextView.setCategory(category: LiveData<String>) {
+    category.let {
+        text = category.value ?: "Set Category"
+    }
+}

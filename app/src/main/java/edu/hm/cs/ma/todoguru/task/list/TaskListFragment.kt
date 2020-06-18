@@ -18,7 +18,7 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.TaskListFragmentBinding
-import edu.hm.cs.ma.todoguru.task.dialog.SetAlarmDialog
+import edu.hm.cs.ma.todoguru.task.SetAlarmDialog
 import kotlinx.android.synthetic.main.task_list_fragment.topAppBar
 
 class TaskListFragment : TaskAdapter.Listener, Fragment() {

@@ -34,6 +34,10 @@ class InsertTaskFragment : TaskFragment() {
                 updateValues()
                 openSetReminderDialog()
             }
+            chipSetCategory.setOnClickListener {
+                updateValues()
+                openSetCategoryDialog()
+            }
             insertTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -42,6 +46,10 @@ class InsertTaskFragment : TaskFragment() {
                 }
             }
         }
+    }
+
+    private fun openSetCategoryDialog() {
+        findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSetCategoryDialog())
     }
 
     override fun openSetReminderDialog() {
