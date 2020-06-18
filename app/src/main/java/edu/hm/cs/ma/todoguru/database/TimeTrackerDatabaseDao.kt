@@ -24,7 +24,7 @@ interface TimeTrackerDatabaseDao {
     @Query("SELECT * FROM time_table ORDER BY timeId DESC")
     fun getAllTimes(): LiveData<List<Time>>
 
-    @Query("SELECT * FROM time_table WHERE timeId = :key ORDER BY timeId DESC")
+    @Query("SELECT * FROM time_table WHERE taskId = :key ORDER BY timeId DESC")
     fun getTimesOfTask(key: Long): LiveData<List<Time>>
 
     @Query("SELECT * FROM time_table ORDER BY timeId DESC LIMIT 1")

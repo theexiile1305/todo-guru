@@ -9,6 +9,9 @@ data class Time(
         @PrimaryKey(autoGenerate = true)
         var timeId: Long = 0L,
 
+        @ColumnInfo(name = "taskId")
+        var taskId: Long = 0L,
+
         @ColumnInfo(name = "start_time_milli")
         val startTimeMilli: Long = System.currentTimeMillis(),
 
