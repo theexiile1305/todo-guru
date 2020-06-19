@@ -8,6 +8,7 @@ import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -51,6 +52,6 @@ class ToDoGuruDatabaseTest {
         val task =
             Task(0, "Title", "Description", date("20/05/2020"), 5, LocalDateTime.now(), "")
         taskDao.delete(task)
-        assertEquals(true, taskDao.getAllTasks().isEmpty())
+        assertTrue(taskDao.getAllTasks().isEmpty())
     }
 }

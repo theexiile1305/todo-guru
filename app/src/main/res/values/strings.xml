@@ -20,6 +20,16 @@
     <string name="notification_content_description">Have you finished your tasks yet?</string>
     <string name="delete_tasks_short">Delete</string>
     <string name="delete_tasks_long">Delete selected tasks</string>
+    <string name="top_description_1">ToDo Guru description (1/3)</string>
+    <string name="top_description_2">ToDo Guru description (2/3)</string>
+    <string name="top_description_3">ToDo Guru description (3/3)</string>
+    <string name="description_1">Welcome to ToDo Guru, together we will make your life more efficient.</string>
+    <string name="description_2">The home screen shows all the tasks that you have added. You can mark a task as complete or delete it. If you want to add a task, click the plus sign. </string>
+    <string name="description_3">The app will keep track of the time you have spent on different tasks and display which day of the week you are the most productive.</string>
+    <string name="description_4">Press Next to see all the features and get started.</string>
+    <string name="next_button">Next</string>
+    <string name="prev_button">Prev.</string>
+    <string name="skip_button">Skip</string>
     <string name="view_task">View Task</string>
     <string name="set_reminder">Set Reminder</string>
     <string name="set_category">Set Category</string>

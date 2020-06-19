@@ -28,6 +28,21 @@ class InsertCategoryFragmentScreenTestCase {
 
     @Test
     fun insertCategoryFragmentScreenTestCase() {
+        val materialButton = onView(
+            allOf(
+                withId(R.id.button_skip1), withText("Skip"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.nav_host_fragment_container),
+                        0
+                    ),
+                    3
+                ),
+                isDisplayed()
+            )
+        )
+        materialButton.perform(click())
+
         val actionMenuItemView = onView(
             allOf(
                 withId(R.id.manage_categories), withContentDescription("Manage Categories"),
@@ -76,7 +91,7 @@ class InsertCategoryFragmentScreenTestCase {
         )
         appCompatEditText.perform(replaceText("Category"), closeSoftKeyboard())
 
-        val materialButton = onView(
+        val materialButton2 = onView(
             allOf(
                 withId(android.R.id.button1), withText("Confirm"),
                 childAtPosition(
@@ -88,7 +103,7 @@ class InsertCategoryFragmentScreenTestCase {
                 )
             )
         )
-        materialButton.perform(scrollTo(), click())
+        materialButton2.perform(scrollTo(), click())
 
         val textView = onView(
             allOf(
