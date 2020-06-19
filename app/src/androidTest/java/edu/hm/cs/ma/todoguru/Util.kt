@@ -5,8 +5,6 @@ import android.view.ViewGroup
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 fun childAtPosition(
     parentMatcher: Matcher<View>,
@@ -21,11 +19,7 @@ fun childAtPosition(
 
         public override fun matchesSafely(view: View): Boolean {
             val parent = view.parent
-            return parent is ViewGroup && parentMatcher.matches(parent) && view == parent.getChildAt(
-                position
-            )
+            return parent is ViewGroup && parentMatcher.matches(parent) && view == parent.getChildAt(position)
         }
     }
 }
-
-fun date(date: String) = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
