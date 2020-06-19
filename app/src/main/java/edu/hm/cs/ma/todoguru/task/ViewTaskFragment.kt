@@ -26,8 +26,6 @@ class ViewTaskFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       // super.onCreateView(inflater, container, savedInstanceState)
-       // return inflater.inflate(R.layout.view_task_fragment, container, false)
         binding = DataBindingUtil.inflate(
             inflater, R.layout.view_task_fragment, container, false)
         return binding.root
@@ -50,16 +48,6 @@ class ViewTaskFragment : Fragment() {
         title_task.text = task.title
         description_task.text = task.description
         dueDate_task.text = task.dueDate.toString()
-
-      /*  val application = requireNotNull(this.activity).application
-
-            val dataSource = TimeTrackerDatabase.getInstance(application).timeTrackerDatabaseDao
-
-           val viewModelFactory = TimeTrackerViewModelFactory(dataSource, application)
-
-            val timeTrackerViewModel =
-                ViewModelProviders.of(
-                    this, viewModelFactory).get(TimeTrackerViewModel::class.java) */
 
         binding.timeTrackerViewModel = viewModel
 

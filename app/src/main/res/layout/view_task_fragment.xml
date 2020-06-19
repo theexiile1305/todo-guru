@@ -75,7 +75,8 @@
                         android:layout_marginStart="@dimen/margin_16dp"
                         android:layout_marginTop="@dimen/margin_16dp"
                         android:layout_marginEnd="@dimen/margin_16dp"
-                        android:text="@{timeTrackerViewModel.timesString}" />
+                        android:text="@{timeTrackerViewModel.timesString}"
+                        android:textAlignment="center"/>
                 </ScrollView>
 
                 <!-- With data binding and LiveData, we can track the buttons' visibility states

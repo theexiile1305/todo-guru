@@ -35,14 +35,10 @@ class TimeTrackerViewModel(
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var time = MutableLiveData<Time?>()
-    //private val times = database.getAllTimes()
     private val times =  database.getTimesOfTask(this.taskID)
-    //private var timesOfTask = database.getTimesOfTask(taskID)
 
     val timesString = Transformations.map(times) { times ->
-        //this.times = database.getTimesOfTask(taskID)
         formatTimes(times, application.resources)
-        //formatTimes(timesOfTask, application.resources)
     }
 
     val startButtonVisible = Transformations.map(time) {
