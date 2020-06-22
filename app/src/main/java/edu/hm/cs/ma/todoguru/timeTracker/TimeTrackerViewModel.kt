@@ -2,31 +2,30 @@ package edu.hm.cs.ma.todoguru.timeTracker
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Time
 import edu.hm.cs.ma.todoguru.database.TimeTrackerDatabaseDao
-import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.formatTimes
-import kotlinx.coroutines.*
+import kotlinx.coroutines.* // ktlint-disable no-wildcard-imports
 
 class TimeTrackerViewModel(
-    private val taskID : Long,
+    private val taskID: Long,
     val database: TimeTrackerDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
 
     class Factory(
-        private val taskID : Long,
+        private val taskID: Long,
         private val dataSource: TimeTrackerDatabaseDao,
-        private val application: Application) : ViewModelProvider.Factory {
+        private val application: Application
+    ) : ViewModelProvider.Factory {
         @Suppress("unchecked_cast")
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(TimeTrackerViewModel::class.java)) {
-                return TimeTrackerViewModel(taskID ,dataSource, application) as T
+                return TimeTrackerViewModel(taskID, dataSource, application) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }
@@ -35,7 +34,7 @@ class TimeTrackerViewModel(
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var time = MutableLiveData<Time?>()
-    private val times =  database.getTimesOfTask(this.taskID)
+    private val times = database.getTimesOfTask(this.taskID)
 
     val timesString = Transformations.map(times) { times ->
         formatTimes(times, application.resources)
@@ -48,7 +47,6 @@ class TimeTrackerViewModel(
     val stopButtonVisible = Transformations.map(time) {
         null != it
     }
-
 
     init {
         initializeTime()
@@ -84,7 +82,7 @@ class TimeTrackerViewModel(
 
     fun onStartTracking() {
         uiScope.launch {
-            val newTime = Time(0,taskID)
+            val newTime = Time(0, taskID)
 
             insert(newTime)
 

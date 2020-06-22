@@ -29,6 +29,4 @@ interface TimeTrackerDatabaseDao {
 
     @Query("SELECT * FROM time_table ORDER BY timeId DESC LIMIT 1")
     fun getTime(): Time?
-
 }
-

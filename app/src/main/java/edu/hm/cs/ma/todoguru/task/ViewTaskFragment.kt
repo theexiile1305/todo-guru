@@ -27,9 +27,9 @@ class ViewTaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.view_task_fragment, container, false)
+            inflater, R.layout.view_task_fragment, container, false
+        )
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +40,8 @@ class ViewTaskFragment : Fragment() {
         viewModel = requireActivity().run {
             val dataSource = TimeTrackerDatabase.getInstance(this).timeTrackerDatabaseDao
             val viewModelFactory = TimeTrackerViewModel.Factory(
-                task.id, dataSource, application)
+                task.id, dataSource, application
+            )
             ViewModelProvider(this@ViewTaskFragment, viewModelFactory)
                 .get(TimeTrackerViewModel::class.java)
         }
