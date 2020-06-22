@@ -16,7 +16,7 @@ import androidx.test.filters.LargeTest
 import edu.hm.cs.ma.todoguru.MainActivity
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
-import edu.hm.cs.ma.todoguru.skipExplanationDialogs
+import edu.hm.cs.ma.todoguru.skipToOnCreateTaskFragment
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.anything
@@ -33,27 +33,11 @@ class InsertRepeatDialogActionTest {
     @JvmField
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
+    private val linearLayout = "android.widget.LinearLayout"
+
     @Test
     fun insertRepeatDialogActionTest() {
-        skipExplanationDialogs()
-
-        val floatingActionButton = onView(
-            allOf(
-                withId(R.id.createTaskButton),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.tasks_list_container),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment_container),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        floatingActionButton.perform(click())
+        skipToOnCreateTaskFragment()
 
         val button = onView(
             allOf(
@@ -75,7 +59,7 @@ class InsertRepeatDialogActionTest {
                 withId(R.id.chip_set_repeat), withText("Set task on repeat"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         5
                     ),
                     2
@@ -117,7 +101,7 @@ class InsertRepeatDialogActionTest {
                 withId(R.id.chip_set_repeat), withText("every day"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         5
                     ),
                     2
@@ -146,7 +130,7 @@ class InsertRepeatDialogActionTest {
                 withId(R.id.chip_set_repeat), withText("every day"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         5
                     ),
                     2
