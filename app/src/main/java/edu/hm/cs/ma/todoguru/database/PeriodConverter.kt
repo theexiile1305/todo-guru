@@ -6,7 +6,7 @@ import java.time.Period
 class PeriodConverter {
     @TypeConverter
     fun toPeriod(periodString: String?): Period? {
-        return if (periodString == null) {
+        return if (periodString.isNullOrEmpty()) {
             null
         } else {
             Period.parse(periodString)
@@ -15,7 +15,7 @@ class PeriodConverter {
 
     @TypeConverter
     fun toPeriodString(period: Period?) = if (period != null) String.format(
-        "P%iY%iM%iD",
+        "P%dY%dM%dD",
         period.years,
         period.months,
         period.days
