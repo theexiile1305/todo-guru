@@ -23,12 +23,12 @@ abstract class TimeTrackerDatabase : RoomDatabase() {
 
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                            context.applicationContext,
-                            TimeTrackerDatabase::class.java,
-                            "time_database"
+                        context.applicationContext,
+                        TimeTrackerDatabase::class.java,
+                        "time_database"
                     )
-                            .fallbackToDestructiveMigration()
-                            .build()
+                        .fallbackToDestructiveMigration()
+                        .build()
                     INSTANCE = instance
                 }
                 return instance

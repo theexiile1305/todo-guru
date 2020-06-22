@@ -37,7 +37,7 @@ import java.text.SimpleDateFormat
 @SuppressLint("SimpleDateFormat")
 fun convertLongToDateString(systemTime: Long): String {
     return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
-            .format(systemTime).toString()
+        .format(systemTime).toString()
 }
 
 /**
@@ -47,10 +47,10 @@ fun convertLongToDateString(systemTime: Long): String {
  * applicable per word. So, we build a formatted string using HTML. This is handy, but we will
  * learn a better way of displaying this data in a future lesson.
  *
- * @param   nights - List of all SleepNights in the database.
- * @param   resources - Resources object for all the resources defined for our app.
+ * @param nights - List of all SleepNights in the database.
+ * @param resources - Resources object for all the resources defined for our app.
  *
- * @return  Spanned - An interface for text that has formatting attached to it.
+ * @return Spanned - An interface for text that has formatting attached to it.
  *           See: https://developer.android.com/reference/android/text/Spanned
  */
 
