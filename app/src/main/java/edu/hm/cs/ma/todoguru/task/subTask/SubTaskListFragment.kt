@@ -76,10 +76,10 @@ class SubTaskListFragment : SubTaskAdapter.Listener, Fragment() {
         findNavController().navigate(SubTaskListFragmentDirections.actionSubTaskListFragmentToInsertSubTaskDialog())
     }
 
-    override fun onDeleteClick(SubTask: SubTask) {
+    override fun onDeleteClick(subTask: SubTask) {
         findNavController().navigate(
             SubTaskListFragmentDirections.actionSubTaskListFragmentToDeleteSubTaskDialog(
-                SubTask
+                subTask
             )
         )
     }

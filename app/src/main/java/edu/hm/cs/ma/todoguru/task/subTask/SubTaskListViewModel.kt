@@ -48,21 +48,21 @@ class SubTaskListViewModel(
         }
     }
 
-    fun deleteSubTask(SubTask: SubTask) {
+    fun deleteSubTask(subTask: SubTask) {
         uiScope.launch {
-            delete(SubTask)
+            delete(subTask)
         }
     }
 
-    private suspend fun insert(SubTask: SubTask) {
+    private suspend fun insert(subTask: SubTask) {
         withContext(Dispatchers.IO) {
-            database.insert(SubTask)
+            database.insert(subTask)
         }
     }
 
-    private suspend fun delete(SubTask: SubTask) {
+    private suspend fun delete(subTask: SubTask) {
         withContext(Dispatchers.IO) {
-            database.delete(SubTask)
+            database.delete(subTask)
         }
     }
 }

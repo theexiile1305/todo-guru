@@ -14,7 +14,7 @@ class SubTaskAdapter(
     SubTaskDiffCallBack()
 ) {
     interface Listener {
-        fun onDeleteClick(SubTask: SubTask)
+        fun onDeleteClick(subTask: SubTask)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -34,8 +34,8 @@ class SubTaskAdapter(
             }
         }
 
-        fun bind(SubTask: SubTask, listener: Listener) {
-            binding.subTask = SubTask
+        fun bind(subTask: SubTask, listener: Listener) {
+            binding.subTask = subTask
             binding.listener = listener
             binding.executePendingBindings()
         }
