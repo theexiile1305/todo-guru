@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -37,5 +38,17 @@ fun TextView.setLocalDateTime(localDateTime: LiveData<LocalDateTime>) {
 fun TextView.setCategory(category: LiveData<String>) {
     category.let {
         text = category.value ?: "Set Category"
+    }
+}
+
+@BindingAdapter("repeat")
+fun TextView.setRepeat(repeat: LiveData<Period>) {
+    repeat.let {
+        text = when (repeat.value) {
+            Period.ofDays(1) -> "every day"
+            Period.ofDays(7) -> "every week"
+            Period.ofMonths(1) -> "every month"
+            else -> "Set task on repeat"
+        }
     }
 }

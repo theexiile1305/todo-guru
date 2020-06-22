@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_updateTaskFragment_to_setCategoryDialog"
             app:destination="@id/setCategoryDialog" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setRepeatDialog"
+            app:destination="@id/setRepeatDialog" />
     </fragment>
     <dialog
         android:id="@+id/deleteDialog"
@@ -100,6 +103,9 @@
         <action
             android:id="@+id/action_insertTaskFragment_to_setCategoryDialog"
             app:destination="@id/setCategoryDialog" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setRepeatDialog"
+            app:destination="@id/setRepeatDialog" />
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
@@ -132,4 +138,8 @@
             android:id="@+id/action_setCategoryDialog_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
     </dialog>
+    <dialog
+        android:id="@+id/setRepeatDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.SetRepeatDialog"
+        android:label="SetRepeatDialog" />
 </navigation>

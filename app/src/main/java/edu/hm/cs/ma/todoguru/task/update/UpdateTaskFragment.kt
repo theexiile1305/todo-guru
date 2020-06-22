@@ -41,6 +41,10 @@ class UpdateTaskFragment : TaskFragment() {
                 updateValues()
                 openSetCategoryDialog()
             }
+            chipSetRepeat.setOnClickListener {
+                updateValues()
+                openSetRepeatDialog()
+            }
             updateTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -58,6 +62,10 @@ class UpdateTaskFragment : TaskFragment() {
 
     private fun openSetCategoryDialog() {
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetCategoryDialog())
+    }
+
+    private fun openSetRepeatDialog() {
+        findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetRepeatDialog())
     }
 
     override fun getTitle() = binding.title
