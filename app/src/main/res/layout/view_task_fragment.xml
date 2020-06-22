@@ -25,6 +25,7 @@
                 android:id="@+id/title_task"
                 style="@style/textBox"
                 android:textStyle="bold"
+                android:textAlignment="center"
                 android:textSize="@dimen/text_size_20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -74,7 +75,7 @@
                 android:layout_height="@dimen/text_size_20sp"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/display_task"
-                app:srcCompat="@drawable/ic_notification_important_24px"
+                app:srcCompat="@drawable/ic_baseline_notification_important_24"
                 android:layout_marginStart="@dimen/text_size_14sp"/>
 
             <TextView
