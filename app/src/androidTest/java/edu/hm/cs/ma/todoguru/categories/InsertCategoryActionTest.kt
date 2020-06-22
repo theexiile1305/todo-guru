@@ -34,39 +34,6 @@ class InsertCategoryActionTest {
     fun insertCategoryActionTest() {
         skipToSetCategoryDialog()
 
-        val floatingActionButton = onView(
-            allOf(
-                withId(R.id.createTaskButton),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.tasks_list_container),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment_container),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        floatingActionButton.perform(click())
-
-        val chip = onView(
-            allOf(
-                withId(R.id.chip_set_category), withText("Set Category"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        5
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        chip.perform(click())
-
         val materialButton2 = onView(
             allOf(
                 withId(android.R.id.button3), withText("Edit"),
