@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(entities = [Task::class, Category::class], version = 2, exportSchema = false)
-@TypeConverters(LocalDateConverter::class, LocalDateTimeConverter::class)
+@TypeConverters(LocalDateConverter::class, LocalDateTimeConverter::class, PeriodConverter::class)
 abstract class ToDoGuruDatabase : RoomDatabase() {
     abstract val taskDatabaseDao: TaskDatabaseDao
     abstract val categoryDatabaseDao: CategoryDatabaseDao
