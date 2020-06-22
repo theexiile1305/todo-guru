@@ -102,7 +102,6 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         when (item.itemId) {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
-            R.id.manage_categories -> navigateToManageCategories()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -138,10 +137,6 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
                 selectedTasks.toTypedArray()
             )
         )
-    }
-
-    private fun navigateToManageCategories() {
-        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToCategoryListFragment())
     }
 
     private fun openViewTaskFragment(task: Task): Boolean {

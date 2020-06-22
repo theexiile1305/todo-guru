@@ -36,6 +36,4 @@
     <string name="category">Category</string>
     <string name="set_alarm">Your ToDo Guru Alarm</string>
     <string name="start_alarm">Start Alarm</string>
-    <string name="manage_categories">Manage Categories</string>
-    <string name="manage_categories_long">Manage your categories</string>
 </resources>

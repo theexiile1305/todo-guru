@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.categories.CategoryListViewModel
@@ -17,17 +18,23 @@ class SetCategoryDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         initViewModels()
         val items = categoryViewModel.getSingleChoiceItems()
-        var chosen: String = ""
+        var chosen: String? = null
         return requireActivity().let {
             MaterialAlertDialogBuilder(it)
                 .setTitle("Select a category")
                 .setSingleChoiceItems(items, 1) { _, which ->
                     chosen = items[which]
                 }
+                .setNeutralButton("Edit") { _, _ -> navigateToCategoriesList() }
                 .setNegativeButton("Cancel") { _, _ -> }
                 .setPositiveButton("Confirm") { _, _ -> taskViewModel.category.value = chosen }
                 .create()
         }
+    }
+
+    private fun navigateToCategoriesList() {
+        findNavController()
+            .navigate(SetCategoryDialogDirections.actionSetCategoryDialogToCategoryListFragment())
     }
 
     private fun initViewModels() {

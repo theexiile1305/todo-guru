@@ -19,9 +19,6 @@
         <action
             android:id="@+id/action_taskListFragment_to_insertTaskFragment"
             app:destination="@id/insertTaskFragment" />
-        <action
-            android:id="@+id/action_taskListFragment_to_categoryListFragment"
-            app:destination="@id/categoryListFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateTaskFragment"
@@ -130,5 +127,9 @@
     <dialog
         android:id="@+id/setCategoryDialog"
         android:name="edu.hm.cs.ma.todoguru.task.SetCategoryDialog"
-        android:label="SetCategoryDialog" />
+        android:label="SetCategoryDialog" >
+        <action
+            android:id="@+id/action_setCategoryDialog_to_categoryListFragment"
+            app:destination="@id/categoryListFragment" />
+    </dialog>
 </navigation>

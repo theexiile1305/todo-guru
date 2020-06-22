@@ -49,7 +49,7 @@ class TaskViewModel(
         else
             MutableLiveData()
     }
-    var category = MutableLiveData<String>()
+    var category = MutableLiveData<String?>()
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)

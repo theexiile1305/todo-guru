@@ -10,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.databinding.UpdateTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.task.TaskFragment
-import edu.hm.cs.ma.todoguru.task.insert.InsertTaskFragmentDirections
 
 class UpdateTaskFragment : TaskFragment() {
 
@@ -58,7 +57,7 @@ class UpdateTaskFragment : TaskFragment() {
     }
 
     private fun openSetCategoryDialog() {
-        findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSetCategoryDialog())
+        findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetCategoryDialog())
     }
 
     override fun getTitle() = binding.title

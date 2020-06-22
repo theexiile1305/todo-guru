@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/manage_categories"
-        android:contentDescription="@string/manage_categories_long"
-        android:icon="@drawable/ic_category_24px"
-        android:title="@string/manage_categories"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/delete_tasks"
         android:contentDescription="@string/delete_tasks_long"
         android:icon="@drawable/ic_delete_all_24dp"
