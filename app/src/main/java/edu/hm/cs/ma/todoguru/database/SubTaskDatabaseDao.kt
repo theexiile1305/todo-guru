@@ -7,14 +7,14 @@ import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface CategoryDatabaseDao {
+interface SubTaskDatabaseDao {
 
-    @Query("SELECT * FROM category")
-    fun getAllCategories(): LiveData<List<Category>>
+    @Query("SELECT * FROM sub_task")
+    fun getAllSubTask(): LiveData<List<SubTask>>
 
     @Insert
-    fun insert(category: Category)
+    fun insert(subTask: SubTask)
 
     @Delete
-    fun delete(category: Category)
+    fun delete(subTask: SubTask)
 }
