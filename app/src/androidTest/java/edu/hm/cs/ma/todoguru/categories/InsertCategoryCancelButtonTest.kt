@@ -14,6 +14,7 @@ import androidx.test.filters.LargeTest
 import edu.hm.cs.ma.todoguru.MainActivity
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
+import edu.hm.cs.ma.todoguru.skipExplanationDialogs
 import org.hamcrest.Matchers
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.core.IsInstanceOf
@@ -31,20 +32,7 @@ class InsertCategoryCancelButtonTest {
 
     @Test
     fun insertCategoryCancelButtonTest() {
-        val materialButton = onView(
-            allOf(
-                withId(R.id.buttonSkip), withText("Skip"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.nav_host_fragment_container),
-                        0
-                    ),
-                    4
-                ),
-                isDisplayed()
-            )
-        )
-        materialButton.perform(click())
+        skipExplanationDialogs()
 
         val floatingActionButton = onView(
             allOf(

@@ -32,20 +32,7 @@ class InsertTaskDialogScreenTestCase {
 
     @Test
     fun insertTaskDialogScreenTestCase() {
-        val materialButton = onView(
-            allOf(
-                withId(R.id.buttonSkip), withText("Skip"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.nav_host_fragment_container),
-                        0
-                    ),
-                    4
-                ),
-                isDisplayed()
-            )
-        )
-        materialButton.perform(click())
+        skipExplanationDialogs()
 
         val floatingActionButton = onView(
             allOf(
