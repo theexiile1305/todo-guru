@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -67,7 +67,7 @@ class ReminderNotification : Service() {
                 }
 
                 private suspend fun getAllTasks(): List<Task> {
-                    val dataSource = TaskDatabase.getInstance(application).taskDatabaseDao
+                    val dataSource = ToDoGuruDatabase.getInstance(application).taskDatabaseDao
                     return withContext(Dispatchers.IO) {
                         return@withContext dataSource.getAllTasks()
                     }

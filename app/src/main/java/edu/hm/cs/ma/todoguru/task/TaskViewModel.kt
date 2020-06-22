@@ -49,6 +49,7 @@ class TaskViewModel(
         else
             MutableLiveData()
     }
+    var category = MutableLiveData<String?>()
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -67,6 +68,7 @@ class TaskViewModel(
             this@TaskViewModel.estimated.value = estimated
             this@TaskViewModel.reminderDate.value = reminder.toLocalDate()
             this@TaskViewModel.reminderTime.value = reminder.toLocalTime()
+            this@TaskViewModel.category.value = category
         }
     }
 
@@ -78,7 +80,8 @@ class TaskViewModel(
                     description.value!!,
                     dueDate.value!!,
                     estimated.value!!,
-                    reminder.value!!
+                    reminder.value!!,
+                    category.value
                 )
             )
         }
@@ -93,7 +96,8 @@ class TaskViewModel(
                     description.value!!,
                     dueDate.value!!,
                     estimated.value!!,
-                    reminder.value!!
+                    reminder.value!!,
+                    category.value
                 )
             )
         }

@@ -16,9 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
-import edu.hm.cs.ma.todoguru.database.TaskDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.TaskListFragmentBinding
-import edu.hm.cs.ma.todoguru.task.dialog.SetAlarmDialog
+import edu.hm.cs.ma.todoguru.task.SetAlarmDialog
 import kotlinx.android.synthetic.main.task_list_fragment.topAppBar
 
 class TaskListFragment : TaskAdapter.Listener, Fragment() {
@@ -43,7 +43,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         (requireActivity() as AppCompatActivity).setSupportActionBar(topAppBar)
 
         viewModel = requireActivity().run {
-            val dataSource = TaskDatabase.getInstance(this).taskDatabaseDao
+            val dataSource = ToDoGuruDatabase.getInstance(this).taskDatabaseDao
             val viewModelFactory = TaskListViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(TaskListViewModel::class.java)
         }
@@ -113,6 +113,12 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         wrapper.isSelected = true
     }
 
+    override fun onUpdateClick(task: Task) {
+        findNavController().navigate(
+            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskFragment(task)
+        )
+    }
+
     private fun markTaskAsDone() = viewModel.markTasksAsDone(selectedTasks)
 
     private fun deleteTasks() {
@@ -123,12 +129,6 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
 
     private fun openInsertDialog() {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToInsertTaskFragment())
-    }
-
-    override fun onUpdateClick(task: Task) {
-        findNavController().navigate(
-            TaskListFragmentDirections.actionTaskListFragmentToUpdateTaskFragment(task)
-        )
     }
 
     private fun openDeleteDialog() {
