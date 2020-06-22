@@ -1,32 +1,36 @@
-package edu.hm.cs.ma.todoguru
+package edu.hm.cs.ma.todoguru.categories
 
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
+import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
+import edu.hm.cs.ma.todoguru.MainActivity
+import edu.hm.cs.ma.todoguru.R
+import edu.hm.cs.ma.todoguru.childAtPosition
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class MainScreenTestCase {
+class InsertCategoryFragmentScreenTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun mainScreenTestCase() {
+    fun insertCategoryFragmentScreenTest() {
         val materialButton = onView(
             allOf(
                 withId(R.id.buttonSkip), withText("Skip"),
@@ -42,85 +46,7 @@ class MainScreenTestCase {
         )
         materialButton.perform(click())
 
-        val viewGroup = onView(
-            allOf(
-                withId(R.id.topAppBar),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        viewGroup.check(matches(isDisplayed()))
-
-        val textView = onView(
-            allOf(
-                withText("ToDo Guru"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.topAppBar),
-                        childAtPosition(
-                            IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                            0
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("ToDo Guru")))
-
-        val textView2 = onView(
-            allOf(
-                withId(R.id.delete_tasks), withContentDescription("Delete"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.topAppBar),
-                        1
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(isDisplayed()))
-
-        val textView3 = onView(
-            allOf(
-                withId(R.id.mark_tasks_as_done), withContentDescription("Done"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.topAppBar),
-                        1
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        textView3.check(matches(isDisplayed()))
-
-        val recyclerView = onView(
-            allOf(
-                withId(R.id.tasks_list),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.tasks_list_container),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        recyclerView.check(matches(isDisplayed()))
-
-        val imageButton = onView(
+        val floatingActionButton = onView(
             allOf(
                 withId(R.id.createTaskButton),
                 childAtPosition(
@@ -136,6 +62,75 @@ class MainScreenTestCase {
                 isDisplayed()
             )
         )
-        imageButton.check(matches(isDisplayed()))
+        floatingActionButton.perform(click())
+
+        val chip = onView(
+            allOf(
+                withId(R.id.chip_set_category), withText("Set Category"),
+                childAtPosition(
+                    childAtPosition(
+                        withClassName(`is`("android.widget.LinearLayout")),
+                        5
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        chip.perform(click())
+
+        val linearLayoutCompat = onView(
+            allOf(
+                withId(R.id.parentPanel),
+                childAtPosition(
+                    allOf(
+                        withId(android.R.id.content),
+                        childAtPosition(
+                            withId(R.id.action_bar_root),
+                            0
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        linearLayoutCompat.check(matches(isDisplayed()))
+
+        val linearLayout = onView(
+            allOf(
+                withId(R.id.topPanel),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.parentPanel),
+                        childAtPosition(
+                            withId(android.R.id.content),
+                            0
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        linearLayout.check(matches(isDisplayed()))
+
+        val frameLayout = onView(
+            allOf(
+                withId(R.id.contentPanel),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.parentPanel),
+                        childAtPosition(
+                            withId(android.R.id.content),
+                            0
+                        )
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
+        frameLayout.check(matches(isDisplayed()))
     }
 }
