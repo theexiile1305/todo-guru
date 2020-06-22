@@ -18,10 +18,10 @@ class ExplanationNextButtonTest {
 
     @Test
     fun explanationNextButtonTest() {
-        triggerNextButton()
+        triggerNextButton(2)
 
-        triggerNextButton()
+        triggerNextButton(2)
 
-        triggerNextButton()
+        triggerNextButton(3)
     }
 }

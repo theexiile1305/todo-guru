@@ -7,7 +7,7 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
 import org.hamcrest.Matchers
 
-fun triggerNextButton() {
+fun triggerNextButton(position: Int) {
     val materialButton = Espresso.onView(
         Matchers.allOf(
             ViewMatchers.withId(R.id.buttonNext), ViewMatchers.withText("Next"),
@@ -16,7 +16,7 @@ fun triggerNextButton() {
                     ViewMatchers.withId(R.id.nav_host_fragment_container),
                     0
                 ),
-                2
+                position
             ),
             ViewMatchers.isDisplayed()
         )
@@ -24,7 +24,7 @@ fun triggerNextButton() {
     materialButton.perform(ViewActions.click())
 }
 
-fun triggerSkipButton() {
+fun triggerSkipButton(position: Int) {
     val materialButton = Espresso.onView(
         Matchers.allOf(
             ViewMatchers.withId(R.id.buttonSkip), ViewMatchers.withText("Skip"),
@@ -33,7 +33,7 @@ fun triggerSkipButton() {
                     ViewMatchers.withId(R.id.nav_host_fragment_container),
                     0
                 ),
-                4
+                position
             ),
             ViewMatchers.isDisplayed()
         )
@@ -41,7 +41,7 @@ fun triggerSkipButton() {
     materialButton.perform(ViewActions.click())
 }
 
-fun triggerPreviousButton() {
+fun triggerPreviousButton(position: Int) {
     val materialButton = Espresso.onView(
         Matchers.allOf(
             ViewMatchers.withId(R.id.buttonPrev), ViewMatchers.withText("Prev."),
@@ -50,7 +50,7 @@ fun triggerPreviousButton() {
                     ViewMatchers.withId(R.id.nav_host_fragment_container),
                     0
                 ),
-                3
+                position
             ),
             ViewMatchers.isDisplayed()
         )

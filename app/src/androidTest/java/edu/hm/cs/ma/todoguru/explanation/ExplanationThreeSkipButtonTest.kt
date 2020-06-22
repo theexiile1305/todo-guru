@@ -18,10 +18,10 @@ class ExplanationThreeSkipButtonTest {
 
     @Test
     fun explanationThreeSkipButtonTest() {
-        triggerNextButton()
+        triggerNextButton(2)
 
-        triggerNextButton()
+        triggerNextButton(2)
 
-        triggerSkipButton()
+        triggerSkipButton(5)
     }
 }

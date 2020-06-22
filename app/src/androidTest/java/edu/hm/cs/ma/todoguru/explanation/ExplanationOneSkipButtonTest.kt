@@ -18,6 +18,6 @@ class ExplanationOneSkipButtonTest {
 
     @Test
     fun explanationOneSkipButtonTest() {
-        triggerSkipButton()
+        triggerSkipButton(4)
     }
 }
