@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import edu.hm.cs.ma.todoguru.R
+import kotlinx.android.synthetic.main.explanation_pages.buttonNext
+import kotlinx.android.synthetic.main.explanation_pages.buttonSkip
 
 class ExplanationFragment : Fragment() {
 
@@ -22,11 +23,13 @@ class ExplanationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<Button>(R.id.button_next1).setOnClickListener {
-            findNavController().navigate(ExplanationFragmentDirections.actionExplanationFragmentToExplanationFragmentTwo())
+        buttonNext.setOnClickListener {
+            findNavController()
+                .navigate(ExplanationFragmentDirections.actionExplanationFragmentToExplanationFragmentTwo())
         }
-        view.findViewById<Button>(R.id.button_skip1).setOnClickListener {
-            findNavController().navigate(ExplanationFragmentDirections.actionExplanationFragmentToTaskListFragment())
+        buttonSkip.setOnClickListener {
+            findNavController()
+                .navigate(ExplanationFragmentDirections.actionExplanationFragmentToTaskListFragment())
         }
     }
 }

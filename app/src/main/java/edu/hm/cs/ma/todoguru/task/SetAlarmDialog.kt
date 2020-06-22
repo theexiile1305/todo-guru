@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.task.dialog
+package edu.hm.cs.ma.todoguru.task
 
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
