@@ -14,7 +14,6 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_close_24px"
             app:title="@string/view_task" />
 
         <LinearLayout
@@ -25,60 +24,66 @@
             <TextView
                 android:id="@+id/title_task"
                 style="@style/textBox"
-                android:textAlignment="center"
                 android:textStyle="bold"
+                android:textSize="@dimen/text_size_20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="80dp"
                 android:textColor="@color/colorPrimary"/>
 
-            <TextView
-                android:id="@+id/description"
-                style="@style/textBox"
-                android:text="Description"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"/>
+            <ImageView
+                android:id="@+id/display_task1"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_size_20sp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/display_task"
+                app:srcCompat="@drawable/message_24"
+                android:layout_marginStart="@dimen/text_size_14sp"
+                />
 
             <TextView
                 android:id="@+id/description_task"
                 style="@style/textBox"
+                android:textSize="@dimen/text_size_14sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorPrimary"/>
 
-            <TextView
-                android:id="@+id/description2"
-                style="@style/textBox"
-                android:text="Due date"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"/>
+            <ImageView
+                android:id="@+id/display_task2"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_size_20sp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/display_task"
+                app:srcCompat="@drawable/calendar_today_24"
+                android:layout_marginStart="@dimen/text_size_14sp"/>
 
             <TextView
                 android:id="@+id/dueDate_task"
                 style="@style/textBox"
+                android:textSize="@dimen/text_size_14sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toEndOf="@+id/display_task1"
+                />
 
-            <TextView
-                android:id="@+id/description3"
-                style="@style/textBox"
-                android:text="Reminder"
-                android:textStyle="bold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"/>
+            <ImageView
+                android:id="@+id/display_task3"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_size_20sp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/display_task"
+                app:srcCompat="@drawable/ic_notification_important_24px"
+                android:layout_marginStart="@dimen/text_size_14sp"/>
 
             <TextView
                 android:id="@+id/reminder_date"
                 style="@style/textBox"
+                android:textSize="@dimen/text_size_14sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimary"/>
 
         </LinearLayout>
 
