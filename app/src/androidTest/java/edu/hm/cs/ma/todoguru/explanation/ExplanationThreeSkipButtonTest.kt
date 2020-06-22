@@ -1,6 +1,5 @@
 package edu.hm.cs.ma.todoguru.explanation
 
-
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
