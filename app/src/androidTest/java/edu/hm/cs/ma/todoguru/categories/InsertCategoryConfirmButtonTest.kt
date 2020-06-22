@@ -5,7 +5,6 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -14,7 +13,6 @@ import androidx.test.filters.LargeTest
 import edu.hm.cs.ma.todoguru.MainActivity
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule

@@ -6,7 +6,6 @@ import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withClassName
 import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -16,7 +15,6 @@ import androidx.test.filters.LargeTest
 import edu.hm.cs.ma.todoguru.MainActivity
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test
