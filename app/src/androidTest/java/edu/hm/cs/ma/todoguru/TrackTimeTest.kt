@@ -28,9 +28,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
+
 @LargeTest
 @RunWith(AndroidJUnit4::class)
 class TrackTimeTest {
+    val linear = "android.widget.LinearLayout"
 
     @Rule
     @JvmField
@@ -227,7 +230,7 @@ class TrackTimeTest {
                 withId(R.id.start_button), withText("Start"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(this.linear)),
                         4
                     ),
                     1
@@ -242,7 +245,7 @@ class TrackTimeTest {
                 withId(R.id.stop_button), withText("Stop"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(this.linear)),
                         4
                     ),
                     2
@@ -257,7 +260,7 @@ class TrackTimeTest {
                 withId(R.id.start_button), withText("Start"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(this.linear)),
                         4
                     ),
                     1
@@ -272,7 +275,7 @@ class TrackTimeTest {
                 withId(R.id.stop_button), withText("Stop"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(this.linear)),
                         4
                     ),
                     2
