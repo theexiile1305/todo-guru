@@ -16,7 +16,6 @@ import androidx.test.filters.LargeTest
 import edu.hm.cs.ma.todoguru.MainActivity
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
-import edu.hm.cs.ma.todoguru.skipExplanationDialogs
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.junit.Rule
@@ -33,7 +32,7 @@ class InsertCategoryActionTest {
 
     @Test
     fun insertCategoryActionTest() {
-        skipExplanationDialogs()
+        skipToSetCategoryDialog()
 
         val floatingActionButton = onView(
             allOf(
