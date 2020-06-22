@@ -16,12 +16,6 @@ interface CategoryDatabaseDao {
     @Insert
     fun insert(category: Category)
 
-    @Query("SELECT * FROM category WHERE id = :id")
-    fun get(id: Long): LiveData<Category>
-
-    @Update
-    fun update(category: Category)
-
     @Delete
     fun delete(category: Category)
 }
