@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import edu.hm.cs.ma.todoguru.database.SubTask
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 import kotlinx.coroutines.CoroutineScope
@@ -50,6 +51,7 @@ class TaskViewModel(
             MutableLiveData()
     }
     var category = MutableLiveData<String?>()
+    var subTask = MutableLiveData<List<SubTask>>(emptyList())
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -69,6 +71,7 @@ class TaskViewModel(
             this@TaskViewModel.reminderDate.value = reminder.toLocalDate()
             this@TaskViewModel.reminderTime.value = reminder.toLocalTime()
             this@TaskViewModel.category.value = category
+            this@TaskViewModel.subTask.value = subTask
         }
     }
 
@@ -81,7 +84,8 @@ class TaskViewModel(
                     dueDate.value!!,
                     estimated.value!!,
                     reminder.value!!,
-                    category.value
+                    category.value,
+                    subTask.value!!
                 )
             )
         }
@@ -97,7 +101,8 @@ class TaskViewModel(
                     dueDate.value!!,
                     estimated.value!!,
                     reminder.value!!,
-                    category.value
+                    category.value,
+                    subTask.value!!
                 )
             )
         }
