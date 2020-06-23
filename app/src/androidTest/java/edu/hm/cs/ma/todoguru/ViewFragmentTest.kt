@@ -375,20 +375,6 @@ class ViewFragmentTest {
         )
         materialButton8.perform(click())
 
-        val textView5 = onView(
-            allOf(
-                withId(R.id.textview),
-                withText("\nStart\tTuesday Jun-23-2020 Time: 19:56\nEnd\tTuesday Jun-23-2020 Time: 19:57\nHours spent:\t 0:0:49\n\n"),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
-                        2
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
     }
 
     private fun childAtPosition(
