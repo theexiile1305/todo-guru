@@ -118,6 +118,23 @@
                     android:layout_height="wrap_content"
                     app:category="@{viewModel.category}"
                     app:chipIcon="@drawable/ic_topic_24px" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_set_sub_task"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipIcon="@drawable/ic_playlist_add_24px"
+                    app:subTask="@{viewModel.subTask}" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_set_repeat"
+                    style="@style/Widget.MaterialComponents.Chip.Action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipIcon="@drawable/ic_repeat_24px"
+                    app:repeat="@{viewModel.repeat}" />
+
             </com.google.android.material.chip.ChipGroup>
 
             <Button

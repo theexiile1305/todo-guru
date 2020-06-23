@@ -42,4 +42,5 @@
     <string name="hours_spent">Hours spent:</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="subTask">Sub task</string>
 </resources>

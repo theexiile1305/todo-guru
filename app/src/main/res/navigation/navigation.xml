@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/updateTaskFragment"
         android:name="edu.hm.cs.ma.todoguru.task.update.UpdateTaskFragment"
-        android:label="updateTaskFragment" >
+        android:label="updateTaskFragment">
         <action
             android:id="@+id/action_updateTaskFragment_to_setReminderFragment"
             app:destination="@id/setReminderFragment" />
@@ -33,11 +33,17 @@
         <action
             android:id="@+id/action_updateTaskFragment_to_setCategoryDialog"
             app:destination="@id/setCategoryDialog" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_subTaskListFragment"
+            app:destination="@id/subTaskListFragment" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setRepeatDialog"
+            app:destination="@id/setRepeatDialog" />
     </fragment>
     <dialog
         android:id="@+id/deleteDialog"
         android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteTaskDialog"
-        android:label="DeleteDialog" >
+        android:label="DeleteDialog">
         <argument
             android:name="taskList"
             app:argType="edu.hm.cs.ma.todoguru.database.Task[]" />
@@ -77,11 +83,11 @@
         <action
             android:id="@+id/action_explanationFragmentThree_to_explanationFragmentTwo"
             app:destination="@id/explanationFragmentTwo" />
-      </fragment>
-      <fragment
+    </fragment>
+    <fragment
         android:id="@+id/viewTaskFragment"
         android:name="edu.hm.cs.ma.todoguru.task.read.ViewTaskFragment"
-        android:label="ViewTaskFragment" >
+        android:label="ViewTaskFragment">
         <argument
             android:name="task"
             app:argType="edu.hm.cs.ma.todoguru.database.Task" />
@@ -93,18 +99,24 @@
     <fragment
         android:id="@+id/insertTaskFragment"
         android:name="edu.hm.cs.ma.todoguru.task.insert.InsertTaskFragment"
-        android:label="InsertTaskFragment" >
+        android:label="InsertTaskFragment">
         <action
             android:id="@+id/action_insertTaskFragment_to_setReminderFragment"
             app:destination="@id/setReminderFragment" />
         <action
             android:id="@+id/action_insertTaskFragment_to_setCategoryDialog"
             app:destination="@id/setCategoryDialog" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_subTaskListFragment"
+            app:destination="@id/subTaskListFragment" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setRepeatDialog"
+            app:destination="@id/setRepeatDialog" />
     </fragment>
     <fragment
         android:id="@+id/categoryListFragment"
         android:name="edu.hm.cs.ma.todoguru.task.categories.CategoryListFragment"
-        android:label="CategoryListFragment" >
+        android:label="CategoryListFragment">
         <action
             android:id="@+id/action_categoryListFragment_to_deleteCategoryDialog"
             app:destination="@id/deleteCategoryDialog" />
@@ -115,7 +127,7 @@
     <dialog
         android:id="@+id/deleteCategoryDialog"
         android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteCategoryDialog"
-        android:label="DeleteCategoryDialog" >
+        android:label="DeleteCategoryDialog">
         <argument
             android:name="category"
             app:argType="edu.hm.cs.ma.todoguru.database.Category" />
@@ -127,9 +139,36 @@
     <dialog
         android:id="@+id/setCategoryDialog"
         android:name="edu.hm.cs.ma.todoguru.task.SetCategoryDialog"
-        android:label="SetCategoryDialog" >
+        android:label="SetCategoryDialog">
         <action
             android:id="@+id/action_setCategoryDialog_to_categoryListFragment"
             app:destination="@id/categoryListFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/subTaskListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.subTask.SubTaskListFragment"
+        android:label="SubTaskListFragment">
+        <action
+            android:id="@+id/action_subTaskListFragment_to_insertSubTaskDialog"
+            app:destination="@id/insertSubTaskDialog" />
+        <action
+            android:id="@+id/action_subTaskListFragment_to_deleteSubTaskDialog"
+            app:destination="@id/deleteSubTaskDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/insertSubTaskDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.insert.InsertSubTaskDialog"
+        android:label="InsertSubTaskDialog" />
+    <dialog
+        android:id="@+id/deleteSubTaskDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteSubTaskDialog"
+        android:label="DeleteSubTaskDialog">
+        <argument
+            android:name="subTask"
+            app:argType="edu.hm.cs.ma.todoguru.database.SubTask" />
+    </dialog>
+    <dialog
+        android:id="@+id/setRepeatDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.SetRepeatDialog"
+        android:label="SetRepeatDialog" />
 </navigation>
