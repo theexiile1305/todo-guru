@@ -1,4 +1,4 @@
-package edu.hm.cs.ma.todoguru.timeTracker
+package edu.hm.cs.ma.todoguru.task.timeTracker
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.Time
 import edu.hm.cs.ma.todoguru.database.TimeTrackerDatabaseDao
-import edu.hm.cs.ma.todoguru.formatTimes
+import edu.hm.cs.ma.todoguru.task.formatTimes
 import kotlinx.coroutines.* // ktlint-disable no-wildcard-imports
 
 class TimeTrackerViewModel(

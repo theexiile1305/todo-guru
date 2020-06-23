@@ -31,6 +31,10 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ViewFragmentTest {
 
+    private val date = "Jun 23, 2020"
+    private val linearLayout = "android.widget.LinearLayout"
+    private val scrollView = "android.widget.ScrollView"
+
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
@@ -102,7 +106,7 @@ class ViewFragmentTest {
 
         val textInputEditText3 = onView(
             allOf(
-                withId(R.id.dueDate), withText("Jun 23, 2020"),
+                withId(R.id.dueDate), withText(date),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.dueDateTextField),
@@ -120,7 +124,7 @@ class ViewFragmentTest {
                 withId(android.R.id.button1), withText("OK"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withClassName(`is`(scrollView)),
                         0
                     ),
                     3
@@ -149,7 +153,7 @@ class ViewFragmentTest {
                 withId(R.id.chipSetReminder), withText("Set Reminder"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         5
                     ),
                     0
@@ -179,7 +183,7 @@ class ViewFragmentTest {
                 withId(android.R.id.button1), withText("OK"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withClassName(`is`(scrollView)),
                         0
                     ),
                     3
@@ -208,7 +212,7 @@ class ViewFragmentTest {
                 withId(android.R.id.button1), withText("OK"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withClassName(`is`(scrollView)),
                         0
                     ),
                     3
@@ -312,7 +316,7 @@ class ViewFragmentTest {
 
         val textView3 = onView(
             allOf(
-                withId(R.id.dueDate_task), withText("2020-06-25"),
+                withId(R.id.dueDate_task), withText("2020-06-23"),
                 childAtPosition(
                     childAtPosition(
                         IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
@@ -323,11 +327,11 @@ class ViewFragmentTest {
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("2020-06-25")))
+        textView3.check(matches(withText("2020-06-23")))
 
         val textView4 = onView(
             allOf(
-                withId(R.id.dueDate_task), withText("2020-06-25"),
+                withId(R.id.dueDate_task), withText("2020-06-23"),
                 childAtPosition(
                     childAtPosition(
                         IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
@@ -338,14 +342,14 @@ class ViewFragmentTest {
                 isDisplayed()
             )
         )
-        textView4.check(matches(withText("2020-06-25")))
+        textView4.check(matches(withText("2020-06-23")))
 
         val materialButton7 = onView(
             allOf(
                 withId(R.id.start_button), withText("Start"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         4
                     ),
                     1
@@ -355,57 +359,12 @@ class ViewFragmentTest {
         )
         materialButton7.perform(click())
 
-        val button = onView(
-            allOf(
-                withId(R.id.start_button),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                        4
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        button.check(matches(isDisplayed()))
-
-        val button2 = onView(
-            allOf(
-                withId(R.id.stop_button),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                        4
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        button2.check(matches(isDisplayed()))
-
-        val button3 = onView(
-            allOf(
-                withId(R.id.stop_button),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java),
-                        4
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        button3.check(matches(isDisplayed()))
-
         val materialButton8 = onView(
             allOf(
                 withId(R.id.stop_button), withText("Stop"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         4
                     ),
                     2
@@ -429,25 +388,6 @@ class ViewFragmentTest {
                 isDisplayed()
             )
         )
-        textView5.check(matches(withText(" Start\tTuesday Jun-23-2020 Time: 19:56 End\tTuesday Jun-23-2020 Time: 19:57 Hours spent:\t 0:0:49  ")))
-
-        val appCompatImageView2 = onView(
-            allOf(
-                withId(R.id.display_task), withContentDescription("Display task"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.frame),
-                        childAtPosition(
-                            withId(R.id.tasks_list),
-                            0
-                        )
-                    ),
-                    4
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageView2.perform(click())
     }
 
     private fun childAtPosition(

@@ -1,3 +1,4 @@
+package edu.hm.cs.ma.todoguru.task
 /*
  * Copyright 2018, The Android Open Source Project
  *
@@ -14,14 +15,13 @@
  * limitations under the License.
  */
 
-package edu.hm.cs.ma.todoguru
-
 import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
 import androidx.core.text.HtmlCompat
+import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Time
 import java.text.SimpleDateFormat
 
