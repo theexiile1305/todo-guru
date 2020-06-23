@@ -32,6 +32,7 @@ import org.junit.runner.RunWith
 class ViewFragmentTest {
 
     private val date = "Jun 23, 2020"
+    private val date1 = "2020-06-23"
     private val linearLayout = "android.widget.LinearLayout"
     private val scrollView = "android.widget.ScrollView"
 
@@ -316,7 +317,7 @@ class ViewFragmentTest {
 
         val textView3 = onView(
             allOf(
-                withId(R.id.dueDate_task), withText("2020-06-23"),
+                withId(R.id.dueDate_task), withText(date1),
                 childAtPosition(
                     childAtPosition(
                         IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
@@ -327,11 +328,11 @@ class ViewFragmentTest {
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("2020-06-23")))
+        textView3.check(matches(withText(date1)))
 
         val textView4 = onView(
             allOf(
-                withId(R.id.dueDate_task), withText("2020-06-23"),
+                withId(R.id.dueDate_task), withText(date1),
                 childAtPosition(
                     childAtPosition(
                         IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
@@ -342,7 +343,7 @@ class ViewFragmentTest {
                 isDisplayed()
             )
         )
-        textView4.check(matches(withText("2020-06-23")))
+        textView4.check(matches(withText(date1)))
 
         val materialButton7 = onView(
             allOf(
