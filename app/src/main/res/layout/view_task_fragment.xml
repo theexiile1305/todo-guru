@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="timeTrackerViewModel"
+            type="edu.hm.cs.ma.todoguru.timeTracker.TimeTrackerViewModel" />
+    </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -20,15 +28,92 @@
                 android:id="@+id/description_task"
                 style="@style/textBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
+                android:layout_height="wrap_content"
+                />
             <TextView
                 android:id="@+id/dueDate_task"
                 style="@style/textBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:id="@+id/track_task_time"
+                style="@style/textBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/track_time"
+                android:textAlignment="center"
+                android:textColor="@color/colorSecondary"
+                />
+
+            <!-- Start of the visible fragment layout using ConstraintLayout -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Simplest way of displaying scrollable text and data. There is a
+                     better and more efficient way to do this, and you will learn about
+                     RecyclerView in a later lesson. -->
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/stop_button">
+
+                    <!-- In the TextView, we can access the nightsString LiveData,
+                         which keeps it displayed and updated in the TextView
+                         whenever it changes. -->
+
+                    <TextView
+                        android:id="@+id/textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_16dp"
+                        android:layout_marginTop="@dimen/margin_16dp"
+                        android:layout_marginEnd="@dimen/margin_16dp"
+                        android:text="@{timeTrackerViewModel.timesString}"
+                        android:textAlignment="center"/>
+                </ScrollView>
+
+                <!-- With data binding and LiveData, we can track the buttons' visibility states
+                     from the ViewModel. The click handler is in the ViewModel as well, and
+                     you can set it for the Views using this lambda pattern. -->
+
+                <Button
+                    android:id="@+id/start_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:text="@string/start"
+                    android:enabled="@{timeTrackerViewModel.startButtonVisible}"
+                    android:onClick="@{() -> timeTrackerViewModel.onStartTracking()}"
+                    app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
+                    app:layout_constraintEnd_toStartOf="@+id/stop_button"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <Button
+                    android:id="@+id/stop_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_marginEnd="@dimen/margin_16dp"
+                    android:text="@string/stop"
+                    android:enabled="@{timeTrackerViewModel.stopButtonVisible}"
+                    android:onClick="@{() -> timeTrackerViewModel.onStopTracking()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/start_button"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
+
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
