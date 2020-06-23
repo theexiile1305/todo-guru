@@ -35,35 +35,9 @@ class SimpleUpdateTaskActionTest {
     fun simpleUpdateTaskActionTest() {
         skipToOnCreateTaskFragment()
 
-        val textInputEditText = onView(
-            allOf(
-                withId(R.id.title),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.titleTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText.perform(replaceText("Title"), closeSoftKeyboard())
+        replaceText(R.id.title, R.id.titleTextField, "Title")
 
-        val textInputEditText2 = onView(
-            allOf(
-                withId(R.id.description),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.descriptionTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText2.perform(replaceText("Description"), closeSoftKeyboard())
+        replaceText(R.id.description, R.id.descriptionTextField, "Description")
 
         val textInputEditText3 = onView(
             allOf(
@@ -298,5 +272,26 @@ class SimpleUpdateTaskActionTest {
             )
         )
         materialButton7.perform(click())
+    }
+
+    private fun replaceText(
+        field: Int,
+        textField: Int,
+        stringToBeSet: String
+    ) {
+        val textInputEditText = onView(
+            allOf(
+                withId(field),
+                childAtPosition(
+                    childAtPosition(
+                        withId(textField),
+                        0
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textInputEditText.perform(replaceText(stringToBeSet), closeSoftKeyboard())
     }
 }
