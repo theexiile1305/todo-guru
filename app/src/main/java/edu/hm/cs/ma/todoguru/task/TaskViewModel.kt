@@ -17,6 +17,7 @@ import kotlinx.coroutines.withContext
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.Period
 import kotlin.properties.Delegates
 
 class TaskViewModel(
@@ -52,6 +53,7 @@ class TaskViewModel(
     }
     var category = MutableLiveData<String?>()
     var subTask = MutableLiveData<List<SubTask>>(emptyList())
+    var repeat = MutableLiveData<Period?>()
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -72,6 +74,7 @@ class TaskViewModel(
             this@TaskViewModel.reminderTime.value = reminder.toLocalTime()
             this@TaskViewModel.category.value = category
             this@TaskViewModel.subTask.value = subTask
+            this@TaskViewModel.repeat.value = repeat
         }
     }
 
@@ -85,7 +88,8 @@ class TaskViewModel(
                     estimated.value!!,
                     reminder.value!!,
                     category.value,
-                    subTask.value!!
+                    subTask.value!!,
+                    repeat.value
                 )
             )
         }
@@ -102,7 +106,8 @@ class TaskViewModel(
                     estimated.value!!,
                     reminder.value!!,
                     category.value,
-                    subTask.value!!
+                    subTask.value!!,
+                    repeat.value
                 )
             )
         }

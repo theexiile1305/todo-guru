@@ -42,6 +42,10 @@ class InsertTaskFragment : TaskFragment() {
                 updateValues()
                 openSetSubTaskDialog()
             }
+            chipSetRepeat.setOnClickListener {
+                updateValues()
+                openSetRepeatDialog()
+            }
             insertTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -62,6 +66,10 @@ class InsertTaskFragment : TaskFragment() {
 
     private fun openSetSubTaskDialog() {
         findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSubTaskListFragment())
+    }
+
+    private fun openSetRepeatDialog() {
+        findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSetRepeatDialog())
     }
 
     override fun getTitle() = binding.title

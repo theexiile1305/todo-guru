@@ -8,6 +8,7 @@ import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.Period
 
 @Entity(tableName = "task_table")
 @Parcelize
@@ -29,7 +30,9 @@ data class Task(
     @ColumnInfo(name = "category")
     var category: String?,
     @ColumnInfo(name = "sub_task")
-    var subTask: List<SubTask>
+    var subTask: List<SubTask>,
+    @ColumnInfo(name = "duration")
+    var repeat: Period?
 ) : Serializable, Parcelable {
 
     constructor(
@@ -41,7 +44,8 @@ data class Task(
         task.estimated,
         task.reminder,
         task.category,
-        task.subTask
+        task.subTask,
+        task.repeat
     )
 
     constructor(
@@ -52,8 +56,9 @@ data class Task(
         estimated: Int,
         reminder: LocalDateTime,
         category: String?,
-        subTask: List<SubTask>
-    ) : this(id, title, description, dueDate, estimated, reminder, false, category, subTask)
+        subTask: List<SubTask>,
+        repeat: Period?
+    ) : this(id, title, description, dueDate, estimated, reminder, false, category, subTask, repeat)
 
     constructor(
         title: String,
@@ -62,6 +67,7 @@ data class Task(
         estimated: Int,
         reminder: LocalDateTime,
         category: String?,
-        subTask: List<SubTask>
-    ) : this(0, title, description, dueDate, estimated, reminder, false, category, subTask)
+        subTask: List<SubTask>,
+        repeat: Period?
+    ) : this(0, title, description, dueDate, estimated, reminder, false, category, subTask, repeat)
 }

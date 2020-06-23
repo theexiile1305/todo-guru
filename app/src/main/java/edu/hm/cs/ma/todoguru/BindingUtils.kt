@@ -7,6 +7,7 @@ import edu.hm.cs.ma.todoguru.database.SubTask
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -46,5 +47,17 @@ fun TextView.setSubTask(subTask: LiveData<List<SubTask>>) {
     subTask.let {
         text = if (subTask.value.isNullOrEmpty()) "Set sub tasks"
         else subTask.value!!.size.toString()
+    }
+}
+
+@BindingAdapter("repeat")
+fun TextView.setRepeat(repeat: LiveData<Period>) {
+    repeat.let {
+        text = when (repeat.value) {
+            Period.ofDays(1) -> "every day"
+            Period.ofDays(7) -> "every week"
+            Period.ofMonths(1) -> "every month"
+            else -> "Set task on repeat"
+        }
     }
 }
