@@ -252,6 +252,8 @@ class ViewFragmentTest {
         )
         materialButton6.perform(click())
 
+        Thread.sleep(100)
+
         val appCompatImageView = onView(
             allOf(
                 withId(R.id.display_task), withContentDescription("Display task"),
