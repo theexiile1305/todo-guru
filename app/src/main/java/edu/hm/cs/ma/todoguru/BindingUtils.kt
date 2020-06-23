@@ -3,6 +3,7 @@ package edu.hm.cs.ma.todoguru
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
+import edu.hm.cs.ma.todoguru.database.SubTask
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -38,6 +39,14 @@ fun TextView.setLocalDateTime(localDateTime: LiveData<LocalDateTime>) {
 fun TextView.setCategory(category: LiveData<String>) {
     category.let {
         text = category.value ?: "Set Category"
+    }
+}
+
+@BindingAdapter("subTask")
+fun TextView.setSubTask(subTask: LiveData<List<SubTask>>) {
+    subTask.let {
+        text = if (subTask.value.isNullOrEmpty()) "Set sub tasks"
+        else subTask.value!!.size.toString()
     }
 }
 

@@ -29,6 +29,8 @@ data class Task(
     var done: Boolean,
     @ColumnInfo(name = "category")
     var category: String?,
+    @ColumnInfo(name = "sub_task")
+    var subTask: List<SubTask>,
     @ColumnInfo(name = "duration")
     var repeat: Period?
 ) : Serializable, Parcelable {
@@ -42,6 +44,7 @@ data class Task(
         task.estimated,
         task.reminder,
         task.category,
+        task.subTask,
         task.repeat
     )
 
@@ -53,8 +56,9 @@ data class Task(
         estimated: Int,
         reminder: LocalDateTime,
         category: String?,
+        subTask: List<SubTask>,
         repeat: Period?
-    ) : this(id, title, description, dueDate, estimated, reminder, false, category, repeat)
+    ) : this(id, title, description, dueDate, estimated, reminder, false, category, subTask, repeat)
 
     constructor(
         title: String,
@@ -63,6 +67,7 @@ data class Task(
         estimated: Int,
         reminder: LocalDateTime,
         category: String?,
+        subTask: List<SubTask>,
         repeat: Period?
-    ) : this(0, title, description, dueDate, estimated, reminder, false, category, repeat)
+    ) : this(0, title, description, dueDate, estimated, reminder, false, category, subTask, repeat)
 }

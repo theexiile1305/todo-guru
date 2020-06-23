@@ -41,6 +41,10 @@ class UpdateTaskFragment : TaskFragment() {
                 updateValues()
                 openSetCategoryDialog()
             }
+            chipSetSubTask.setOnClickListener {
+                updateValues()
+                openSetSubTaskDialog()
+            }
             chipSetRepeat.setOnClickListener {
                 updateValues()
                 openSetRepeatDialog()
@@ -62,6 +66,10 @@ class UpdateTaskFragment : TaskFragment() {
 
     private fun openSetCategoryDialog() {
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetCategoryDialog())
+    }
+
+    private fun openSetSubTaskDialog() {
+        findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSubTaskListFragment())
     }
 
     private fun openSetRepeatDialog() {
