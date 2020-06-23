@@ -47,7 +47,7 @@ class InsertRepeatDialogActionTest {
                         IsInstanceOf.instanceOf(LinearLayout::class.java),
                         5
                     ),
-                    2
+                    3
                 ),
                 isDisplayed()
             )
@@ -62,7 +62,7 @@ class InsertRepeatDialogActionTest {
                         withClassName(`is`(linearLayout)),
                         5
                     ),
-                    2
+                    3
                 ),
                 isDisplayed()
             )
@@ -104,7 +104,7 @@ class InsertRepeatDialogActionTest {
                         withClassName(`is`(linearLayout)),
                         5
                     ),
-                    2
+                    3
                 ),
                 isDisplayed()
             )
@@ -133,7 +133,7 @@ class InsertRepeatDialogActionTest {
                         withClassName(`is`(linearLayout)),
                         5
                     ),
-                    2
+                    3
                 ),
                 isDisplayed()
             )
