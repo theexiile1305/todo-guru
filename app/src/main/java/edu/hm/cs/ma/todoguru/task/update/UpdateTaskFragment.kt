@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -34,7 +33,7 @@ class UpdateTaskFragment : TaskFragment() {
             lifecycleOwner = this@UpdateTaskFragment
         }
 
-            viewModel.setDefaultUpdateValue(args.task)
+        viewModel.setDefaultUpdateValue(args.task)
 
         binding.apply {
             dueDate.setOnClickListener { openSetDueDateDialog(this@UpdateTaskFragment.viewModel.dueDate.value!!) }
@@ -92,5 +91,4 @@ class UpdateTaskFragment : TaskFragment() {
     override fun getEstimated() = binding.estimated
 
     override fun getPriority() = binding.switchButton
-
 }

@@ -1,6 +1,5 @@
 package edu.hm.cs.ma.todoguru
 
-
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -180,6 +179,5 @@ class AddPriorityTest {
             )
         )
         recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
-
     }
 }
