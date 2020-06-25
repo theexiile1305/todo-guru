@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
-import edu.hm.cs.ma.todoguru.database.TimeTrackerDatabase
+import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.task.timeTracker.TimeTrackerViewModel
 import kotlinx.android.synthetic.main.view_task_fragment.description_task
@@ -38,7 +38,7 @@ class ViewTaskFragment : Fragment() {
         val task = args.task
 
         viewModel = requireActivity().run {
-            val dataSource = TimeTrackerDatabase.getInstance(this).timeTrackerDatabaseDao
+            val dataSource = ToDoGuruDatabase.getInstance(this).timeTrackerDatabaseDao
             val viewModelFactory = TimeTrackerViewModel.Factory(
                 task.id, dataSource, application
             )
