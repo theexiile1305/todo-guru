@@ -50,7 +50,8 @@ class ToDoGuruDatabaseTest {
                 LocalDateTime.now(),
                 "",
                 emptyList(),
-                null
+                null,
+                false
             )
         taskDao.insert(task)
         assertEquals(true, taskDao.getAllTasks().isNotEmpty())
@@ -69,7 +70,8 @@ class ToDoGuruDatabaseTest {
                 LocalDateTime.now(),
                 "",
                 emptyList(),
-                null
+                null,
+                false
             )
         taskDao.delete(task)
         assertTrue(taskDao.getAllTasks().isEmpty())
