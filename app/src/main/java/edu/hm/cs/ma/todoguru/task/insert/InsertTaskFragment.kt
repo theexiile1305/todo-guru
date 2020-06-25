@@ -46,6 +46,11 @@ class InsertTaskFragment : TaskFragment() {
                 updateValues()
                 openSetRepeatDialog()
             }
+
+            switchButton.setOnCheckedChangeListener { _, _ ->
+                updateValues()
+            }
+
             insertTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -77,4 +82,6 @@ class InsertTaskFragment : TaskFragment() {
     override fun getDescription() = binding.description
 
     override fun getEstimated() = binding.estimated
+
+    override fun getPriority() = binding.switchButton
 }

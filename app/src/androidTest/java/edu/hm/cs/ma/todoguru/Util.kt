@@ -72,3 +72,20 @@ fun skipToOnCreateTaskFragment() {
 }
 
 fun date(date: String) = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
+fun insertTextToField(field: Int, fieldValue: Int, string: String) {
+    val textInputEditText = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(field),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withId(fieldValue),
+                    0
+                ),
+                0
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    textInputEditText.perform(ViewActions.replaceText(string), ViewActions.closeSoftKeyboard())
+}

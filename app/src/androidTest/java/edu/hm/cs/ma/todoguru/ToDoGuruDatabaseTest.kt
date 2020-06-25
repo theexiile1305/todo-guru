@@ -20,6 +20,7 @@ class ToDoGuruDatabaseTest {
 
     private lateinit var taskDao: TaskDatabaseDao
     private lateinit var toDoGuruDatabase: ToDoGuruDatabase
+    val date = "20/05/2020"
 
     @Before
     fun createDb() {
@@ -45,14 +46,36 @@ class ToDoGuruDatabaseTest {
                 0,
                 "Title",
                 "Description",
+                date(date),
+                5,
+                LocalDateTime.now(),
+                "",
+                emptyList(),
+                null,
+                false
+            )
+        taskDao.insert(task)
+        assertEquals(true, taskDao.getAllTasks().isNotEmpty())
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun updateTask() {
+        val task =
+            Task(
+                0,
+                "Title",
+                "Description",
                 date("20/05/2020"),
                 5,
                 LocalDateTime.now(),
                 "",
                 emptyList(),
-                null
+                null,
+                false
             )
         taskDao.insert(task)
+        taskDao.update(task)
         assertEquals(true, taskDao.getAllTasks().isNotEmpty())
     }
 
@@ -64,12 +87,13 @@ class ToDoGuruDatabaseTest {
                 0,
                 "Title",
                 "Description",
-                date("20/05/2020"),
+                date(date),
                 5,
                 LocalDateTime.now(),
                 "",
                 emptyList(),
-                null
+                null,
+                false
             )
         taskDao.delete(task)
         assertTrue(taskDao.getAllTasks().isEmpty())
