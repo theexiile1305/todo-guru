@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/explanationFragment">
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.list.TaskListFragment"
+        android:label="TaskListFragment">
+        <action
+            android:id="@+id/action_taskListFragment_to_updateTaskFragment"
+            app:destination="@id/updateTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_deleteDialog"
+            app:destination="@id/deleteDialog" />
+        <action
+            android:id="@+id/action_taskListFragment_to_viewTaskFragment"
+            app:destination="@id/viewTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_insertTaskFragment"
+            app:destination="@id/insertTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_productivityFragment"
+            app:destination="@id/productivityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.update.UpdateTaskFragment"
+        android:label="updateTaskFragment">
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setReminderFragment"
+            app:destination="@id/setReminderFragment" />
+        <argument
+            android:name="task"
+            app:argType="edu.hm.cs.ma.todoguru.database.Task" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setCategoryDialog"
+            app:destination="@id/setCategoryDialog" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_subTaskListFragment"
+            app:destination="@id/subTaskListFragment" />
+        <action
+            android:id="@+id/action_updateTaskFragment_to_setRepeatDialog"
+            app:destination="@id/setRepeatDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteTaskDialog"
+        android:label="DeleteDialog">
+        <argument
+            android:name="taskList"
+            app:argType="edu.hm.cs.ma.todoguru.database.Task[]" />
+    </dialog>
+    <fragment
+        android:id="@+id/explanationFragment"
+        android:name="edu.hm.cs.ma.todoguru.explanation.ExplanationFragment"
+        android:label="ExplanationFragment">
+        <action
+            android:id="@+id/action_explanationFragment_to_explanationFragmentTwo"
+            app:destination="@id/explanationFragmentTwo" />
+        <action
+            android:id="@+id/action_explanationFragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationFragmentTwo"
+        android:name="edu.hm.cs.ma.todoguru.explanation.ExplanationFragmentTwo"
+        android:label="ExplanationFragmentTwo">
+        <action
+            android:id="@+id/action_explanationFragmentTwo_to_explanationFragmentThree"
+            app:destination="@id/explanationFragmentThree" />
+        <action
+            android:id="@+id/action_explanationFragmentTwo_to_explanationFragment"
+            app:destination="@id/explanationFragment" />
+        <action
+            android:id="@+id/action_explanationFragmentTwo_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/explanationFragmentThree"
+        android:name="edu.hm.cs.ma.todoguru.explanation.ExplanationFragmentThree"
+        android:label="ExplanationFragmentThree">
+        <action
+            android:id="@+id/action_explanationFragmentThree_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+        <action
+            android:id="@+id/action_explanationFragmentThree_to_explanationFragmentTwo"
+            app:destination="@id/explanationFragmentTwo" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.read.ViewTaskFragment"
+        android:label="ViewTaskFragment">
+        <argument
+            android:name="task"
+            app:argType="edu.hm.cs.ma.todoguru.database.Task" />
+    </fragment>
+    <fragment
+        android:id="@+id/setReminderFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.SetReminderFragment"
+        android:label="SetReminderFragment" />
+    <fragment
+        android:id="@+id/insertTaskFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.insert.InsertTaskFragment"
+        android:label="InsertTaskFragment">
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setReminderFragment"
+            app:destination="@id/setReminderFragment" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setCategoryDialog"
+            app:destination="@id/setCategoryDialog" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_subTaskListFragment"
+            app:destination="@id/subTaskListFragment" />
+        <action
+            android:id="@+id/action_insertTaskFragment_to_setRepeatDialog"
+            app:destination="@id/setRepeatDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.categories.CategoryListFragment"
+        android:label="CategoryListFragment">
+        <action
+            android:id="@+id/action_categoryListFragment_to_deleteCategoryDialog"
+            app:destination="@id/deleteCategoryDialog" />
+        <action
+            android:id="@+id/action_categoryListFragment_to_insertCategoryDialog"
+            app:destination="@id/insertCategoryDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteCategoryDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteCategoryDialog"
+        android:label="DeleteCategoryDialog">
+        <argument
+            android:name="category"
+            app:argType="edu.hm.cs.ma.todoguru.database.Category" />
+    </dialog>
+    <dialog
+        android:id="@+id/insertCategoryDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.insert.InsertCategoryDialog"
+        android:label="InsertCategoryDialog" />
+    <dialog
+        android:id="@+id/setCategoryDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.SetCategoryDialog"
+        android:label="SetCategoryDialog">
+        <action
+            android:id="@+id/action_setCategoryDialog_to_categoryListFragment"
+            app:destination="@id/categoryListFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/subTaskListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.subTask.SubTaskListFragment"
+        android:label="SubTaskListFragment">
+        <action
+            android:id="@+id/action_subTaskListFragment_to_insertSubTaskDialog"
+            app:destination="@id/insertSubTaskDialog" />
+        <action
+            android:id="@+id/action_subTaskListFragment_to_deleteSubTaskDialog"
+            app:destination="@id/deleteSubTaskDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/insertSubTaskDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.insert.InsertSubTaskDialog"
+        android:label="InsertSubTaskDialog" />
+    <dialog
+        android:id="@+id/deleteSubTaskDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.delete.DeleteSubTaskDialog"
+        android:label="DeleteSubTaskDialog">
+        <argument
+            android:name="subTask"
+            app:argType="edu.hm.cs.ma.todoguru.database.SubTask" />
+    </dialog>
+    <dialog
+        android:id="@+id/setRepeatDialog"
+        android:name="edu.hm.cs.ma.todoguru.task.SetRepeatDialog"
+        android:label="SetRepeatDialog" />
+    <fragment
+        android:id="@+id/productivityFragment"
+        android:name="edu.hm.cs.ma.todoguru.productivity.ProductivityFragment"
+        android:label="ProductivityFragment" />
+</navigation>

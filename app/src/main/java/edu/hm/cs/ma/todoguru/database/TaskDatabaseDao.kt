@@ -19,9 +19,15 @@ interface TaskDatabaseDao {
     @Insert
     fun insert(task: Task)
 
+    @Query("SELECT * FROM task_table WHERE id = :id")
+    fun get(id: Long): Task?
+
     @Update
     fun update(task: Task)
 
     @Delete
     fun delete(task: Task)
+
+    @Query("SELECT * FROM task_table WHERE done")
+    fun getDoneTasks(): LiveData<List<Task>>
 }
