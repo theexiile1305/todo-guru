@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
-import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBindingImpl
+import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.task.timeTracker.TimeTrackerViewModel
 import kotlinx.android.synthetic.main.view_task_fragment.*
 import kotlinx.android.synthetic.main.view_task_fragment.description_task
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.view_task_fragment.title_task
 
 class ViewTaskFragment : Fragment() {
     private val args: ViewTaskFragmentArgs by navArgs()
-    private lateinit var binding: ViewTaskFragmentBindingImpl
+    private lateinit var binding: ViewTaskFragmentBinding
     private lateinit var viewModel: TimeTrackerViewModel
 
     override fun onCreateView(
