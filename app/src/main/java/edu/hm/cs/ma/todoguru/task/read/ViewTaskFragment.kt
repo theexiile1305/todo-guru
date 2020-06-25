@@ -26,11 +26,14 @@ class ViewTaskFragment : Fragment() {
 
         val task = args.task
 
+        val allSubDesc = task.subTask.map { it.description }
+        val res = allSubDesc.joinToString("\n")
+
         title_task.text = task.title
         description_task.text = task.description
         dueDate_task.text = task.dueDate.toString()
         reminder_date.text = task.reminder.toString()
         category.text = task.category
-        sub_task_list.text = task.subTask.toString()
+        subtask_title.text = res
     }
 }

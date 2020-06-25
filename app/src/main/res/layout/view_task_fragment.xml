@@ -1,6 +1,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="subTask"
+            type="edu.hm.cs.ma.todoguru.database.SubTask" />
+
+        <variable
+            name="listener"
+            type="edu.hm.cs.ma.todoguru.task.subTask.SubTaskAdapter.Listener" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -112,13 +123,14 @@
                 app:srcCompat="@drawable/subject_24"
                 android:layout_marginStart="@dimen/text_size_14sp"/>
 
-            <TextView
-                android:id="@+id/sub_task_list"
-                style="@style/textBox"
-                android:textSize="@dimen/text_size_14sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"/>
+                <TextView
+                    android:id="@+id/subtask_title"
+                    style="@style/textBox"
+                    android:textSize="@dimen/text_size_14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@{subTask.description}" />
 
         </LinearLayout>
 
