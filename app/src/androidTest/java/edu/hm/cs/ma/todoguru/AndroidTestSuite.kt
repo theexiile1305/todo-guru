@@ -31,7 +31,6 @@ import org.junit.runners.Suite
     InsertSubTaskFragmentScreenTest::class,
     InsertTaskDialogScreenTestCase::class,
     MainScreenTestCase::class,
-    SimpleUpdateTaskActionTest::class,
     SmokeTest::class,
     ToDoGuruDatabaseTest::class
 )
