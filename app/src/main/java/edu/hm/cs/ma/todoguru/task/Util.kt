@@ -2,10 +2,8 @@ package edu.hm.cs.ma.todoguru.task
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
-import android.os.Build
 import android.text.Html
 import android.text.Spanned
-import androidx.core.text.HtmlCompat
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Time
 import java.text.SimpleDateFormat
