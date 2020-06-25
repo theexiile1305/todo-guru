@@ -32,6 +32,7 @@ import org.junit.runners.Suite
     InsertTaskDialogScreenTestCase::class,
     MainScreenTestCase::class,
     SmokeTest::class,
+    AddPriorityTest::class,
     ToDoGuruDatabaseTest::class
 )
 class AndroidTestSuite
