@@ -55,6 +55,8 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             tasksList.adapter = adapter
 
             createTaskButton.setOnClickListener { openInsertDialog() }
+
+            viewProductivityButton.setOnClickListener{ openViewProductivity()}
         }
 
         viewModel.apply {
@@ -147,6 +149,11 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
 
     private fun openSetAlarmFragment(): Boolean {
         SetAlarmDialog(requireContext()).show()
+        return true
+    }
+
+    private fun openViewProductivity(): Boolean {
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToProductivityFragment())
         return true
     }
 }

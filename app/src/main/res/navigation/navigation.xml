@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_insertTaskFragment"
             app:destination="@id/insertTaskFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_productivityFragment"
+            app:destination="@id/productivityFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateTaskFragment"
@@ -171,4 +174,8 @@
         android:id="@+id/setRepeatDialog"
         android:name="edu.hm.cs.ma.todoguru.task.SetRepeatDialog"
         android:label="SetRepeatDialog" />
+    <fragment
+        android:id="@+id/productivityFragment"
+        android:name="edu.hm.cs.ma.todoguru.productivity.ProductivityFragment"
+        android:label="ProductivityFragment" />
 </navigation>
