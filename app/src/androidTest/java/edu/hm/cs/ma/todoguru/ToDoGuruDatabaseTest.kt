@@ -59,6 +59,27 @@ class ToDoGuruDatabaseTest {
 
     @Test
     @Throws(Exception::class)
+    fun updateTask() {
+        val task =
+            Task(
+                0,
+                "Title",
+                "Description",
+                date("20/05/2020"),
+                5,
+                LocalDateTime.now(),
+                "",
+                emptyList(),
+                null,
+                false
+            )
+        taskDao.insert(task)
+        taskDao.update(task)
+        assertEquals(true, taskDao.getAllTasks().isNotEmpty())
+    }
+
+    @Test
+    @Throws(Exception::class)
     fun deleteTask() {
         val task =
             Task(
