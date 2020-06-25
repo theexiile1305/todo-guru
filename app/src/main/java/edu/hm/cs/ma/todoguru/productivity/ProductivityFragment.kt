@@ -5,23 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
-//import edu.hm.cs.ma.todoguru.databinding.ProductivityFragmentBinding
 import com.anychart.charts.Pie
-
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 
-
 class ProductivityFragment : Fragment() {
 
-    private lateinit var pie : Pie
-   // private lateinit var binding: ProductivityFragmentBinding
+    private lateinit var pie: Pie
     private lateinit var viewModel: ProductivityViewModel
+    var data: MutableList<DataEntry> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +27,6 @@ class ProductivityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        //binding = DataBindingUtil.inflate(inflater, R.layout.productivity_fragment, container, false)
         return inflater.inflate(R.layout.productivity_fragment, container, false)
     }
 
@@ -41,19 +38,27 @@ class ProductivityFragment : Fragment() {
             val viewModelFactory = ProductivityViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(ProductivityViewModel::class.java)
         }
-        
-        var doneTasks = viewModel.doneTasks.size
-        var todoTasks = viewModel.todoTasks.size
-        
-        var anyChartView : AnyChartView = view.findViewById(R.id.any_chart_view)
+        var anyChartView: AnyChartView = view.findViewById(R.id.any_chart_view)
+
+        viewModel.doneTasks.observe(
+            viewLifecycleOwner,
+            Observer {
+                putDataInPieChart(anyChartView, "Completed", it.size)
+            }
+        )
+
+        viewModel.todoTasks.observe(
+            viewLifecycleOwner,
+            Observer {
+                putDataInPieChart(anyChartView, "To-Do", it.size)
+            }
+        )
+    }
+
+    private fun putDataInPieChart(anyChartView: AnyChartView, title: String, value: Int) {
         pie = AnyChart.pie()
-        var data : MutableList<DataEntry> = arrayListOf()
-        data.add(ValueDataEntry("Completed", doneTasks))
-        data.add(ValueDataEntry("To-Do", todoTasks))
+        data.add(ValueDataEntry(title, value))
         pie.data(data)
-
-
         anyChartView.setChart(pie)
-
     }
 }

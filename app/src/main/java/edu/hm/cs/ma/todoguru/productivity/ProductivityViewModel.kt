@@ -5,9 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
-import edu.hm.cs.ma.todoguru.task.list.TaskListViewModel
 
-class ProductivityViewModel (
+class ProductivityViewModel(
     private val database: TaskDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
@@ -27,5 +26,5 @@ class ProductivityViewModel (
     }
 
     val doneTasks = database.getDoneTasks()
-    val todoTasks = database.getAllTasks()
+    val todoTasks = database.getAllTask()
 }

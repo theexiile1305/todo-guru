@@ -56,7 +56,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
 
             createTaskButton.setOnClickListener { openInsertDialog() }
 
-            viewProductivityButton.setOnClickListener{ openViewProductivity()}
+            viewProductivityButton.setOnClickListener { openViewProductivity() }
         }
 
         viewModel.apply {
