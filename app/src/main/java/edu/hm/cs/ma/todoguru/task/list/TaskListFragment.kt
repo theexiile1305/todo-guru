@@ -102,6 +102,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         when (item.itemId) {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
+            R.id.completed_tasks -> completedTasks()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -120,6 +121,9 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     private fun markTaskAsDone() = viewModel.markTasksAsDone(selectedTasks)
+
+    private fun completedTasks() = viewModel.markTasksAsDone(selectedTasks)
+    //OBS SÄTT IN KODEN SOM SKA VISA FRAGMENTED FÄRDIGA TASKS OVAN
 
     private fun deleteTasks() {
         if (selectedTasks.isNotEmpty()) {
