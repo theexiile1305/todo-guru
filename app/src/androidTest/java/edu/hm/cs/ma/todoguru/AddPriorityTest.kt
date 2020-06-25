@@ -1,8 +1,6 @@
 package edu.hm.cs.ma.todoguru
 
 
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -17,11 +15,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
-import org.hamcrest.Description
-import org.hamcrest.Matcher
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
-import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -29,6 +24,7 @@ import org.junit.runner.RunWith
 @LargeTest
 @RunWith(AndroidJUnit4::class)
 class AddPriorityTest {
+    private val linearLayout = "android.widget.LinearLayout"
 
     @Rule
     @JvmField
@@ -36,68 +32,10 @@ class AddPriorityTest {
 
     @Test
     fun addPriorityTest() {
-        val materialButton = onView(
-            allOf(
-                withId(R.id.buttonSkip), withText("Skip"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.nav_host_fragment_container),
-                        0
-                    ),
-                    4
-                ),
-                isDisplayed()
-            )
-        )
-        materialButton.perform(click())
+        skipToOnCreateTaskFragment()
 
-        val floatingActionButton = onView(
-            allOf(
-                withId(R.id.createTaskButton),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.tasks_list_container),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment_container),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        floatingActionButton.perform(click())
-
-        val textInputEditText = onView(
-            allOf(
-                withId(R.id.title),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.titleTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText.perform(replaceText("T"), closeSoftKeyboard())
-
-        val textInputEditText2 = onView(
-            allOf(
-                withId(R.id.description),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.descriptionTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText2.perform(replaceText("D"), closeSoftKeyboard())
+        insertTextToField(R.id.title, R.id.titleTextField, "A")
+        insertTextToField(R.id.description, R.id.descriptionTextField, "B")
 
         val textInputEditText3 = onView(
             allOf(
@@ -119,7 +57,7 @@ class AddPriorityTest {
                 withId(R.id.chipSetReminder), withText("Set Reminder"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         5
                     ),
                     0
@@ -202,12 +140,12 @@ class AddPriorityTest {
         )
         materialButton4.perform(click())
 
-        val switch_ = onView(
+        val switch = onView(
             allOf(
                 withId(R.id.switch_button),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
+                        withClassName(`is`(linearLayout)),
                         6
                     ),
                     1
@@ -215,7 +153,7 @@ class AddPriorityTest {
                 isDisplayed()
             )
         )
-        switch_.perform(click())
+        switch.perform(click())
 
         val materialButton5 = onView(
             allOf(
@@ -236,7 +174,7 @@ class AddPriorityTest {
             allOf(
                 withId(R.id.tasks_list),
                 childAtPosition(
-                    withClassName(`is`("android.widget.LinearLayout")),
+                    withClassName(`is`(linearLayout)),
                     1
                 )
             )

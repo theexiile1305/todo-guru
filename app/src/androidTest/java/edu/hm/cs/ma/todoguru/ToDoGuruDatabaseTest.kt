@@ -20,6 +20,7 @@ class ToDoGuruDatabaseTest {
 
     private lateinit var taskDao: TaskDatabaseDao
     private lateinit var toDoGuruDatabase: ToDoGuruDatabase
+    val date = "20/05/2020"
 
     @Before
     fun createDb() {
@@ -45,7 +46,7 @@ class ToDoGuruDatabaseTest {
                 0,
                 "Title",
                 "Description",
-                date("20/05/2020"),
+                date(date),
                 5,
                 LocalDateTime.now(),
                 "",
@@ -86,7 +87,7 @@ class ToDoGuruDatabaseTest {
                 0,
                 "Title",
                 "Description",
-                date("20/05/2020"),
+                date(date),
                 5,
                 LocalDateTime.now(),
                 "",
