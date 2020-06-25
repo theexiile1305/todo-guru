@@ -136,6 +136,28 @@
 
             </com.google.android.material.chip.ChipGroup>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/title_task"
+                style="@style/textBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mark as high priority"/>
+
+            <Switch
+                android:id="@+id/switch_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/layout_margin"
+                />
+
+        </LinearLayout>
+
             <Button
                 android:id="@+id/insertTaskButton"
                 android:layout_width="wrap_content"
