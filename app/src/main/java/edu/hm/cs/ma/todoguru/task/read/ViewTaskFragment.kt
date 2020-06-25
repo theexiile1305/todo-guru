@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.TimeTrackerDatabase
 import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBinding
-import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.task.timeTracker.TimeTrackerViewModel
 import kotlinx.android.synthetic.main.view_task_fragment.description_task
 import kotlinx.android.synthetic.main.view_task_fragment.dueDate_task
