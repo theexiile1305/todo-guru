@@ -1,5 +1,6 @@
 package edu.hm.cs.ma.todoguru
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
@@ -60,4 +61,9 @@ fun TextView.setRepeat(repeat: LiveData<Period>) {
             else -> "Set task on repeat"
         }
     }
+}
+
+@BindingAdapter("visibility")
+fun ImageView.setVisibility(priority: Boolean) {
+    visibility = if (priority) ImageView.VISIBLE else ImageView.INVISIBLE
 }
