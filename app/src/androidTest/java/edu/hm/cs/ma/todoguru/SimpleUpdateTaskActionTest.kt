@@ -137,7 +137,7 @@ class SimpleUpdateTaskActionTest {
                         withClassName(`is`(coordinatorLayout)),
                         0
                     ),
-                    6
+                    7
                 ),
                 isDisplayed()
             )
@@ -240,7 +240,7 @@ class SimpleUpdateTaskActionTest {
                         withClassName(`is`(coordinatorLayout)),
                         0
                     ),
-                    6
+                    7
                 ),
                 isDisplayed()
             )
@@ -266,7 +266,7 @@ class SimpleUpdateTaskActionTest {
                         withClassName(`is`(coordinatorLayout)),
                         0
                     ),
-                    6
+                    7
                 ),
                 isDisplayed()
             )

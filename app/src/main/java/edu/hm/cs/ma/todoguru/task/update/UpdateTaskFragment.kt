@@ -32,7 +32,11 @@ class UpdateTaskFragment : TaskFragment() {
         binding.apply {
             viewModel = this@UpdateTaskFragment.viewModel
             lifecycleOwner = this@UpdateTaskFragment
+        }
 
+            viewModel.setDefaultUpdateValue(args.task)
+
+        binding.apply {
             dueDate.setOnClickListener { openSetDueDateDialog(this@UpdateTaskFragment.viewModel.dueDate.value!!) }
             chipSetReminder.setOnClickListener {
                 updateValues()
@@ -63,7 +67,6 @@ class UpdateTaskFragment : TaskFragment() {
                 }
             }
         }
-        viewModel.setDefaultUpdateValue(args.task)
     }
 
     override fun openSetReminderDialog() {

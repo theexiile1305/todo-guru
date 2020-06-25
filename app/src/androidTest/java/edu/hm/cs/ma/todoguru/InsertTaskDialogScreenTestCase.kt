@@ -241,7 +241,7 @@ class InsertTaskDialogScreenTestCase {
                         withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
                         0
                     ),
-                    6
+                    7
                 ),
                 isDisplayed()
             )
