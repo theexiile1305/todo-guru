@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
 @Database(
-    entities = [Task::class, Category::class, SubTask::class],
+    entities = [Task::class, Category::class, SubTask::class, Time::class],
     version = 1,
     exportSchema = false
 )
@@ -21,6 +21,7 @@ abstract class ToDoGuruDatabase : RoomDatabase() {
     abstract val taskDatabaseDao: TaskDatabaseDao
     abstract val categoryDatabaseDao: CategoryDatabaseDao
     abstract val subTaskDatabaseDao: SubTaskDatabaseDao
+    abstract val timeTrackerDatabaseDao: TimeTrackerDatabaseDao
 
     companion object {
         @Volatile

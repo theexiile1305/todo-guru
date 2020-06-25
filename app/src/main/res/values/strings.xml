@@ -36,5 +36,11 @@
     <string name="category">Category</string>
     <string name="set_alarm">Your ToDo Guru Alarm</string>
     <string name="start_alarm">Start Alarm</string>
+    <string name="track_time">Track time spent on task</string>
+    <string name="start_time">Start</string>
+    <string name="end_time">End</string>
+    <string name="hours_spent">Hours spent:</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
     <string name="subTask">Sub task</string>
 </resources>

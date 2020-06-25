@@ -54,6 +54,7 @@ class TaskViewModel(
     var category = MutableLiveData<String?>()
     var subTask = MutableLiveData<List<SubTask>>(emptyList())
     var repeat = MutableLiveData<Period?>()
+    var priority = MutableLiveData<Boolean>()
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -75,6 +76,7 @@ class TaskViewModel(
             this@TaskViewModel.category.value = category
             this@TaskViewModel.subTask.value = subTask
             this@TaskViewModel.repeat.value = repeat
+            this@TaskViewModel.priority.value = priority
         }
     }
 
@@ -89,7 +91,8 @@ class TaskViewModel(
                     reminder.value!!,
                     category.value,
                     subTask.value!!,
-                    repeat.value
+                    repeat.value,
+                    priority.value!!
                 )
             )
         }
@@ -107,7 +110,8 @@ class TaskViewModel(
                     reminder.value!!,
                     category.value,
                     subTask.value!!,
-                    repeat.value
+                    repeat.value,
+                    priority.value!!
                 )
             )
         }
