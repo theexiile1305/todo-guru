@@ -12,6 +12,7 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.ViewTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.task.timeTracker.TimeTrackerViewModel
+import kotlinx.android.synthetic.main.view_task_fragment.*
 import kotlinx.android.synthetic.main.view_task_fragment.description_task
 import kotlinx.android.synthetic.main.view_task_fragment.dueDate_task
 import kotlinx.android.synthetic.main.view_task_fragment.title_task
@@ -37,6 +38,9 @@ class ViewTaskFragment : Fragment() {
 
         val task = args.task
 
+        val allSubDesc = task.subTask.map { it.description }
+        val res = allSubDesc.joinToString("\n")
+
         viewModel = requireActivity().run {
             val dataSource = ToDoGuruDatabase.getInstance(this).timeTrackerDatabaseDao
             val viewModelFactory = TimeTrackerViewModel.Factory(
@@ -49,9 +53,11 @@ class ViewTaskFragment : Fragment() {
         title_task.text = task.title
         description_task.text = task.description
         dueDate_task.text = task.dueDate.toString()
+        reminder_date.text = task.reminder.toString()
+        category.text = task.category
+        subtask_title.text = res
 
         binding.timeTrackerViewModel = viewModel
-
         binding.lifecycleOwner = this
     }
 }
