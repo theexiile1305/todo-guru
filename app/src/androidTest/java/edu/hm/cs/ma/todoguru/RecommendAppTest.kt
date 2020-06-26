@@ -55,7 +55,7 @@ class RecommendAppTest {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("Recommend App")))
+        textView.check(matches(isDisplayed()))
 
         val materialTextView = onView(
             allOf(

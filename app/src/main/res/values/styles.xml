@@ -48,6 +48,4 @@
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-    <color name="colorBlack">#000000</color>
 </resources>
