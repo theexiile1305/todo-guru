@@ -16,4 +16,10 @@
         android:title="@string/mark_as_done_short"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/recommend_app"
+        android:contentDescription="@string/recommend_app_description"
+        android:title="@string/recommend_app"
+        app:showAsAction="never" />
+
 </menu>

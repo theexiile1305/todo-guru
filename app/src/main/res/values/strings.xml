@@ -44,4 +44,7 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="subTask">Sub task</string>
+    <string name="recommend_app">Recommend App</string>
+    <string name="recommend_app_description">Recommend the app to your friends</string>
+    <string name="recommend_app_message">Checkout the brand new ToDO Guru app at <a href="https://github.com/mobileappdevhm20/team-project-team_4">https://github.com/mobileappdevhm20/team-project-team_4</a> at for a more efficient day!</string>
 </resources>
