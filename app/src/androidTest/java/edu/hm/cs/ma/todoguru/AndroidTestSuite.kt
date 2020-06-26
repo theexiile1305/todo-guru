@@ -33,6 +33,7 @@ import org.junit.runners.Suite
     MainScreenTestCase::class,
     SmokeTest::class,
     AddPriorityTest::class,
-    ToDoGuruDatabaseTest::class
+    ToDoGuruDatabaseTest::class,
+    RecommendAppTest::class
 )
 class AndroidTestSuite
