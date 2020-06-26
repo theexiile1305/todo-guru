@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -104,6 +105,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         when (item.itemId) {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
+            R.id.recommend_app -> recommendApp()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -155,5 +157,15 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     private fun openViewProductivity(): Boolean {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToProductivityFragment())
         return true
+    }
+
+    private fun recommendApp() {
+        ShareCompat.IntentBuilder
+            .from(requireActivity())
+            .setChooserTitle(getString(R.string.recommend_app))
+            .setText(getString(R.string.recommend_app_message))
+            .setType("text/html")
+            .intent
+            .let { startActivity(it) }
     }
 }
