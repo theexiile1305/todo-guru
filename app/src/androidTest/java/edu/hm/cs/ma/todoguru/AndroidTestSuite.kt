@@ -35,6 +35,7 @@ import org.junit.runners.Suite
     SmokeTest::class,
     AddPriorityTest::class,
     ToDoGuruDatabaseTest::class,
-    PrivacyPolicyTest::class
+    PrivacyPolicyTest::class,
+    ContactDevelopersTest::class
 )
 class AndroidTestSuite
