@@ -171,7 +171,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             .intent
             .let { startActivity(it) }
     }
-  
+
     private fun contactDevelopers() = startActivity(
         Intent(
             Intent.ACTION_VIEW,

@@ -71,6 +71,25 @@ fun skipToOnCreateTaskFragment() {
     floatingActionButton.perform(ViewActions.click())
 }
 
+fun skipToMoreOptionsMenu() {
+    skipExplanationDialogs()
+
+    val overflowMenuButton = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withContentDescription("More options"),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withId(R.id.topAppBar),
+                    1
+                ),
+                2
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    overflowMenuButton.perform(ViewActions.click())
+}
+
 fun date(date: String) = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
 fun insertTextToField(field: Int, fieldValue: Int, string: String) {

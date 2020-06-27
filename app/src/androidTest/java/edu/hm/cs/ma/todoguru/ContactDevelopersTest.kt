@@ -1,10 +1,8 @@
 package edu.hm.cs.ma.todoguru
 
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -25,22 +23,7 @@ class ContactDevelopersTest {
 
     @Test
     fun contactDevelopersTest() {
-        skipExplanationDialogs()
-
-        val overflowMenuButton = onView(
-            allOf(
-                withContentDescription("More options"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.topAppBar),
-                        1
-                    ),
-                    2
-                ),
-                isDisplayed()
-            )
-        )
-        overflowMenuButton.perform(click())
+        skipToMoreOptionsMenu()
 
         val textView = onView(
             allOf(
