@@ -22,4 +22,10 @@
         android:title="@string/recommend_app"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/contact_developers"
+        android:contentDescription="@string/contact_developers_description"
+        android:title="@string/contact_developers"
+        app:showAsAction="never" />
+
 </menu>

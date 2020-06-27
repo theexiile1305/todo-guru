@@ -1,5 +1,7 @@
 package edu.hm.cs.ma.todoguru.task.list
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -106,6 +108,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
             R.id.recommend_app -> recommendApp()
+            R.id.contact_developers -> contactDevelopers()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -168,4 +171,11 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             .intent
             .let { startActivity(it) }
     }
+  
+    private fun contactDevelopers() = startActivity(
+        Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(getString(R.string.github_repository_issues))
+        )
+    )
 }
