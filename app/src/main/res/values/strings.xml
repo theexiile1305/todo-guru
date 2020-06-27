@@ -44,4 +44,6 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="subTask">Sub task</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_description">Open Privacy Policy</string>
 </resources>

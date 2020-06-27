@@ -16,4 +16,10 @@
         android:title="@string/mark_as_done_short"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/privacy_policy"
+        android:contentDescription="@string/privacy_policy_description"
+        android:title="@string/privacy_policy"
+        app:showAsAction="never" />
+
 </menu>
