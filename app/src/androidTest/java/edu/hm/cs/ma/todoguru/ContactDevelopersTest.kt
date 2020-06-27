@@ -56,20 +56,5 @@ class ContactDevelopersTest {
             )
         )
         textView.check(matches(isDisplayed()))
-
-        val materialTextView = onView(
-            allOf(
-                withId(R.id.title), withText("Contact Developers"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        materialTextView.perform(click())
     }
 }
