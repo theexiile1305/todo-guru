@@ -44,4 +44,7 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="subTask">Sub task</string>
+    <string name="contact_developers">Contact Developers</string>
+    <string name="contact_developers_description">Contact the developer team for bugs, feedback and feature requests</string>
+    <string name="github_repository_issues">https://github.com/mobileappdevhm20/team-project-team_4/issues</string>
 </resources>
