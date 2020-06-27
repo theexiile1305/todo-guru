@@ -56,20 +56,5 @@ class RecommendAppTest {
             )
         )
         textView.check(matches(isDisplayed()))
-
-        val materialTextView = onView(
-            allOf(
-                withId(R.id.title), withText("Recommend App"),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.content),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        materialTextView.perform(click())
     }
 }
