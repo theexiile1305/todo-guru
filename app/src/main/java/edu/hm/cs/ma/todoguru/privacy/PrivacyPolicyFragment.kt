@@ -18,14 +18,8 @@ class PrivacyPolicyFragment : Fragment() {
         return inflater
             .inflate(R.layout.privacy_policy_fragment, container, false)
             .apply {
-                try {
-                    findViewById<WebView>(R.id.webView).apply {
-                        loadUrl("file:///android_asset/privacy_policy.html")
-                    }
-                } catch (e: Exception) {
-                    if (e.message != null && e.message!!.contains("Failed to load WebView provider: No WebView installed")) {
-                        e.printStackTrace()
-                    } else throw e
+                findViewById<WebView>(R.id.webView).apply {
+                    loadUrl("file:///android_asset/privacy_policy.html")
                 }
             }
     }
