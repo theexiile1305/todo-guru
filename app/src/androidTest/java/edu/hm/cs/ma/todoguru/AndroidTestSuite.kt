@@ -9,7 +9,6 @@ import edu.hm.cs.ma.todoguru.explanation.ExplanationOneSkipButtonTest
 import edu.hm.cs.ma.todoguru.explanation.ExplanationPreviousButtonTest
 import edu.hm.cs.ma.todoguru.explanation.ExplanationThreeSkipButtonTest
 import edu.hm.cs.ma.todoguru.explanation.ExplanationTwoSkipButtonTest
-import edu.hm.cs.ma.todoguru.privacy.PrivacyPolicyTest
 import edu.hm.cs.ma.todoguru.repeat.InsertRepeatDialogActionTest
 import edu.hm.cs.ma.todoguru.subtask.InsertSubTaskActionTest
 import edu.hm.cs.ma.todoguru.subtask.InsertSubTaskFragmentScreenTest
@@ -35,7 +34,6 @@ import org.junit.runners.Suite
     SmokeTest::class,
     AddPriorityTest::class,
     ToDoGuruDatabaseTest::class,
-    PrivacyPolicyTest::class,
     ContactDevelopersTest::class
 )
 class AndroidTestSuite

@@ -164,7 +164,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     private fun openPrivacyPolicy() {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToPrivacyPolicyFragment())
     }
-  
+
     private fun contactDevelopers() = startActivity(
         Intent(
             Intent.ACTION_VIEW,
