@@ -17,6 +17,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/privacy_policy"
+        android:contentDescription="@string/privacy_policy_description"
+        android:title="@string/privacy_policy"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/contact_developers"
         android:contentDescription="@string/contact_developers_description"
         android:title="@string/contact_developers"
