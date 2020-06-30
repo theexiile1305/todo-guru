@@ -171,11 +171,10 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             .setType("text/html")
             .intent
             .let { startActivity(it) }
-      }
+    }
 
     private fun openPrivacyPolicy() {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToPrivacyPolicyFragment())
-
     }
 
     private fun contactDevelopers() = startActivity(
