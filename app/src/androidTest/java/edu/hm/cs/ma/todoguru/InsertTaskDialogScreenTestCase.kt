@@ -32,55 +32,10 @@ class InsertTaskDialogScreenTestCase {
 
     @Test
     fun insertTaskDialogScreenTestCase() {
-        skipExplanationDialogs()
+        skipToOnCreateTaskFragment()
 
-        val floatingActionButton = onView(
-            allOf(
-                withId(R.id.createTaskButton),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.tasks_list_container),
-                        childAtPosition(
-                            withId(R.id.nav_host_fragment_container),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        floatingActionButton.perform(click())
-
-        val textInputEditText = onView(
-            allOf(
-                withId(R.id.title),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.titleTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText.perform(replaceText("A"), closeSoftKeyboard())
-
-        val textInputEditText2 = onView(
-            allOf(
-                withId(R.id.description),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.descriptionTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText2.perform(replaceText("B"), closeSoftKeyboard())
+        insertTextToField(R.id.title, R.id.titleTextField, "A")
+        insertTextToField(R.id.description, R.id.descriptionTextField, "B")
 
         val currentDate = LocalDate.now()
         val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM)
@@ -241,7 +196,7 @@ class InsertTaskDialogScreenTestCase {
                         withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
                         0
                     ),
-                    6
+                    7
                 ),
                 isDisplayed()
             )

@@ -12,6 +12,7 @@
     <string name="viewTask">View Task</string>
     <string name="create_button">Create</string>
     <string name="display_task">Display task</string>
+    <string name="priority_task">Priority task</string>
     <string name="mark_as_done_short">Done</string>
     <string name="mark_as_done_long">Mark selected tasks as Done</string>
     <string name="DueDate">dueDate</string>
@@ -39,4 +40,14 @@
     <string name="completed_tasks">Completed tasks</string>
     <string name="complete">Complete</string>
     <string name="complete_list">List of completed tasks</string>
+    <string name="track_time">Track time spent on task</string>
+    <string name="start_time">Start</string>
+    <string name="end_time">End</string>
+    <string name="hours_spent">Hours spent:</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="subTask">Sub task</string>
+    <string name="contact_developers">Contact Developers</string>
+    <string name="contact_developers_description">Contact the developer team for bugs, feedback and feature requests</string>
+    <string name="github_repository_issues">https://github.com/mobileappdevhm20/team-project-team_4/issues</string>
 </resources>

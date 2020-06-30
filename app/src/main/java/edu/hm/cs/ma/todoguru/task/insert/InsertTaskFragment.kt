@@ -38,6 +38,19 @@ class InsertTaskFragment : TaskFragment() {
                 updateValues()
                 openSetCategoryDialog()
             }
+            chipSetSubTask.setOnClickListener {
+                updateValues()
+                openSetSubTaskDialog()
+            }
+            chipSetRepeat.setOnClickListener {
+                updateValues()
+                openSetRepeatDialog()
+            }
+
+            switchButton.setOnCheckedChangeListener { _, _ ->
+                updateValues()
+            }
+
             insertTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -56,9 +69,19 @@ class InsertTaskFragment : TaskFragment() {
         findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSetReminderFragment())
     }
 
+    private fun openSetSubTaskDialog() {
+        findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSubTaskListFragment())
+    }
+
+    private fun openSetRepeatDialog() {
+        findNavController().navigate(InsertTaskFragmentDirections.actionInsertTaskFragmentToSetRepeatDialog())
+    }
+
     override fun getTitle() = binding.title
 
     override fun getDescription() = binding.description
 
     override fun getEstimated() = binding.estimated
+
+    override fun getPriority() = binding.switchButton
 }

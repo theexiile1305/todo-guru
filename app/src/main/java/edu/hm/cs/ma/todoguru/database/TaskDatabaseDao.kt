@@ -27,4 +27,7 @@ interface TaskDatabaseDao {
 
     @Delete
     fun delete(task: Task)
+
+    @Query("SELECT * FROM task_table WHERE done")
+    fun getDoneTasks(): LiveData<List<Task>>
 }

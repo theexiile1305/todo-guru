@@ -4,11 +4,13 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Switch
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
+import kotlinx.android.synthetic.main.set_reminder_fragment.*
 import java.time.LocalDate
 
 abstract class TaskFragment : Fragment() {
@@ -33,6 +35,7 @@ abstract class TaskFragment : Fragment() {
     protected abstract fun getTitle(): TextInputEditText
     protected abstract fun getDescription(): TextInputEditText
     protected abstract fun getEstimated(): TextInputEditText
+    protected abstract fun getPriority(): Switch
 
     protected fun openSetDueDateDialog(dueDate: LocalDate) {
         DatePickerDialog(
@@ -52,6 +55,7 @@ abstract class TaskFragment : Fragment() {
         viewModel.estimated.value =
             if (getEstimated().text.toString().isEmpty()) 0
             else getEstimated().text.toString().toInt()
+        viewModel.priority.value = getPriority().isChecked
     }
 
     protected fun validateUserInput(): Boolean {
@@ -60,6 +64,7 @@ abstract class TaskFragment : Fragment() {
             add(validate(getDescription(), "The description is required"))
             add(validate(getEstimated(), "The estimation is required"))
         }.also { it.remove(true) }
+
         return validation.isEmpty() && checkDueDateAfterReminder()
     }
 
@@ -75,7 +80,7 @@ abstract class TaskFragment : Fragment() {
         val isValid = viewModel.let {
             val dueDate = it.dueDate.value
             val reminderDate = it.reminderDate.value
-            dueDate != null && reminderDate != null && dueDate.isAfter(reminderDate)
+            dueDate != null && reminderDate != null && dueDate.plusDays(1).isAfter(reminderDate)
         }
         if (!isValid)
             Toast.makeText(mContext, "Due date has to be after reminder", Toast.LENGTH_SHORT)

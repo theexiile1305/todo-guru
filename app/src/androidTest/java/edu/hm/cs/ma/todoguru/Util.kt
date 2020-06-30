@@ -49,4 +49,43 @@ fun skipExplanationDialogs() {
     materialButton.perform(ViewActions.click())
 }
 
+fun skipToOnCreateTaskFragment() {
+    skipExplanationDialogs()
+
+    val floatingActionButton = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(R.id.createTaskButton),
+            childAtPosition(
+                Matchers.allOf(
+                    ViewMatchers.withId(R.id.tasks_list_container),
+                    childAtPosition(
+                        ViewMatchers.withId(R.id.nav_host_fragment_container),
+                        0
+                    )
+                ),
+                1
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    floatingActionButton.perform(ViewActions.click())
+}
+
 fun date(date: String) = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+
+fun insertTextToField(field: Int, fieldValue: Int, string: String) {
+    val textInputEditText = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(field),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withId(fieldValue),
+                    0
+                ),
+                0
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    textInputEditText.perform(ViewActions.replaceText(string), ViewActions.closeSoftKeyboard())
+}

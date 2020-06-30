@@ -31,7 +31,11 @@ class UpdateTaskFragment : TaskFragment() {
         binding.apply {
             viewModel = this@UpdateTaskFragment.viewModel
             lifecycleOwner = this@UpdateTaskFragment
+        }
 
+        viewModel.setDefaultUpdateValue(args.task)
+
+        binding.apply {
             dueDate.setOnClickListener { openSetDueDateDialog(this@UpdateTaskFragment.viewModel.dueDate.value!!) }
             chipSetReminder.setOnClickListener {
                 updateValues()
@@ -41,6 +45,19 @@ class UpdateTaskFragment : TaskFragment() {
                 updateValues()
                 openSetCategoryDialog()
             }
+            chipSetSubTask.setOnClickListener {
+                updateValues()
+                openSetSubTaskDialog()
+            }
+            chipSetRepeat.setOnClickListener {
+                updateValues()
+                openSetRepeatDialog()
+            }
+
+            switchButton.setOnCheckedChangeListener { _, _ ->
+                updateValues()
+            }
+
             updateTaskButton.setOnClickListener {
                 if (validateUserInput()) {
                     updateValues()
@@ -49,7 +66,6 @@ class UpdateTaskFragment : TaskFragment() {
                 }
             }
         }
-        viewModel.setDefaultUpdateValue(args.task)
     }
 
     override fun openSetReminderDialog() {
@@ -60,9 +76,19 @@ class UpdateTaskFragment : TaskFragment() {
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetCategoryDialog())
     }
 
+    private fun openSetSubTaskDialog() {
+        findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSubTaskListFragment())
+    }
+
+    private fun openSetRepeatDialog() {
+        findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetRepeatDialog())
+    }
+
     override fun getTitle() = binding.title
 
     override fun getDescription() = binding.description
 
     override fun getEstimated() = binding.estimated
+
+    override fun getPriority() = binding.switchButton
 }

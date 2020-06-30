@@ -1,11 +1,14 @@
 package edu.hm.cs.ma.todoguru
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
+import edu.hm.cs.ma.todoguru.database.SubTask
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
@@ -38,4 +41,29 @@ fun TextView.setCategory(category: LiveData<String>) {
     category.let {
         text = category.value ?: "Set Category"
     }
+}
+
+@BindingAdapter("subTask")
+fun TextView.setSubTask(subTask: LiveData<List<SubTask>>) {
+    subTask.let {
+        text = if (subTask.value.isNullOrEmpty()) "Set sub tasks"
+        else subTask.value!!.size.toString()
+    }
+}
+
+@BindingAdapter("repeat")
+fun TextView.setRepeat(repeat: LiveData<Period>) {
+    repeat.let {
+        text = when (repeat.value) {
+            Period.ofDays(1) -> "every day"
+            Period.ofDays(7) -> "every week"
+            Period.ofMonths(1) -> "every month"
+            else -> "Set task on repeat"
+        }
+    }
+}
+
+@BindingAdapter("visibility")
+fun ImageView.setVisibility(priority: Boolean) {
+    visibility = if (priority) ImageView.VISIBLE else ImageView.INVISIBLE
 }
