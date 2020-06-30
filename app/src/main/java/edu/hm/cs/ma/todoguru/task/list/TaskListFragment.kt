@@ -106,6 +106,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         when (item.itemId) {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
+            R.id.privacy_policy -> openPrivacyPolicy()
             R.id.contact_developers -> contactDevelopers()
         }
         return super.onOptionsItemSelected(item)
@@ -158,6 +159,10 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     private fun openViewProductivity(): Boolean {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToProductivityFragment())
         return true
+    }
+
+    private fun openPrivacyPolicy() {
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToPrivacyPolicyFragment())
     }
 
     private fun contactDevelopers() = startActivity(
