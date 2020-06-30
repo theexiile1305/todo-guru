@@ -47,6 +47,8 @@
     <string name="recommend_app">Recommend App</string>
     <string name="recommend_app_description">Recommend the app to your friends</string>
     <string name="recommend_app_message">Checkout the brand new ToDO Guru app at <a href="https://github.com/mobileappdevhm20/team-project-team_4">https://github.com/mobileappdevhm20/team-project-team_4</a> at for a more efficient day!</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_description">Open Privacy Policy</string>
     <string name="contact_developers">Contact Developers</string>
     <string name="contact_developers_description">Contact the developer team for bugs, feedback and feature requests</string>
     <string name="github_repository_issues">https://github.com/mobileappdevhm20/team-project-team_4/issues</string>

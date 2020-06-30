@@ -108,6 +108,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
             R.id.recommend_app -> recommendApp()
+            R.id.privacy_policy -> openPrivacyPolicy()
             R.id.contact_developers -> contactDevelopers()
         }
         return super.onOptionsItemSelected(item)
@@ -170,6 +171,11 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
             .setType("text/html")
             .intent
             .let { startActivity(it) }
+      }
+
+    private fun openPrivacyPolicy() {
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToPrivacyPolicyFragment())
+
     }
 
     private fun contactDevelopers() = startActivity(
