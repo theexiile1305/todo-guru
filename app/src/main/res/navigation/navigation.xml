@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_privacyPolicyFragment"
             app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_completedTaskListFragment"
+            app:destination="@id/completedTaskListFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateTaskFragment"
@@ -182,6 +185,14 @@
         android:id="@+id/productivityFragment"
         android:name="edu.hm.cs.ma.todoguru.productivity.ProductivityFragment"
         android:label="ProductivityFragment" />
+    <fragment
+        android:id="@+id/completedTaskListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.completedTask.CompletedTaskListFragment"
+        android:label="CompletedTaskListFragment">
+        <action
+            android:id="@+id/action_completedTaskListFragment_to_viewTaskFragment"
+            app:destination="@id/viewTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
         android:name="edu.hm.cs.ma.todoguru.privacy.PrivacyPolicyFragment"
