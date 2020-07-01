@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
-            name="wrapper"
-            type="edu.hm.cs.ma.todoguru.task.list.TaskWrapper" />
-
+            name="task"
+            type="edu.hm.cs.ma.todoguru.database.Task" />
         <variable
             name="listener"
-            type="edu.hm.cs.ma.todoguru.task.list.TaskAdapter.Listener" />
+            type="edu.hm.cs.ma.todoguru.task.completedTask.CompletedTaskAdapter.Listener" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <LinearLayout
         android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_margin="8dp"
-        android:onClick="@{(view) -> listener.onUpdateClick(wrapper.task)}">
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/selected_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/colorSecondary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:padding="8dp"
+        android:onClick="@{(view) -> listener.onClick(task)}">
 
         <TextView
             android:id="@+id/title"
@@ -34,13 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="@{wrapper.task.title}"
-            app:layout_constraintBottom_toTopOf="@id/description"
-            app:layout_constraintEnd_toStartOf="@+id/display_task"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/selected_checkbox"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.100000024" />
+            android:text="@{task.title}" />
 
         <TextView
             android:id="@+id/description"
@@ -50,36 +36,14 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
-            android:text="@{wrapper.task.description}"
-            app:layout_constraintBottom_toTopOf="@id/due_date"
-            app:layout_constraintEnd_toStartOf="@+id/display_task"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/selected_checkbox"
-            app:layout_constraintTop_toBottomOf="@id/title" />
-
+            android:text="@{task.description}"/>
 
         <TextView
             android:id="@+id/due_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@{wrapper.task.dueDate.toString()}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/display_task"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/selected_checkbox"
-            app:layout_constraintTop_toBottomOf="@+id/description" />
+            android:text="@{task.dueDate.toString()}" />
 
-        <ImageView
-            android:id="@+id/display_task"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/display_task"
-            android:onClick="@{(view) -> listener.onViewTaskClick(view, wrapper.task)}"
-            android:src="@drawable/ic_more_vert_24px"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
