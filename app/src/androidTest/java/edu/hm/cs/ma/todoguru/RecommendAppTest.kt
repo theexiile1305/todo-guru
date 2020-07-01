@@ -15,19 +15,19 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ContactDevelopersTest {
+class RecommendAppTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun contactDevelopersTest() {
+    fun recommendAppTest() {
         skipToMoreOptionsMenu()
 
         val textView = onView(
             allOf(
-                withId(R.id.title), withText("Contact Developers"),
+                withId(R.id.title), withText("Recommend App"),
                 childAtPosition(
                     childAtPosition(
                         withId(R.id.content),
