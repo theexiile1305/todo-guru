@@ -13,6 +13,9 @@ interface TaskDatabaseDao {
     @Query("SELECT * FROM task_table WHERE not done")
     fun getAllTask(): LiveData<List<Task>>
 
+    @Query("SELECT * FROM task_table WHERE done")
+    fun getAllCompletedTask(): LiveData<List<Task>>
+
     @Query("SELECT * FROM task_table WHERE not done ORDER BY `estimated Time` ASC")
     fun getAllTasks(): List<Task>
 
