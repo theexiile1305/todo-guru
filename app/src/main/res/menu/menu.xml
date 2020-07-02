@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/completed_tasks"
-        android:contentDescription="@string/complete_list"
-        android:icon="@drawable/check_24"
-        android:title="@string/complete"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/delete_tasks"
         android:contentDescription="@string/delete_tasks_long"
         android:icon="@drawable/ic_delete_all_24dp"
@@ -22,6 +15,11 @@
         android:icon="@drawable/ic_done_all_24px"
         android:title="@string/mark_as_done_short"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/completed_tasks"
+        android:contentDescription="@string/complete_list"
+        android:title="@string/complete" />
 
     <item
         android:id="@+id/recommend_app"
