@@ -4,6 +4,8 @@ import edu.hm.cs.ma.todoguru.categories.InsertCategoryActionTest
 import edu.hm.cs.ma.todoguru.categories.InsertCategoryCancelButtonTest
 import edu.hm.cs.ma.todoguru.categories.InsertCategoryConfirmButtonTest
 import edu.hm.cs.ma.todoguru.categories.InsertCategoryFragmentScreenTest
+import edu.hm.cs.ma.todoguru.completed.CompletedTaskActionTest
+import edu.hm.cs.ma.todoguru.completed.CompletedTaskScreenTest
 import edu.hm.cs.ma.todoguru.explanation.ExplanationNextButtonTest
 import edu.hm.cs.ma.todoguru.explanation.ExplanationOneSkipButtonTest
 import edu.hm.cs.ma.todoguru.explanation.ExplanationPreviousButtonTest
@@ -35,6 +37,8 @@ import org.junit.runners.Suite
     AddPriorityTest::class,
     ToDoGuruDatabaseTest::class,
     RecommendAppTest::class,
-    ContactDevelopersTest::class
+    ContactDevelopersTest::class,
+    CompletedTaskScreenTest::class,
+    CompletedTaskActionTest::class
 )
 class AndroidTestSuite
