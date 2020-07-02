@@ -2,9 +2,6 @@ package edu.hm.cs.ma.todoguru.completed
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
-import androidx.test.espresso.action.ViewActions.replaceText
-import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withClassName
@@ -17,6 +14,8 @@ import androidx.test.filters.LargeTest
 import edu.hm.cs.ma.todoguru.MainActivity
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.childAtPosition
+import edu.hm.cs.ma.todoguru.insertTextToField
+import edu.hm.cs.ma.todoguru.setReminderWithDefaultValue
 import edu.hm.cs.ma.todoguru.skipToOnCreateTaskFragment
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
@@ -37,123 +36,10 @@ class CompletedTaskActionTest {
     fun completedTaskActionTest() {
         skipToOnCreateTaskFragment()
 
-        val textInputEditText = onView(
-            allOf(
-                withId(R.id.title),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.titleTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText.perform(replaceText("as"), closeSoftKeyboard())
-
-        val textInputEditText2 = onView(
-            allOf(
-                withId(R.id.description),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.descriptionTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText2.perform(replaceText("as"), closeSoftKeyboard())
-
-        val chip = onView(
-            allOf(
-                withId(R.id.chipSetReminder), withText("Set Reminder"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.LinearLayout")),
-                        5
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        chip.perform(click())
-
-        val textInputEditText3 = onView(
-            allOf(
-                withId(R.id.reminderDate),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.reminderDateTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText3.perform(click())
-
-        val materialButton2 = onView(
-            allOf(
-                withId(android.R.id.button1), withText("OK"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    3
-                )
-            )
-        )
-        materialButton2.perform(scrollTo(), click())
-
-        val textInputEditText4 = onView(
-            allOf(
-                withId(R.id.reminderTime),
-                childAtPosition(
-                    childAtPosition(
-                        withId(R.id.reminderTimeTextField),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textInputEditText4.perform(click())
-
-        val materialButton3 = onView(
-            allOf(
-                withId(android.R.id.button1), withText("OK"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
-                        0
-                    ),
-                    3
-                )
-            )
-        )
-        materialButton3.perform(scrollTo(), click())
-
-        val materialButton4 = onView(
-            allOf(
-                withId(R.id.setReminderButton), withText("Create"),
-                childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
-                        0
-                    ),
-                    3
-                ),
-                isDisplayed()
-            )
-        )
-        materialButton4.perform(click())
+        insertTextToField(R.id.title, R.id.titleTextField, "A")
+        insertTextToField(R.id.description, R.id.descriptionTextField, "B")
+        insertTextToField(R.id.estimated, R.id.estimatedTextField, "5")
+        setReminderWithDefaultValue()
 
         val materialButton5 = onView(
             allOf(
