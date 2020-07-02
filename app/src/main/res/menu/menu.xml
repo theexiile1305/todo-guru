@@ -17,6 +17,11 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/completed_tasks"
+        android:contentDescription="@string/complete_list"
+        android:title="@string/complete" />
+
+    <item
         android:id="@+id/recommend_app"
         android:contentDescription="@string/recommend_app_description"
         android:title="@string/recommend_app"

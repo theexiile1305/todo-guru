@@ -108,3 +108,93 @@ fun insertTextToField(field: Int, fieldValue: Int, string: String) {
     )
     textInputEditText.perform(ViewActions.replaceText(string), ViewActions.closeSoftKeyboard())
 }
+
+fun setReminderWithDefaultValue() {
+    val chip = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(R.id.chipSetReminder), ViewMatchers.withText("Set Reminder"),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withClassName(Matchers.`is`("android.widget.LinearLayout")),
+                    5
+                ),
+                0
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    chip.perform(ViewActions.click())
+
+    val textInputEditText3 = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(R.id.reminderDate),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withId(R.id.reminderDateTextField),
+                    0
+                ),
+                0
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    textInputEditText3.perform(ViewActions.click())
+
+    val materialButton2 = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(android.R.id.button1), ViewMatchers.withText("OK"),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withClassName(Matchers.`is`("android.widget.ScrollView")),
+                    0
+                ),
+                3
+            )
+        )
+    )
+    materialButton2.perform(ViewActions.scrollTo(), ViewActions.click())
+
+    val textInputEditText4 = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(R.id.reminderTime),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withId(R.id.reminderTimeTextField),
+                    0
+                ),
+                0
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    textInputEditText4.perform(ViewActions.click())
+
+    val materialButton3 = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(android.R.id.button1), ViewMatchers.withText("OK"),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withClassName(Matchers.`is`("android.widget.ScrollView")),
+                    0
+                ),
+                3
+            )
+        )
+    )
+    materialButton3.perform(ViewActions.scrollTo(), ViewActions.click())
+
+    val materialButton4 = Espresso.onView(
+        Matchers.allOf(
+            ViewMatchers.withId(R.id.setReminderButton), ViewMatchers.withText("Create"),
+            childAtPosition(
+                childAtPosition(
+                    ViewMatchers.withClassName(Matchers.`is`("androidx.coordinatorlayout.widget.CoordinatorLayout")),
+                    0
+                ),
+                3
+            ),
+            ViewMatchers.isDisplayed()
+        )
+    )
+    materialButton4.perform(ViewActions.click())
+}

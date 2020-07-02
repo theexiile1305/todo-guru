@@ -107,6 +107,7 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         when (item.itemId) {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
+            R.id.completed_tasks -> navigateToCompletedTasks()
             R.id.recommend_app -> recommendApp()
             R.id.privacy_policy -> openPrivacyPolicy()
             R.id.contact_developers -> contactDevelopers()
@@ -128,6 +129,10 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     private fun markTaskAsDone() = viewModel.markTasksAsDone(selectedTasks)
+
+    private fun navigateToCompletedTasks() {
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToCompletedTaskListFragment())
+    }
 
     private fun deleteTasks() {
         if (selectedTasks.isNotEmpty()) {
