@@ -105,6 +105,9 @@ You can check all [implemented features](https://github.com/mobileappdevhm20/tea
 * Releasing and publishing apps with Firebase and the Goolge Playstore
 * Different styles of architectures
 * Working in a very remote team with the agile way
+* Communication is key!
+* Use everyones strengths and be aware of there weaknesses
+* meeting regularly in team helps alot
 
 
 ## Links
