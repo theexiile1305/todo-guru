@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.categories.CategoryListViewModel
+import timber.log.Timber
 
 class DeleteCategoryDialog : DialogFragment() {
 
@@ -26,6 +27,7 @@ class DeleteCategoryDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
+            Timber.d("Pop-up that asks if the user wants to delete a category")
             MaterialAlertDialogBuilder(it)
                 .setTitle("Are you sure that you want to delete the category?")
                 .setPositiveButton("Confirm") { _, _ -> viewModel.deleteCategory(args.category) }

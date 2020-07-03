@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class TaskListViewModel(
     private val database: TaskDatabaseDao,
@@ -53,6 +54,7 @@ class TaskListViewModel(
     }
 
     fun markTasksAsDone(tasks: List<Task>) {
+        Timber.d("Mark the task as done")
         uiScope.launch {
             tasks.forEach {
                 it.done = true
@@ -64,6 +66,7 @@ class TaskListViewModel(
     }
 
     fun deleteTasks(tasks: List<Task>) {
+        Timber.d("Delete tasks")
         uiScope.launch {
             tasks.forEach {
                 delete(it)
@@ -74,12 +77,14 @@ class TaskListViewModel(
     }
 
     private suspend fun update(task: Task) {
+        Timber.d("Update tasks")
         withContext(Dispatchers.IO) {
             database.update(task)
         }
     }
 
     private suspend fun delete(task: Task) {
+        Timber.d("Delete task")
         withContext(Dispatchers.IO) {
             database.delete(task)
         }

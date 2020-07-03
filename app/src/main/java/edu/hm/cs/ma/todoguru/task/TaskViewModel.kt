@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -65,6 +66,7 @@ class TaskViewModel(
     }
 
     fun setDefaultUpdateValue(task: Task) {
+        Timber.d("Default values of a task")
         task.apply {
             this@TaskViewModel.id = id
             this@TaskViewModel.title.value = title
@@ -118,12 +120,14 @@ class TaskViewModel(
     }
 
     private suspend fun insert(task: Task) {
+        Timber.d("Insert new task")
         withContext(Dispatchers.IO) {
             database.insert(Task(task))
         }
     }
 
     private suspend fun update(task: Task) {
+        Timber.d("Update task")
         withContext(Dispatchers.IO) {
             database.update(task)
         }
