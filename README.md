@@ -5,11 +5,11 @@ ToDo Guru will help make your life more productive by organizing your tasks and 
 
 
 ## Concept
-The concept of the app is that it helps you to keep track of your tasks. It reminds so constantly that you have tasks that are not already done to improve your productivity and it also shows you tasks you already finished, to keep you motivated.
+The concept of the app is that it helps you to keep track of your tasks. It reminds you constantly that you have tasks that are not already done to improve your productivity and it also shows you tasks you already finished, to keep you motivated.
 
 ### Storyboard
 ![Storyboard](assets/storyboard.png)
-### Prototyp
+### Prototype
 * [Overview on Figma](https://www.figma.com/file/XoVCNBGzGf3GtRMCQAQIDV/prototype?node-id=0%3A1)
 * [Interactive showcase on Sketch](https://www.figma.com/proto/XoVCNBGzGf3GtRMCQAQIDV/prototype?node-id=0%3A1823&scaling=min-zoom)
 * [Overview on Figma](https://www.sketch.com/s/b24594e7-bbed-4fd7-af92-4ea9c37969a1)
@@ -100,14 +100,14 @@ You can check all [implemented features](https://github.com/mobileappdevhm20/tea
 ## Learnings
 * Learned how to work in a team in an agile way.
 * Learned how to structure a project in github.
-* Learned Kotlin in general and AndroidStudio in general.
+* Learned Kotlin in general and Android Studio in general.
 * Issue dependency can lead to big problems in development if it is not considered. There should be someone that has an overview of the issues and make sure that certain issues are done first in order to minimize wait time between issues.
-* Releasing and publishing apps with Firebase and the Goolge Playstore
-* Different styles of architectures
-* Working in a very remote team with the agile way
+* Releasing and publishing apps with Firebase and the Goolge Playstore.
+* Different styles of architectures.
+* Working in a very remote team with the agile way.
 * Communication is key!
-* Use everyones strengths and be aware of there weaknesses
-* meeting regularly in team helps alot
+* Use everyones strengths and be aware of there weaknesses.
+* meeting regularly in team helps a lot.
 
 
 ## Links
