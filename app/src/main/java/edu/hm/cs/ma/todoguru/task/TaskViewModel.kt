@@ -16,7 +16,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 import java.lang.NullPointerException
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -102,9 +101,8 @@ class TaskViewModel(
                     )
                 )
             } catch (e: NullPointerException) {
-                Log.i("Error", "Insert Task in Database Error:"+ e)
+                Log.i("Error", "Insert Task in Database Error:" + e)
             }
-
         }
     }
 
@@ -125,7 +123,7 @@ class TaskViewModel(
                         priority.value!!
                     )
                 )
-            } catch (e: NullPointerException){
+            } catch (e: NullPointerException) {
                 Log.i("Error", "Update Task in Database Error: " + e)
             }
         }

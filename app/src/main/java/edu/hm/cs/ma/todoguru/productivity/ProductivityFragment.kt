@@ -38,7 +38,7 @@ class ProductivityFragment : Fragment() {
             val viewModelFactory = ProductivityViewModel.Factory(dataSource, application)
             ViewModelProvider(this, viewModelFactory).get(ProductivityViewModel::class.java)
         }
-        var anyChartView: AnyChartView = view.findViewById(R.id.any_chart_view)
+        val anyChartView: AnyChartView = view.findViewById(R.id.any_chart_view)
 
         viewModel.doneTasks.observe(
             viewLifecycleOwner,
