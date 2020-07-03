@@ -4,29 +4,29 @@
 ToDo Guru will help make your life more productive by organizing your tasks and reminding you when certain tasks should be worked on and completed.
 
 
-## Table of Content
-* [Concept](https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#concept)
-* [Architecture](https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#architecture)
-* [Tools](https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#tools)
-* [Development](https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#development)
-* [Learnings](#https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#learnings)
-* [Demo](#https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#demo)
-* [Links](#https://github.com/mobileappdevhm20/team-project-team_4/blob/gh-pages/README.md#links)
-
-
 ## Concept
 The concept of the app is that it helps you to keep track of your tasks. It reminds so constantly that you have tasks that are not already done to improve your productivity and it also shows you tasks you already finished, to keep you motivated.
 
 ### Storyboard
 ![Storyboard](assets/storyboard.png)
 ### Prototyp
-[Overview on Figma](https://www.figma.com/file/XoVCNBGzGf3GtRMCQAQIDV/prototype?node-id=0%3A1)
-[Interactive showcase on Sketch](https://www.figma.com/proto/XoVCNBGzGf3GtRMCQAQIDV/prototype?node-id=0%3A1823&scaling=min-zoom)
-[Overview on Figma](https://www.sketch.com/s/b24594e7-bbed-4fd7-af92-4ea9c37969a1)
-[Interactive showcase on Sketch](https://www.sketch.com/s/b24594e7-bbed-4fd7-af92-4ea9c37969a1/a/QqywbY/play)
+* [Overview on Figma](https://www.figma.com/file/XoVCNBGzGf3GtRMCQAQIDV/prototype?node-id=0%3A1)
+* [Interactive showcase on Sketch](https://www.figma.com/proto/XoVCNBGzGf3GtRMCQAQIDV/prototype?node-id=0%3A1823&scaling=min-zoom)
+* [Overview on Figma](https://www.sketch.com/s/b24594e7-bbed-4fd7-af92-4ea9c37969a1)
+* [Interactive showcase on Sketch](https://www.sketch.com/s/b24594e7-bbed-4fd7-af92-4ea9c37969a1/a/QqywbY/play)
 
 
 ## Architecture
+### Dependencies
+* Android Navigation 
+* Material Design
+* Room Database with Android Lifecycles
+* Kotlin Co-Routines
+* Gson
+* ktlint
+* Android Junit & Espresso Testing
+* Google Analytics & Crashlytics --> You need at least access to the Google Firebase console. To get access contact Michael Fuchs
+
 ### Components
 ![Components](assets/components.png)
 
@@ -48,19 +48,14 @@ root/
 ![Timeline](assets/timeline.png)
 
 ### Feature State
-* TODO
-
+You can check all [implemented features](https://github.com/mobileappdevhm20/team-project-team_4/issues?q=is%3Aissue+is%3Aclosed) out. Also there are [features](https://github.com/mobileappdevhm20/team-project-team_4/wiki/Use-Cases) that have been determined, but they haven't been implemented yet ([All other features](https://github.com/mobileappdevhm20/team-project-team_4/issues)).
 
 ## Learnings
 * TODO
 
 
-## Demo
-TODO
-
-
 ## Links
 * [Sprint 2 Presenation](https://docs.google.com/presentation/d/1onptqqwC0zfsclfpvAKzEf4_YOFf-ZvH7bKNGJNikvA/edit?usp=sharing)
-* [Sprint 3 Presenation]()
+* [Sprint 3 Presenation](https://docs.google.com/presentation/d/1HmiV4ydcXIB96d2ua-lohfKKjHxyVI61lJSczTgyQ7w/edit?usp=sharing)
 * [Privacy Policy](privacy.html)
 * [Terms & Conditions](terms_and_condition.html)
