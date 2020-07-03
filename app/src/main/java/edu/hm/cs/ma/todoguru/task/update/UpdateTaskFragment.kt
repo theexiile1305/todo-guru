@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.databinding.UpdateTaskFragmentBinding
 import edu.hm.cs.ma.todoguru.task.TaskFragment
+import timber.log.Timber
 
 class UpdateTaskFragment : TaskFragment() {
 
@@ -38,18 +39,22 @@ class UpdateTaskFragment : TaskFragment() {
         binding.apply {
             dueDate.setOnClickListener { openSetDueDateDialog(this@UpdateTaskFragment.viewModel.dueDate.value!!) }
             chipSetReminder.setOnClickListener {
+                Timber.d("Update SetReminder")
                 updateValues()
                 openSetReminderDialog()
             }
             chipSetCategory.setOnClickListener {
+                Timber.d("Update SetCategory")
                 updateValues()
                 openSetCategoryDialog()
             }
             chipSetSubTask.setOnClickListener {
+                Timber.d("Update SetSubTask")
                 updateValues()
                 openSetSubTaskDialog()
             }
             chipSetRepeat.setOnClickListener {
+                Timber.d("Update SetRepeat")
                 updateValues()
                 openSetRepeatDialog()
             }
@@ -59,6 +64,7 @@ class UpdateTaskFragment : TaskFragment() {
             }
 
             updateTaskButton.setOnClickListener {
+                Timber.d("Update the task")
                 if (validateUserInput()) {
                     updateValues()
                     this@UpdateTaskFragment.viewModel.updateTask()
@@ -69,18 +75,22 @@ class UpdateTaskFragment : TaskFragment() {
     }
 
     override fun openSetReminderDialog() {
+        Timber.d("Open SetReminderDialog")
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetReminderFragment())
     }
 
     private fun openSetCategoryDialog() {
+        Timber.d("Open SetCategoryDialog")
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetCategoryDialog())
     }
 
     private fun openSetSubTaskDialog() {
+        Timber.d("Open SetSubTaskDialog")
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSubTaskListFragment())
     }
 
     private fun openSetRepeatDialog() {
+        Timber.d("Open SetRepeatDialog")
         findNavController().navigate(UpdateTaskFragmentDirections.actionUpdateTaskFragmentToSetRepeatDialog())
     }
 

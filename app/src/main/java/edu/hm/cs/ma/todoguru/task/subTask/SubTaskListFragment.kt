@@ -14,6 +14,7 @@ import edu.hm.cs.ma.todoguru.database.SubTask
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.SubtaskListFragmentBinding
 import edu.hm.cs.ma.todoguru.task.TaskViewModel
+import timber.log.Timber
 
 class SubTaskListFragment : SubTaskAdapter.Listener, Fragment() {
 
@@ -26,6 +27,7 @@ class SubTaskListFragment : SubTaskAdapter.Listener, Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Timber.d("Show sub task list fragment")
         binding =
             DataBindingUtil.inflate(inflater, R.layout.subtask_list_fragment, container, false)
         setHasOptionsMenu(true)
@@ -73,10 +75,12 @@ class SubTaskListFragment : SubTaskAdapter.Listener, Fragment() {
     }
 
     private fun openInsertDialog() {
+        Timber.d("Insert sub task")
         findNavController().navigate(SubTaskListFragmentDirections.actionSubTaskListFragmentToInsertSubTaskDialog())
     }
 
     override fun onDeleteClick(subTask: SubTask) {
+        Timber.d("Delete sub task")
         findNavController().navigate(
             SubTaskListFragmentDirections.actionSubTaskListFragmentToDeleteSubTaskDialog(
                 subTask

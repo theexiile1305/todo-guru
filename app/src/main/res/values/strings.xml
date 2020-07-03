@@ -21,7 +21,7 @@
     <string name="notification_content_description">Have you finished your tasks yet?</string>
     <string name="delete_tasks_short">Delete</string>
     <string name="delete_tasks_long">Delete selected tasks</string>
-    <string name="top_description_1">ToDo Guru description (1/3)</string>
+    <string name="top_description_1"><![CDATA[ToDo Guru description (&#8531;)]]></string>
     <string name="top_description_2">ToDo Guru description (2/3)</string>
     <string name="top_description_3">ToDo Guru description (3/3)</string>
     <string name="description_1">Welcome to ToDo Guru, together we will make your life more efficient.</string>

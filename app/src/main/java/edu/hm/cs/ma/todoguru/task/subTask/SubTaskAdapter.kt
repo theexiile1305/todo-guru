@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import edu.hm.cs.ma.todoguru.database.SubTask
 import edu.hm.cs.ma.todoguru.databinding.SubtaskViewHolderBinding
+import timber.log.Timber
 
 class SubTaskAdapter(
     private val listener: Listener
@@ -44,10 +45,12 @@ class SubTaskAdapter(
     class SubTaskDiffCallBack : DiffUtil.ItemCallback<SubTask>() {
 
         override fun areItemsTheSame(oldItem: SubTask, newItem: SubTask): Boolean {
+            Timber.d("Check if two items has the same data")
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: SubTask, newItem: SubTask): Boolean {
+            Timber.d("Used to replace two items")
             return oldItem == newItem
         }
     }

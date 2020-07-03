@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import kotlinx.android.synthetic.main.set_reminder_fragment.*
+import timber.log.Timber
 import java.time.LocalDate
 
 abstract class TaskFragment : Fragment() {
@@ -59,6 +60,7 @@ abstract class TaskFragment : Fragment() {
     }
 
     protected fun validateUserInput(): Boolean {
+        Timber.d("Shows the items that are required in order to create a task")
         val validation = HashSet<Boolean>().apply {
             add(validate(getTitle(), "The title is required"))
             add(validate(getDescription(), "The description is required"))
@@ -77,6 +79,7 @@ abstract class TaskFragment : Fragment() {
     }
 
     private fun checkDueDateAfterReminder(): Boolean {
+        Timber.d("Checking so that the due date for a task is after the reminder")
         val isValid = viewModel.let {
             val dueDate = it.dueDate.value
             val reminderDate = it.reminderDate.value

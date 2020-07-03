@@ -10,6 +10,7 @@ import edu.hm.cs.ma.todoguru.database.Time
 import edu.hm.cs.ma.todoguru.database.TimeTrackerDatabaseDao
 import edu.hm.cs.ma.todoguru.task.formatTimes
 import kotlinx.coroutines.* // ktlint-disable no-wildcard-imports
+import timber.log.Timber
 
 class TimeTrackerViewModel(
     private val taskID: Long,
@@ -69,18 +70,21 @@ class TimeTrackerViewModel(
     }
 
     private suspend fun update(time: Time) {
+        Timber.d("Update the time spent on a task")
         withContext(Dispatchers.IO) {
             database.update(time)
         }
     }
 
     private suspend fun insert(time: Time) {
+        Timber.d("Insert the time spent on a task")
         withContext(Dispatchers.IO) {
             database.insert(time)
         }
     }
 
     fun onStartTracking() {
+        Timber.d("Start tracking the time spent on a task")
         uiScope.launch {
             val newTime = Time(0, taskID)
 
@@ -91,6 +95,7 @@ class TimeTrackerViewModel(
     }
 
     fun onStopTracking() {
+        Timber.d("Stop tracking the time spent on a task")
         uiScope.launch {
             val oldTime = time.value ?: return@launch
 

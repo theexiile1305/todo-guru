@@ -9,6 +9,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.subTask.SubTaskListViewModel
+import timber.log.Timber
 
 class InsertSubTaskDialog : DialogFragment() {
 
@@ -25,6 +26,7 @@ class InsertSubTaskDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
+            Timber.d("Add a new sub task")
             MaterialAlertDialogBuilder(it)
                 .setView(it.layoutInflater.inflate(R.layout.insert_sub_task_dialog, null))
                 .setTitle("Add a new sub task")
@@ -40,6 +42,7 @@ class InsertSubTaskDialog : DialogFragment() {
     }
 
     private fun validate(field: EditText): Boolean {
+        Timber.d("Message that shows that a sub task can not be empty")
         if (field.text.toString().isEmpty()) {
             field.error = "The sub task cannot be empty!"
             return false

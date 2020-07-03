@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import edu.hm.cs.ma.todoguru.database.Category
 import edu.hm.cs.ma.todoguru.databinding.CategoryViewHolderBinding
+import timber.log.Timber
 
 class CategoryAdapter(
     private val listener: Listener
@@ -44,10 +45,12 @@ class CategoryAdapter(
     class CategoryDiffCallBack : DiffUtil.ItemCallback<Category>() {
 
         override fun areItemsTheSame(oldItem: Category, newItem: Category): Boolean {
+            Timber.d("Check if two items has the same data")
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Category, newItem: Category): Boolean {
+            Timber.d("Used to replace two items")
             return oldItem == newItem
         }
     }

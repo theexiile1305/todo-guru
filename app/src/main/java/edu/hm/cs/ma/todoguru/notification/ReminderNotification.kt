@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.time.LocalDateTime
 import java.util.Timer
 import java.util.TimerTask
@@ -45,6 +46,7 @@ class ReminderNotification : Service() {
             .setContentText(application.getString(R.string.notification_content_description))
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
+        Timber.d("Reminder message")
 
         timer.scheduleAtFixedRate(
             object : TimerTask() {

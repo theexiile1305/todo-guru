@@ -15,10 +15,5 @@ data class SubTask(
     @ColumnInfo(name = "description")
     var description: String
 ) : Serializable, Parcelable {
-    constructor(subTask: SubTask) : this(subTask.description)
     constructor(description: String) : this(0, description)
-
-    override fun toString(): String {
-        return super.toString()
-    }
 }
