@@ -13,6 +13,7 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Category
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.CategoryListFragmentBinding
+import timber.log.Timber
 
 class CategoryListFragment : CategoryAdapter.Listener, Fragment() {
 
@@ -60,6 +61,7 @@ class CategoryListFragment : CategoryAdapter.Listener, Fragment() {
 
     private fun openInsertDialog() {
         findNavController().navigate(CategoryListFragmentDirections.actionCategoryListFragmentToInsertCategoryDialog())
+        Timber.d("Add new category")
     }
 
     override fun onDeleteClick(category: Category) {
@@ -68,5 +70,6 @@ class CategoryListFragment : CategoryAdapter.Listener, Fragment() {
                 category
             )
         )
+        Timber.d("Delete category")
     }
 }

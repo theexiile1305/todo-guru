@@ -9,6 +9,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.list.TaskListViewModel
+import timber.log.Timber
 
 class DeleteTaskDialog : DialogFragment() {
 
@@ -28,6 +29,7 @@ class DeleteTaskDialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val selectedTasks: List<Task> = args.taskList.toList()
         return requireActivity().let {
+            Timber.d("Pop-up that asks if the user wants to delete a task")
             MaterialAlertDialogBuilder(it)
                 .setTitle("Are you sure that you want to delete the selected tasks?")
                 .setPositiveButton("Confirm") { _, _ -> viewModel.deleteTasks(selectedTasks) }

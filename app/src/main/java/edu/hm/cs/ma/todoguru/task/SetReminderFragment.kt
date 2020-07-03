@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.SetReminderFragmentBinding
+import timber.log.Timber
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -33,11 +34,13 @@ class SetReminderFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Timber.d("Navigate to set reminder fragment")
         binding = DataBindingUtil.inflate(inflater, R.layout.set_reminder_fragment, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        Timber.d("Create a new reminder for a task")
         viewModel = requireActivity().run {
             val dataSource = ToDoGuruDatabase.getInstance(this).taskDatabaseDao
             val viewModelFactory = TaskViewModel.Factory(dataSource, application)
@@ -55,6 +58,7 @@ class SetReminderFragment : Fragment() {
     }
 
     private fun openSetReminderDateDialog() {
+        Timber.d("Reminder date of the task")
         val currentDate = LocalDate.now()
         DatePickerDialog(
             mContext,
@@ -68,6 +72,7 @@ class SetReminderFragment : Fragment() {
     }
 
     private fun openSetReminderTimeDialog() {
+        Timber.d("Reminder time of the task")
         val currentTime = LocalTime.now()
         TimePickerDialog(
             mContext,
