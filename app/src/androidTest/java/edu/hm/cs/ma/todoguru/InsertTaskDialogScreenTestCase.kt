@@ -30,6 +30,8 @@ class InsertTaskDialogScreenTestCase {
     @JvmField
     var mActivityTestRule = ActivityScenarioRule(MainActivity::class.java)
 
+    private val widgetScrollView = "android.widget.ScrollView"
+
     @Test
     fun insertTaskDialogScreenTestCase() {
         skipToOnCreateTaskFragment()
@@ -61,7 +63,7 @@ class InsertTaskDialogScreenTestCase {
                 withId(android.R.id.button1), withText("OK"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withClassName(`is`(widgetScrollView)),
                         0
                     ),
                     3
@@ -135,7 +137,7 @@ class InsertTaskDialogScreenTestCase {
                 withId(android.R.id.button1), withText("OK"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withClassName(`is`(widgetScrollView)),
                         0
                     ),
                     3
@@ -164,7 +166,7 @@ class InsertTaskDialogScreenTestCase {
                 withId(android.R.id.button1), withText("OK"),
                 childAtPosition(
                     childAtPosition(
-                        withClassName(`is`("android.widget.ScrollView")),
+                        withClassName(`is`(widgetScrollView)),
                         0
                     ),
                     3

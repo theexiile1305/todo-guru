@@ -20,7 +20,7 @@ class ToDoGuruDatabaseTest {
 
     private lateinit var taskDao: TaskDatabaseDao
     private lateinit var toDoGuruDatabase: ToDoGuruDatabase
-    val date = "20/05/2020"
+    private val date = "20/05/2020"
 
     @Before
     fun createDb() {
