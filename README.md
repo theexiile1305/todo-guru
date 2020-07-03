@@ -51,7 +51,13 @@ root/
 You can check all [implemented features](https://github.com/mobileappdevhm20/team-project-team_4/issues?q=is%3Aissue+is%3Aclosed) out. Also there are [features](https://github.com/mobileappdevhm20/team-project-team_4/wiki/Use-Cases) that have been determined, but they haven't been implemented yet ([All other features](https://github.com/mobileappdevhm20/team-project-team_4/issues)).
 
 ## Learnings
-* TODO
+* Learned how to work in a team in an agile way.
+* Learned how to structure a project in github.
+* Learned Kotlin in general and AndroidStudio in general.
+* Issue dependency can lead to big problems in development if it is not considered. There should be someone that has an overview of the issues and make sure that certain issues are done first in order to minimize wait time between issues.
+* Releasing and publishing apps with Firebase and the Goolge Playstore
+* Different styles of architectures
+* Working in a very remote team with the agile way
 
 
 ## Links
