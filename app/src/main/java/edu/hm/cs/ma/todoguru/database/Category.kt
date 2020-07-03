@@ -16,6 +16,5 @@ data class Category(
     var description: String
 ) : Serializable, Parcelable {
 
-    constructor(category: Category) : this(category.description)
     constructor(description: String) : this(0, description)
 }
