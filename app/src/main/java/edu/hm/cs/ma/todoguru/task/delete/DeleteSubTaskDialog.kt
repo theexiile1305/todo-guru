@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.subTask.SubTaskListViewModel
+import timber.log.Timber
 
 class DeleteSubTaskDialog : DialogFragment() {
 
@@ -26,6 +27,7 @@ class DeleteSubTaskDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
+            Timber.d("Pop-up that asks if the user wants to delete a subtask")
             MaterialAlertDialogBuilder(it)
                 .setTitle("Are you sure that you want to delete the sub task?")
                 .setPositiveButton("Confirm") { _, _ -> viewModel.deleteSubTask(args.subTask) }

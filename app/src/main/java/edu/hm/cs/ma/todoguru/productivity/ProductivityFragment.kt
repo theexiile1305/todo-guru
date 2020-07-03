@@ -14,6 +14,7 @@ import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Pie
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
+import timber.log.Timber
 
 class ProductivityFragment : Fragment() {
 
@@ -44,6 +45,7 @@ class ProductivityFragment : Fragment() {
             viewLifecycleOwner,
             Observer {
                 putDataInPieChart(anyChartView, "Completed", it.size)
+                Timber.d("Task completed visualized with a circle: %s", it.size)
             }
         )
 
@@ -51,6 +53,7 @@ class ProductivityFragment : Fragment() {
             viewLifecycleOwner,
             Observer {
                 putDataInPieChart(anyChartView, "To-Do", it.size)
+                Timber.d("Uncompleted tasks visualized with a circle: %s", it.size)
             }
         )
     }

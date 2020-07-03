@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class CategoryListViewModel(
     private val database: CategoryDatabaseDao,
@@ -44,24 +45,28 @@ class CategoryListViewModel(
 
     fun insertCategory(description: String) {
         uiScope.launch {
+            Timber.d("Insert category")
             insert(Category(description))
         }
     }
 
     fun deleteCategory(category: Category) {
         uiScope.launch {
+            Timber.d("Delete category")
             delete(category)
         }
     }
 
     private suspend fun insert(category: Category) {
         withContext(Dispatchers.IO) {
+            Timber.d("Insert category")
             database.insert(category)
         }
     }
 
     private suspend fun delete(category: Category) {
         withContext(Dispatchers.IO) {
+            Timber.d("Delete category")
             database.delete(category)
         }
     }

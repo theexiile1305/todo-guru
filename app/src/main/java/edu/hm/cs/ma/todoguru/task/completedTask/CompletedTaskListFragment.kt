@@ -13,6 +13,7 @@ import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.Task
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.CompletedTaskListFragmentBinding
+import timber.log.Timber
 
 class CompletedTaskListFragment : CompletedTaskAdapter.Listener, Fragment() {
 
@@ -24,6 +25,7 @@ class CompletedTaskListFragment : CompletedTaskAdapter.Listener, Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Timber.d("Show the completed task list fragment")
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.completed_task_list_fragment,

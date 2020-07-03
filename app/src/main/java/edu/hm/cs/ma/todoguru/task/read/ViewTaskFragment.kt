@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.view_task_fragment.*
 import kotlinx.android.synthetic.main.view_task_fragment.description_task
 import kotlinx.android.synthetic.main.view_task_fragment.dueDate_task
 import kotlinx.android.synthetic.main.view_task_fragment.title_task
+import timber.log.Timber
 
 class ViewTaskFragment : Fragment() {
     private val args: ViewTaskFragmentArgs by navArgs()
@@ -27,6 +28,7 @@ class ViewTaskFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Timber.d("Shows the view task fragment")
         binding = DataBindingUtil.inflate(
             inflater, R.layout.view_task_fragment, container, false
         )

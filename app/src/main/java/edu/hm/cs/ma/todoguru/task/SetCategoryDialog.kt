@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.categories.CategoryListViewModel
+import timber.log.Timber
 import java.util.stream.Collectors
 
 class SetCategoryDialog : DialogFragment() {
@@ -16,6 +17,7 @@ class SetCategoryDialog : DialogFragment() {
     private lateinit var categoryViewModel: CategoryListViewModel
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        Timber.d("Allows the user to choose a category for the task")
         initViewModels()
         val items = categoryViewModel.getSingleChoiceItems()
         var chosen: String? = null
@@ -33,6 +35,7 @@ class SetCategoryDialog : DialogFragment() {
     }
 
     private fun navigateToCategoriesList() {
+        Timber.d("Navigates to the CategoriesList")
         findNavController()
             .navigate(SetCategoryDialogDirections.actionSetCategoryDialogToCategoryListFragment())
     }

@@ -10,6 +10,7 @@ import edu.hm.cs.ma.todoguru.R
 import kotlinx.android.synthetic.main.explanation_pages_3.buttonNext
 import kotlinx.android.synthetic.main.explanation_pages_3.buttonPrev
 import kotlinx.android.synthetic.main.explanation_pages_3.buttonSkip
+import timber.log.Timber
 
 class ExplanationFragmentThree : Fragment() {
 
@@ -27,14 +28,17 @@ class ExplanationFragmentThree : Fragment() {
         buttonNext.setOnClickListener {
             findNavController()
                 .navigate(ExplanationFragmentThreeDirections.actionExplanationFragmentThreeToTaskListFragment())
+            Timber.d("Go to TaskListFragment")
         }
         buttonPrev.setOnClickListener {
             findNavController()
                 .navigate(ExplanationFragmentThreeDirections.actionExplanationFragmentThreeToExplanationFragmentTwo())
+            Timber.d("Go back to second explanationFragment")
         }
         buttonSkip.setOnClickListener {
             findNavController()
                 .navigate(ExplanationFragmentThreeDirections.actionExplanationFragmentThreeToTaskListFragment())
+            Timber.d("Go to TaskListFragment")
         }
     }
 }
