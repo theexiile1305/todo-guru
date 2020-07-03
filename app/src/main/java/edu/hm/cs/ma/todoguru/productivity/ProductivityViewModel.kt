@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import edu.hm.cs.ma.todoguru.database.TaskDatabaseDao
 
 class ProductivityViewModel(
-    private val database: TaskDatabaseDao,
+    val database: TaskDatabaseDao,
     application: Application
 ) : AndroidViewModel(application) {
 

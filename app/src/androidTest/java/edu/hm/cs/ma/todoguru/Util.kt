@@ -90,7 +90,7 @@ fun skipToMoreOptionsMenu() {
     overflowMenuButton.perform(ViewActions.click())
 }
 
-fun date(date: String) = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+fun date(date: String): LocalDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 
 fun insertTextToField(field: Int, fieldValue: Int, string: String) {
     val textInputEditText = Espresso.onView(

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
-import kotlinx.android.synthetic.main.set_reminder_fragment.*
 import java.time.LocalDate
 
 abstract class TaskFragment : Fragment() {
