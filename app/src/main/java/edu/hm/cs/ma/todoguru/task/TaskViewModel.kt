@@ -1,6 +1,7 @@
 package edu.hm.cs.ma.todoguru.task
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -49,7 +50,8 @@ class TaskViewModel(
         if (it != null && reminderTime.value != null)
             MutableLiveData(LocalDateTime.of(reminderDate.value, reminderTime.value))
         else
-            MutableLiveData()
+            Toast.makeText(application, "Time is set to current time. To change, update task.", Toast.LENGTH_LONG)
+        MutableLiveData(LocalDateTime.of(reminderDate.value, LocalTime.now()))
     }
     var category = MutableLiveData<String?>()
     var subTask = MutableLiveData<List<SubTask>>(emptyList())
