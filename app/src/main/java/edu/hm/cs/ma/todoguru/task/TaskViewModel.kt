@@ -1,6 +1,8 @@
 package edu.hm.cs.ma.todoguru.task
 
 import android.app.Application
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -15,6 +17,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.lang.NullPointerException
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -50,7 +53,8 @@ class TaskViewModel(
         if (it != null && reminderTime.value != null)
             MutableLiveData(LocalDateTime.of(reminderDate.value, reminderTime.value))
         else
-            MutableLiveData()
+            Toast.makeText(application, "Reminder time is set to current time. To change, update task.", Toast.LENGTH_LONG).show()
+        MutableLiveData(LocalDateTime.of(reminderDate.value, LocalTime.now()))
     }
     var category = MutableLiveData<String?>()
     var subTask = MutableLiveData<List<SubTask>>(emptyList())
@@ -84,38 +88,46 @@ class TaskViewModel(
 
     fun insertTask() {
         uiScope.launch {
-            insert(
-                Task(
-                    title.value!!,
-                    description.value!!,
-                    dueDate.value!!,
-                    estimated.value!!,
-                    reminder.value!!,
-                    category.value,
-                    subTask.value!!,
-                    repeat.value,
-                    priority.value!!
+            try {
+                insert(
+                    Task(
+                        title.value!!,
+                        description.value!!,
+                        dueDate.value!!,
+                        estimated.value!!,
+                        reminder.value!!,
+                        category.value,
+                        subTask.value!!,
+                        repeat.value,
+                        priority.value!!
+                    )
                 )
-            )
+            } catch (e: NullPointerException) {
+                Log.i("Error", "Insert Task in Database Error:" + e)
+            }
         }
     }
 
     fun updateTask() {
         uiScope.launch {
-            update(
-                Task(
-                    id,
-                    title.value!!,
-                    description.value!!,
-                    dueDate.value!!,
-                    estimated.value!!,
-                    reminder.value!!,
-                    category.value,
-                    subTask.value!!,
-                    repeat.value,
-                    priority.value!!
+            try {
+                update(
+                    Task(
+                        id,
+                        title.value!!,
+                        description.value!!,
+                        dueDate.value!!,
+                        estimated.value!!,
+                        reminder.value!!,
+                        category.value,
+                        subTask.value!!,
+                        repeat.value,
+                        priority.value!!
+                    )
                 )
-            )
+            } catch (e: NullPointerException) {
+                Log.i("Error", "Update Task in Database Error: " + e)
+            }
         }
     }
 
