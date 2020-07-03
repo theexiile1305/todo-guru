@@ -27,7 +27,7 @@ class ReminderNotification : Service() {
         const val channelID = "todo_guru_notification_channel"
         const val channelName = "ToDo Guru notifications"
         const val channelDescription = "reminder as notification"
-        const val notificationInterval = 1_000 * 60
+        const val notificationInterval = 1_000 * 3600
     }
 
     private val handler = Handler()
