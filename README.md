@@ -32,7 +32,54 @@ The concept of the app is that it helps you to keep track of your tasks. It remi
 
 ### Project Structure
 ```
-root/
+todoguru/
+├── database/
+│ // Database, database DAOs and entities
+├── explanation/
+│ // Fragments for explanation pages
+├── notification/
+│ // Notification for reminder
+├── privacy/
+│ // privacy policy
+├── productivity/
+│ // all about the productivity
+├── task/
+│ // All about the actual tasks
+│ ├── categories/
+│ │ // Adapter, fragments and ViewModel for using categories
+│ ├── completedTask/
+│ │ // Adapter, fragments and ViewModel for displaying completed tasks
+│ ├── delete/
+│ │ // Dialogs for deletion of categories, tasks and subtasks
+│ ├── insert/
+│ │ // Dialogs for insertion of categories, tasks and subtasks
+│ ├── list/
+│ │ // Adapter, fragments and ViewModel and Wrapper for using categories
+│ ├── read/
+│ │ // Fragment to view Task
+│ ├── subtask/
+│ │ // Adapter, fragments and ViewModel subtasks
+│ ├── timeTracker/
+│ │ // ViewModel for tracking time on task
+│ ├── update/
+│ │ // Fragment for updating task
+│ ├── SetAlarmDialog.kt
+│ │ // Dialog for setting alarm
+│ ├── SetCategoryDialog.kt
+│ │ // Dialog for setting categories
+│ ├── SetReminderFragment.kt
+│ │ // Fragment for reminder
+│ ├── SetRepeatDialog.kt
+│ │ // Dialog for setting task on repeat
+│ ├── TaskFragment.kt
+│ │ // Fragment for tasks
+│ ├── TaskViewModel.kt
+│ │ // ViewModel for tasks
+│ └── Util.kt
+│ // For displaying the tracked time on task
+├── BindingUtils.kt
+│ // Factory to create specified viewModels
+└── MainActivity.kt
 
 ```
 
