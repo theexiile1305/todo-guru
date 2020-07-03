@@ -26,7 +26,7 @@
     <string name="top_description_3">ToDo Guru description (3/3)</string>
     <string name="description_1">Welcome to ToDo Guru, together we will make your life more efficient.</string>
     <string name="description_2">The home screen shows all the tasks that you have added. You can mark a task as complete or delete it. If you want to add a task, click the plus sign. </string>
-    <string name="description_3">The app will keep track of the time you have spent on different tasks and display which day of the week you are the most productive.</string>
+    <string name="description_3">The app will keep track of the time you have spent on different tasks and display how many of the tasks been completed.</string>
     <string name="description_4">Press Next to see all the features and get started.</string>
     <string name="next_button">Next</string>
     <string name="prev_button">Prev.</string>
@@ -37,6 +37,9 @@
     <string name="category">Category</string>
     <string name="set_alarm">Your ToDo Guru Alarm</string>
     <string name="start_alarm">Start Alarm</string>
+    <string name="completed_tasks">Completed tasks</string>
+    <string name="complete">Complete</string>
+    <string name="complete_list">List of completed tasks</string>
     <string name="track_time">Track time spent on task</string>
     <string name="start_time">Start</string>
     <string name="end_time">End</string>
@@ -44,4 +47,12 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="subTask">Sub task</string>
+    <string name="recommend_app">Recommend App</string>
+    <string name="recommend_app_description">Recommend the app to your friends</string>
+    <string name="recommend_app_message">Checkout the brand new ToDO Guru app at <a href="https://github.com/mobileappdevhm20/team-project-team_4">https://github.com/mobileappdevhm20/team-project-team_4</a> at for a more efficient day!</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="privacy_policy_description">Open Privacy Policy</string>
+    <string name="contact_developers">Contact Developers</string>
+    <string name="contact_developers_description">Contact the developer team for bugs, feedback and feature requests</string>
+    <string name="github_repository_issues">https://github.com/mobileappdevhm20/team-project-team_4/issues</string>
 </resources>

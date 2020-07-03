@@ -1,5 +1,7 @@
 package edu.hm.cs.ma.todoguru.task.list
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
@@ -9,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,6 +23,7 @@ import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.databinding.TaskListFragmentBinding
 import edu.hm.cs.ma.todoguru.task.SetAlarmDialog
 import kotlinx.android.synthetic.main.task_list_fragment.topAppBar
+import timber.log.Timber
 
 class TaskListFragment : TaskAdapter.Listener, Fragment() {
 
@@ -101,9 +105,14 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Timber.d("Shows all the options that the user can choose from the MenuItem")
         when (item.itemId) {
             R.id.mark_tasks_as_done -> markTaskAsDone()
             R.id.delete_tasks -> deleteTasks()
+            R.id.completed_tasks -> navigateToCompletedTasks()
+            R.id.recommend_app -> recommendApp()
+            R.id.privacy_policy -> openPrivacyPolicy()
+            R.id.contact_developers -> contactDevelopers()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -122,6 +131,10 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
     }
 
     private fun markTaskAsDone() = viewModel.markTasksAsDone(selectedTasks)
+
+    private fun navigateToCompletedTasks() {
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToCompletedTaskListFragment())
+    }
 
     private fun deleteTasks() {
         if (selectedTasks.isNotEmpty()) {
@@ -156,4 +169,27 @@ class TaskListFragment : TaskAdapter.Listener, Fragment() {
         findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToProductivityFragment())
         return true
     }
+
+    private fun recommendApp() {
+        Timber.d("Recommend the app")
+        ShareCompat.IntentBuilder
+            .from(requireActivity())
+            .setChooserTitle(getString(R.string.recommend_app))
+            .setText(getString(R.string.recommend_app_message))
+            .setType("text/html")
+            .intent
+            .let { startActivity(it) }
+    }
+
+    private fun openPrivacyPolicy() {
+        Timber.d("Show our privacy policy")
+        findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToPrivacyPolicyFragment())
+    }
+
+    private fun contactDevelopers() = startActivity(
+        Intent(
+            Intent.ACTION_VIEW,
+            Uri.parse(getString(R.string.github_repository_issues))
+        )
+    )
 }

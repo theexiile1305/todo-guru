@@ -6,7 +6,7 @@ import com.google.gson.Gson
 class ListConverter {
 
     @TypeConverter
-    fun listToJson(value: List<SubTask>) = Gson().toJson(value)
+    fun listToJson(value: List<SubTask>): String = Gson().toJson(value)
 
     @TypeConverter
     fun jsonToList(value: String) = Gson().fromJson(value, Array<SubTask>::class.java).toList()

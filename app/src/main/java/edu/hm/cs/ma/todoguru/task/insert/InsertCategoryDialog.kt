@@ -9,6 +9,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.R
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
 import edu.hm.cs.ma.todoguru.task.categories.CategoryListViewModel
+import timber.log.Timber
 
 class InsertCategoryDialog : DialogFragment() {
 
@@ -25,6 +26,7 @@ class InsertCategoryDialog : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return requireActivity().let {
+            Timber.d("Add a new category")
             MaterialAlertDialogBuilder(it)
                 .setView(it.layoutInflater.inflate(R.layout.insert_category_dialog, null))
                 .setTitle("Add a new category")
@@ -40,6 +42,7 @@ class InsertCategoryDialog : DialogFragment() {
     }
 
     private fun validate(field: EditText): Boolean {
+        Timber.d("Message that shows that a category can not be empty")
         if (field.text.toString().isEmpty()) {
             field.error = "The category cannot be empty!"
             return false

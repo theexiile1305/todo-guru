@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class SubTaskListViewModel(
     private val database: SubTaskDatabaseDao,
@@ -43,24 +44,28 @@ class SubTaskListViewModel(
     }
 
     fun insertSubTask(description: String) {
+        Timber.d("Insert sub task")
         uiScope.launch {
             insert(SubTask(description))
         }
     }
 
     fun deleteSubTask(subTask: SubTask) {
+        Timber.d("Delete sub task")
         uiScope.launch {
             delete(subTask)
         }
     }
 
     private suspend fun insert(subTask: SubTask) {
+        Timber.d("Insert sub task")
         withContext(Dispatchers.IO) {
             database.insert(subTask)
         }
     }
 
     private suspend fun delete(subTask: SubTask) {
+        Timber.d("Delete sub task")
         withContext(Dispatchers.IO) {
             database.delete(subTask)
         }

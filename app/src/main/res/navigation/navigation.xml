@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/explanationFragment">
     <fragment
@@ -22,6 +23,12 @@
         <action
             android:id="@+id/action_taskListFragment_to_productivityFragment"
             app:destination="@id/productivityFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_completedTaskListFragment"
+            app:destination="@id/completedTaskListFragment" />
     </fragment>
     <fragment
         android:id="@+id/updateTaskFragment"
@@ -178,4 +185,17 @@
         android:id="@+id/productivityFragment"
         android:name="edu.hm.cs.ma.todoguru.productivity.ProductivityFragment"
         android:label="ProductivityFragment" />
+    <fragment
+        android:id="@+id/completedTaskListFragment"
+        android:name="edu.hm.cs.ma.todoguru.task.completedTask.CompletedTaskListFragment"
+        android:label="CompletedTaskListFragment">
+        <action
+            android:id="@+id/action_completedTaskListFragment_to_viewTaskFragment"
+            app:destination="@id/viewTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="edu.hm.cs.ma.todoguru.privacy.PrivacyPolicyFragment"
+        android:label="privacy_policy_fragment"
+        tools:layout="@layout/privacy_policy_fragment" />
 </navigation>

@@ -6,6 +6,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import edu.hm.cs.ma.todoguru.database.ToDoGuruDatabase
+import timber.log.Timber
 import java.time.Period
 
 class SetRepeatDialog : DialogFragment() {
@@ -19,6 +20,7 @@ class SetRepeatDialog : DialogFragment() {
     private lateinit var viewModel: TaskViewModel
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        Timber.d("Allows the user to put a specific task on repeat")
         initViewModels()
         val items = getSingleChoiceItems()
         var chosen: String? = null
