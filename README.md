@@ -27,8 +27,8 @@ The concept of the app is that it helps you to keep track of your tasks. It remi
 * Android Junit & Espresso Testing
 * Google Analytics & Crashlytics --> You need at least access to the Google Firebase console. To get access contact Michael Fuchs
 
-### Components
-![Components](assets/components.png)
+### Architecture
+![Architecture](assets/architecture.png)
 
 ### Project Structure
 ```
