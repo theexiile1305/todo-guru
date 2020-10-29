@@ -39,7 +39,7 @@ jobs:
       - name: Execute unit tests
         run: ./gradlew app:jacocoTestReport
       - name: Upload unit tests artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: unit_tests
           path: ./app/build/jacoco/
@@ -82,7 +82,7 @@ jobs:
           emulator-build: 6110076
           script: ./gradlew app:connectedCheck
       - name: Upload emulator tests artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         with:
           name: emulator_tests_${{ matrix.EMULATOR_API }}
           path: ./app/build/reports/coverage/debug/
